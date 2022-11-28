@@ -1,0 +1,18 @@
+# Data
+
+## Setup
+
+```{r}
+#| eval: FALSE
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("insightsengineering/teal@*release")
+```
+
+```{r}
+library(teal)
+library(dplyr)
+```
+
+## Use data
+
+## Look at data

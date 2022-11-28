@@ -1,0 +1,7 @@
+# Preface {.unnumbered}
+
+This is a collection of materials used for the introductory content of teal found on the [pharmaverse youtube channel](https://www.youtube.com/@pharmaverse6572).
+
+```{r}
+1 + 1
+```
