@@ -1,9 +1,18 @@
 # Introduction
 
-This is a book created from markdown and executable code.
+## Structure of teal apps
 
-See @knuth84 for additional discussion of literate programming.
+teal is a shiny-based modular framework. It provides an interactive user interface allowing users to customize tables and visualizations facilitating the exploration and analysis of clinical trial data. Dynamic analysis and display control, data filtering and code reproducibility are included in each module.
 
-```{r}
-1 + 1
-```
+teal modules are laid out in three panels.
+
+-   The `Left Panel`, referred to as the encoding panel, includes elements used to adjust the output interactively.
+
+-   The `Center Panel`, referred to as the output panel, where the tables and visualizations are displayed.
+
+-   The `Right Panel`, referred to as the data filter panel, includes elements used to subset the data interactively.
+
+The layout is pre-set within each module. However, user can decide overall tab order and nesting.
+See @fig-layout for the typical teal app structure.
+
+![Typical teal app layout](figures_images/teal_panel_layout.png){#fig:layout fig-alt="Structure of a typical teal app"}
