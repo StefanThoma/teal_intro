@@ -5,6 +5,8 @@ editor: visual
 
 # Data
 
+In this tutorial we will be working with realistic looking but simulated data.
+
 ## Setup
 
 ```{r}
@@ -14,10 +16,137 @@ remotes::install_github("insightsengineering/teal@*release")
 ```
 
 ```{r}
+library(random.cdisc.data)
+library(teal.data)
+library(scda)
+library(teal.modules.general)
+library(sparkline)
+install.packages("sparkline")
+```
+
+```{r}
 library(teal)
 library(dplyr)
 ```
 
-## Use data
+## What data do we use
 
-## Look at data
+We first load two synthetic data sets. \`random.cdisc.data::cadsl\` is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable `USUBJID`. According to [CDISC](https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl) the main purpose of ADSL is to provide a "(...) source for denominators for populations of interest, stratification variables, and other important subject subgroups".
+
+```{r}
+ADSL <- random.cdisc.data::cadsl
+```
+
+`ADTR` is a Tumor Results Analysis Dataset where there is one record (row) per subject. 
+
+```{r}
+ADTR <- random.cdisc.data::cadtr
+```
+
+
+## Getting started
+
+The most crucial function of the `teal` package(s) is the `teal::init()` function, which is structured as follows: 
+
+
+```{r}
+#| eval: FALSE
+init(
+  data,
+  modules,
+  title = NULL,
+  filter = list(),
+  header = tags$p("Add Title Here"),
+  footer = tags$p("Add Footer Here"),
+  id = character(0)
+)
+```
+
+The `init` function sets up a shiny app that consists of teal modules. 
+
+Let's go through the arguments: 
+In the `data` argument we can define one or more dataframes for the application. 
+If more than one dataframes are specified, they should be combined as a list, e.g. `data = list(ADSL, ADTR)`. 
+
+The package `teal.data` provides further arguments with which the data argument of `init()` can be specified, e.g. the `cdisc_data()` and the `cdisc_dataset()` functions which allow the teal app to know the merge key variables of the datasets. 
+The `cdisc_data` function returns a S6 object.
+
+
+
+
+```{r}
+#| error: false 
+cdisc_data(
+  cdisc_dataset("ADSL", ADSL),
+  cdisc_dataset("ADTR", ADTR))#, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT")))
+```
+
+The function `cdisc_data()` throws an error because there is no predefined keys for ADTR datasets. 
+Hence, we must specify the keys manually, let's try:
+
+```{r}
+#| error: false 
+cdisc_data(
+  cdisc_dataset("ADSL", ADSL),
+  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD")))
+```
+```{r}
+names(ADTR)[!names(ADTR) %in% names(ADSL)]
+```
+
+```{r}
+#| error: false 
+cdisc_data(
+  cdisc_dataset("ADSL", ADSL),
+  cdisc_dataset("ADTR", ADTR), keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))
+
+
+
+
+cdisc_data(
+  cdisc_dataset("ADSL", ADSL),
+  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT")))
+```
+
+
+```{r}
+#| eval: FALSE
+app <- teal::init(data = cdisc_data(
+  cdisc_dataset("ADSL", ADSL),
+  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))
+  # <<additional dataset code>>
+),
+modules = modules(tm_variable_browser(label = "View Variables")),
+header = "My first application")
+
+shinyApp(app$ui, app$server)
+
+
+app <- teal::init(data = list(cdisc_dataset("ADSL", ADSL),
+  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))),
+  # <<additional dataset code>>,
+modules = modules(tm_variable_browser(label = "View Variables")),
+header = "My first application")
+
+shinyApp(app$ui, app$server)
+
+
+
+
+#
+
+x <- cdisc_data(
+  cdisc_dataset("ADSL", ADSL),
+  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))
+  # <<additional dataset code>>
+)
+
+class(x)
+
+```
+
+```{r}
+str(x$get_dataset(dataname = "ADSL"))
+```
+
+
