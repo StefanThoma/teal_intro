@@ -12,7 +12,6 @@ teal modules are laid out in three panels.
 
 -   The `Right Panel`, referred to as the data filter panel, includes elements used to subset the data interactively.
 
-The layout is pre-set within each module. However, user can decide overall tab order and nesting.
-See @fig-layout for the typical teal app structure.
+The layout is pre-set within each module. However, user can decide overall tab order and nesting. See @fig-layout for the typical teal app structure.
 
 ![Typical teal app layout](figures_images/teal_panel_layout.png){#fig:layout fig-alt="Structure of a typical teal app"}

@@ -1,18 +1,21 @@
----
-title: "Data"
-editor: visual
----
-
 # Data
 
-In this tutorial we will be working with realistic looking but simulated data.
+
+## Aim of this chapter
+
 
 ## Setup
+In this tutorial we will be working with realistic looking but simulated data.
 
 ```{r}
 #| eval: FALSE
 if (!require("remotes")) install.packages("remotes")
+
+# install teal
 remotes::install_github("insightsengineering/teal@*release")
+# install teal.modules.general
+remotes::install_github("insightsengineering/teal.modules.general@*release")
+
 ```
 
 ```{r}
@@ -21,7 +24,6 @@ library(teal.data)
 library(scda)
 library(teal.modules.general)
 library(sparkline)
-install.packages("sparkline")
 ```
 
 ```{r}
@@ -37,17 +39,17 @@ We first load two synthetic data sets. \`random.cdisc.data::cadsl\` is a Subject
 ADSL <- random.cdisc.data::cadsl
 ```
 
-`ADTR` is a Tumor Results Analysis Dataset where there is one record (row) per subject. 
 
+ Data Structure for Adverse Event Analysis
 ```{r}
-ADTR <- random.cdisc.data::cadtr
+ADAE <- random.cdisc.data::cadae
+ADAE
 ```
 
 
 ## Getting started
 
-The most crucial function of the `teal` package(s) is the `teal::init()` function, which is structured as follows: 
-
+The most crucial function of the `teal` package(s) is the `teal::init()` function, which is structured as follows:
 
 ```{r}
 #| eval: FALSE
@@ -62,55 +64,44 @@ init(
 )
 ```
 
-The `init` function sets up a shiny app that consists of teal modules. 
+The `init` function sets up a shiny app that consists of teal modules.
 
-Let's go through the arguments: 
-In the `data` argument we can define one or more dataframes for the application. 
-If more than one dataframes are specified, they should be combined as a list, e.g. `data = list(ADSL, ADTR)`. 
+Let's go through the arguments: In the `data` argument we can define one or more dataframes for the application. If more than one dataframes are specified, they should be combined as a list, e.g. `data = list(ADSL, ADTR)`.
 
-The package `teal.data` provides further arguments with which the data argument of `init()` can be specified, e.g. the `cdisc_data()` and the `cdisc_dataset()` functions which allow the teal app to know the merge key variables of the datasets. 
-The `cdisc_data` function returns a S6 object.
+The package `teal.data` provides further arguments with which the data argument of `init()` can be specified, e.g. the `cdisc_data()` and the `cdisc_dataset()` functions which allow the teal app to know the merge key variables of the datasets. The `cdisc_data` function returns an S6 object.
 
 
+::: {#key .callout-note appearance="simple"}
+`keys` are prespecified variables in ADaM data to merge datasets. Each type of dataset requires specific keys to be specified. The package `teal.data` automatically chooses the correct key variables based on the `dataname` for the following datasets: `r paste(names(teal.data:::default_cdisc_keys), collapse = ", ")`.
+:::
+
+If you want to work with other ADaM datasets you must specify the keys manually. 
+ADTR is a Tumor Results Analysis Dataset where there is one record (row) per subject.
+As of now, this is not part of the default cdisc keys in the `teal.data` package, so we have to specify them manually: 
 
 
-```{r}
-#| error: false 
-cdisc_data(
-  cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADTR", ADTR))#, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT")))
-```
-
-The function `cdisc_data()` throws an error because there is no predefined keys for ADTR datasets. 
-Hence, we must specify the keys manually, let's try:
 
 ```{r}
-#| error: false 
-cdisc_data(
-  cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD")))
-```
-```{r}
-names(ADTR)[!names(ADTR) %in% names(ADSL)]
-```
-
-```{r}
-#| error: false 
-cdisc_data(
-  cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADTR", ADTR), keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))
-
-
+ADTR <- random.cdisc.data::cadtr
 
 
 cdisc_data(
   cdisc_dataset("ADSL", ADSL),
   cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT")))
 ```
+Note that all keys have to be specified. 
 
 
 ```{r}
-#| eval: FALSE
+#| echo: false
+cdisc_data(
+  cdisc_dataset(dataname = "ADSL", x = ADSL),
+  cdisc_dataset(dataname = "ADAE", x = ADAE))
+```
+
+
+```{r}
+#| eval: false
 app <- teal::init(data = cdisc_data(
   cdisc_dataset("ADSL", ADSL),
   cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))
@@ -131,22 +122,6 @@ header = "My first application")
 shinyApp(app$ui, app$server)
 
 
-
-
-#
-
-x <- cdisc_data(
-  cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))
-  # <<additional dataset code>>
-)
-
 class(x)
 
 ```
-
-```{r}
-str(x$get_dataset(dataname = "ADSL"))
-```
-
-
