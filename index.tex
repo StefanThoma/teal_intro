@@ -1,0 +1,1116 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[many]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={teaching\_material\_book},
+  pdfauthor={Stefan Thoma},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{teaching\_material\_book}
+\author{Stefan Thoma}
+\date{\texttt{r\ format(Sys.time(),\ \textquotesingle{}\%d\ \%B,\ \%Y\textquotesingle{})}}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, frame hidden, enhanced, sharp corners, boxrule=0pt, interior hidden, breakable]}{\end{tcolorbox}}\fi
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\bookmarksetup{startatroot}
+
+\hypertarget{preface}{%
+\chapter*{Preface}\label{preface}}
+\addcontentsline{toc}{chapter}{Preface}
+
+This is a collection of materials used for the introductory content of
+teal found on the
+\href{https://www.youtube.com/@pharmaverse6572}{pharmaverse youtube
+channel}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2
+\end{verbatim}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{introduction}{%
+\chapter{Introduction}\label{introduction}}
+
+\hypertarget{structure-of-teal-apps}{%
+\section{Structure of teal apps}\label{structure-of-teal-apps}}
+
+teal is a shiny-based modular framework. It provides an interactive user
+interface allowing users to customize tables and visualizations
+facilitating the exploration and analysis of clinical trial data.
+Dynamic analysis and display control, data filtering and code
+reproducibility are included in each module.
+
+teal modules are laid out in three panels.
+
+\begin{itemize}
+\item
+  The \texttt{Left\ Panel}, referred to as the encoding panel, includes
+  elements used to adjust the output interactively.
+\item
+  The \texttt{Center\ Panel}, referred to as the output panel, where the
+  tables and visualizations are displayed.
+\item
+  The \texttt{Right\ Panel}, referred to as the data filter panel,
+  includes elements used to subset the data interactively.
+\end{itemize}
+
+The layout is pre-set within each module. However, user can decide
+overall tab order and nesting. See \textbf{?@fig-layout} for the typical
+teal app structure.
+
+\begin{figure}
+
+{\centering \includegraphics{./figures_images/teal_panel_layout.png}
+
+}
+
+\caption{Typical teal app layout}
+
+\end{figure}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{data}{%
+\chapter{Data}\label{data}}
+
+\hypertarget{aim-of-this-chapter}{%
+\section{Aim of this chapter}\label{aim-of-this-chapter}}
+
+\hypertarget{setup}{%
+\section{Setup}\label{setup}}
+
+In this tutorial we will be working with realistic looking but simulated
+data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{require}\NormalTok{(}\StringTok{"remotes"}\NormalTok{)) }\FunctionTok{install.packages}\NormalTok{(}\StringTok{"remotes"}\NormalTok{)}
+
+\CommentTok{\# install teal}
+\NormalTok{remotes}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"insightsengineering/teal@*release"}\NormalTok{)}
+\CommentTok{\# install teal.modules.general}
+\NormalTok{remotes}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"insightsengineering/teal.modules.general@*release"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(random.cdisc.data)}
+\FunctionTok{library}\NormalTok{(teal.data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Loading required package: shiny
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(scda)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+There are no scda.XXXX libraries installed, like scda.2021.
+Please install an scda database to take full advantage of the scda package.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(teal.modules.general)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Loading required package: ggmosaic
+\end{verbatim}
+
+\begin{verbatim}
+Loading required package: ggplot2
+\end{verbatim}
+
+\begin{verbatim}
+Loading required package: shinyTree
+\end{verbatim}
+
+\begin{verbatim}
+Loading required package: teal
+\end{verbatim}
+
+\begin{verbatim}
+Loading required package: teal.transform
+\end{verbatim}
+
+\begin{verbatim}
+Loading required package: magrittr
+\end{verbatim}
+
+\begin{verbatim}
+
+You are using teal version 0.12.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(sparkline)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(teal)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:stats':
+
+    filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+\end{verbatim}
+
+\hypertarget{what-data-do-we-use}{%
+\section{What data do we use}\label{what-data-do-we-use}}
+
+We first load two synthetic data sets. `random.cdisc.data::cadsl` is a
+Subject Level Analysis Dataset (ADSL) with one record (row) per subject.
+The unique identifier per subject is stored in the variable
+\texttt{USUBJID}. According to
+\href{https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl}{CDISC}
+the main purpose of ADSL is to provide a ``(\ldots) source for
+denominators for populations of interest, stratification variables, and
+other important subject subgroups''.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ADSL }\OtherTok{\textless{}{-}}\NormalTok{ random.cdisc.data}\SpecialCharTok{::}\NormalTok{cadsl}
+\end{Highlighting}
+\end{Shaded}
+
+Data Structure for Adverse Event Analysis
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ADAE }\OtherTok{\textless{}{-}}\NormalTok{ random.cdisc.data}\SpecialCharTok{::}\NormalTok{cadae}
+\NormalTok{ADAE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+# A tibble: 1,934 x 92
+   STUDYID USUBJID    SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
+   <chr>   <chr>      <chr>  <chr>  <int> <fct> <fct> <fct> <fct>  <fct>   <fct>
+ 1 AB12345 AB12345-B~ id-134 BRA-1     47 YEARS M     WHITE NOT H~ BRA     Y    
+ 2 AB12345 AB12345-B~ id-134 BRA-1     47 YEARS M     WHITE NOT H~ BRA     Y    
+ 3 AB12345 AB12345-B~ id-134 BRA-1     47 YEARS M     WHITE NOT H~ BRA     Y    
+ 4 AB12345 AB12345-B~ id-134 BRA-1     47 YEARS M     WHITE NOT H~ BRA     Y    
+ 5 AB12345 AB12345-B~ id-141 BRA-1     35 YEARS F     WHITE NOT H~ BRA     N    
+ 6 AB12345 AB12345-B~ id-141 BRA-1     35 YEARS F     WHITE NOT H~ BRA     N    
+ 7 AB12345 AB12345-B~ id-141 BRA-1     35 YEARS F     WHITE NOT H~ BRA     N    
+ 8 AB12345 AB12345-B~ id-141 BRA-1     35 YEARS F     WHITE NOT H~ BRA     N    
+ 9 AB12345 AB12345-B~ id-141 BRA-1     35 YEARS F     WHITE NOT H~ BRA     N    
+10 AB12345 AB12345-B~ id-141 BRA-1     35 YEARS F     WHITE NOT H~ BRA     N    
+# ... with 1,924 more rows, and 81 more variables: INVID <chr>, INVNAM <chr>,
+#   ARM <fct>, ARMCD <fct>, ACTARM <fct>, ACTARMCD <fct>, TRT01P <fct>,
+#   TRT01A <fct>, TRT02P <fct>, TRT02A <fct>, REGION1 <fct>, STRATA1 <fct>,
+#   STRATA2 <fct>, BMRKR1 <dbl>, BMRKR2 <fct>, ITTFL <fct>, SAFFL <fct>,
+#   BMEASIFL <fct>, BEP01FL <fct>, AEWITHFL <fct>, RANDDT <date>,
+#   TRTSDTM <dttm>, TRTEDTM <dttm>, TRT01SDTM <dttm>, TRT01EDTM <dttm>,
+#   TRT02SDTM <dttm>, TRT02EDTM <dttm>, AP01SDTM <dttm>, AP01EDTM <dttm>, ...
+\end{verbatim}
+
+\hypertarget{getting-started}{%
+\section{Getting started}\label{getting-started}}
+
+The most crucial function of the \texttt{teal} package(s) is the
+\texttt{teal::init()} function, which is structured as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{init}\NormalTok{(}
+\NormalTok{  data,}
+\NormalTok{  modules,}
+  \AttributeTok{title =} \ConstantTok{NULL}\NormalTok{,}
+  \AttributeTok{filter =} \FunctionTok{list}\NormalTok{(),}
+  \AttributeTok{header =}\NormalTok{ tags}\SpecialCharTok{$}\FunctionTok{p}\NormalTok{(}\StringTok{"Add Title Here"}\NormalTok{),}
+  \AttributeTok{footer =}\NormalTok{ tags}\SpecialCharTok{$}\FunctionTok{p}\NormalTok{(}\StringTok{"Add Footer Here"}\NormalTok{),}
+  \AttributeTok{id =} \FunctionTok{character}\NormalTok{(}\DecValTok{0}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+The \texttt{init} function sets up a shiny app that consists of teal
+modules. Let's go through the arguments:
+
+\hypertarget{data-1}{%
+\subsection{Data}\label{data-1}}
+
+In the \texttt{data} argument we can define one or more dataframes for
+the application. If more than one dataframes are specified, they should
+be combined as a list, e.g.~\texttt{data\ =\ list(ADSL,\ ADTR)}.
+
+If you work with ADaM datasets, the package \texttt{teal.data} provides
+helper functions with which the \texttt{data} argument of
+\texttt{init()} can be specified, --- the \texttt{cdisc\_data()} and the
+\texttt{cdisc\_dataset()} functions. They allow the teal app to know the
+merge key variables of the datasets. The \texttt{cdisc\_data}function
+returns an S6 object.
+
+\begin{tcolorbox}[enhanced jigsaw, leftrule=.75mm, arc=.35mm, colback=white, colframe=quarto-callout-note-color-frame, opacityback=0, toprule=.15mm, bottomrule=.15mm, rightrule=.15mm, left=2mm, breakable]
+\begin{minipage}[t]{5.5mm}
+\textcolor{quarto-callout-note-color}{\faInfo}
+\end{minipage}%
+\begin{minipage}[t]{\textwidth - 5.5mm}
+\texttt{keys} are prespecified variables in ADaM data to merge datasets.
+Each type of dataset requires specific keys to be specified. The package
+\texttt{teal.data} automatically chooses the correct key variables based
+on the \texttt{dataname} for the following datasets: ADSL, ADAE, ADEG,
+ADTTE, ADAETTE, ADCM, ADEX, ADLB, ADMH, ADQS, ADRS, ADSAFTTE, ADVS,
+ADDV, ADSUB, ADHY.
+
+If you want to work with other ADaM datasets you must specify the keys
+manually. ADTR is a Tumor Results Analysis Dataset where there is one
+record (row) per subject. As of now, this is not part of the default
+cdisc keys in the \texttt{teal.data} package, so we would have to
+specify them manually:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ADTR }\OtherTok{\textless{}{-}}\NormalTok{ random.cdisc.data}\SpecialCharTok{::}\NormalTok{cadtr}
+
+
+\FunctionTok{cdisc\_data}\NormalTok{(}
+  \FunctionTok{cdisc\_dataset}\NormalTok{(}\StringTok{"ADSL"}\NormalTok{, ADSL),}
+  \FunctionTok{cdisc\_dataset}\NormalTok{(}\StringTok{"ADTR"}\NormalTok{, ADTR, }\AttributeTok{keys =} \FunctionTok{c}\NormalTok{(}\StringTok{"STUDYID"}\NormalTok{, }\StringTok{"USUBJID"}\NormalTok{, }\StringTok{"PARAMCD"}\NormalTok{, }\StringTok{"AVISIT"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+A CDISCTealData object containing 2 TealDataset/TealDatasetConnector object(s) as element(s):
+--> Element 1:
+A CDISCTealDataset object containing the following data.frame (400 rows and 56 columns):
+  STUDYID               USUBJID SUBJID SITEID AGE  AGEU SEX
+1 AB12345  AB12345-CHN-3-id-128 id-128  CHN-3  32 YEARS   M
+2 AB12345 AB12345-CHN-15-id-262 id-262 CHN-15  35 YEARS   M
+3 AB12345  AB12345-RUS-3-id-378 id-378  RUS-3  30 YEARS   F
+4 AB12345 AB12345-CHN-11-id-220 id-220 CHN-11  26 YEARS   F
+5 AB12345  AB12345-CHN-7-id-267 id-267  CHN-7  40 YEARS   M
+6 AB12345 AB12345-CHN-15-id-201 id-201 CHN-15  49 YEARS   M
+                       RACE                 ETHNIC COUNTRY DTHFL         INVID
+1                     ASIAN     HISPANIC OR LATINO     CHN     Y  INV ID CHN-3
+2 BLACK OR AFRICAN AMERICAN NOT HISPANIC OR LATINO     CHN     N INV ID CHN-15
+3                     ASIAN NOT HISPANIC OR LATINO     RUS     N  INV ID RUS-3
+4                     ASIAN NOT HISPANIC OR LATINO     CHN     N INV ID CHN-11
+5                     ASIAN NOT HISPANIC OR LATINO     CHN     N  INV ID CHN-7
+6                     ASIAN NOT HISPANIC OR LATINO     CHN     Y INV ID CHN-15
+          INVNAM            ARM ARMCD         ACTARM ACTARMCD         TRT01P
+1  Dr. CHN-3 Doe      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X
+2 Dr. CHN-15 Doe C: Combination ARM C C: Combination    ARM C C: Combination
+3  Dr. RUS-3 Doe C: Combination ARM C C: Combination    ARM C C: Combination
+4 Dr. CHN-11 Doe     B: Placebo ARM B     B: Placebo    ARM B     B: Placebo
+5  Dr. CHN-7 Doe     B: Placebo ARM B     B: Placebo    ARM B     B: Placebo
+6 Dr. CHN-15 Doe C: Combination ARM C C: Combination    ARM C C: Combination
+          TRT01A         TRT02P         TRT02A REGION1 STRATA1 STRATA2
+1      A: Drug X     B: Placebo      A: Drug X    Asia       C      S2
+2 C: Combination     B: Placebo C: Combination    Asia       C      S1
+3 C: Combination      A: Drug X     B: Placebo Eurasia       A      S1
+4     B: Placebo     B: Placebo     B: Placebo    Asia       B      S2
+5     B: Placebo C: Combination      A: Drug X    Asia       C      S1
+6 C: Combination     B: Placebo C: Combination    Asia       C      S2
+     BMRKR1 BMRKR2 ITTFL SAFFL BMEASIFL BEP01FL AEWITHFL     RANDDT
+1 14.424934 MEDIUM     Y     Y        Y       Y        N 2019-02-22
+2  4.055463    LOW     Y     Y        N       N        Y 2019-02-26
+3  2.803240   HIGH     Y     Y        Y       N        N 2019-02-24
+4 10.262734 MEDIUM     Y     Y        Y       Y        N 2019-02-27
+5  6.206763    LOW     Y     Y        N       N        N 2019-03-01
+6  6.906799 MEDIUM     Y     Y        Y       N        N 2019-03-05
+              TRTSDTM             TRTEDTM           TRT01SDTM
+1 2019-02-24 11:09:18 2022-02-12 03:55:58 2019-02-24 11:09:18
+2 2019-02-26 09:05:00 2022-02-26 02:32:36 2019-02-26 09:05:00
+3 2019-02-28 03:19:08 2022-02-27 20:46:44 2019-02-28 03:19:08
+4 2019-03-01 13:33:03 2022-03-01 07:00:39 2019-03-01 13:33:03
+5 2019-03-02 00:09:16 2022-03-01 17:36:52 2019-03-02 00:09:16
+6 2019-03-05 15:23:44 2022-02-19 03:34:25 2019-03-05 15:23:44
+            TRT01EDTM           TRT02SDTM           TRT02EDTM
+1 2021-02-11 22:06:46 2021-02-11 22:06:46 2022-02-12 03:55:58
+2 2021-02-25 20:43:24 2021-02-25 20:43:24 2022-02-26 02:32:36
+3 2021-02-27 14:57:32 2021-02-27 14:57:32 2022-02-27 20:46:44
+4 2021-03-01 01:11:27 2021-03-01 01:11:27 2022-03-01 07:00:39
+5 2021-03-01 11:47:40 2021-03-01 11:47:40 2022-03-01 17:36:52
+6 2021-02-18 21:45:13 2021-02-18 21:45:13 2022-02-19 03:34:25
+             AP01SDTM            AP01EDTM            AP02SDTM
+1 2019-02-24 11:09:18 2021-02-11 22:06:46 2021-02-11 22:06:46
+2 2019-02-26 09:05:00 2021-02-25 20:43:24 2021-02-25 20:43:24
+3 2019-02-28 03:19:08 2021-02-27 14:57:32 2021-02-27 14:57:32
+4 2019-03-01 13:33:03 2021-03-01 01:11:27 2021-03-01 01:11:27
+5 2019-03-02 00:09:16 2021-03-01 11:47:40 2021-03-01 11:47:40
+6 2019-03-05 15:23:44 2021-02-18 21:45:13 2021-02-18 21:45:13
+             AP02EDTM       EOSSTT       EOTSTT      EOSDT EOSDY DCSREAS
+1 2022-02-12 03:55:58 DISCONTINUED DISCONTINUED 2022-02-12  1084   DEATH
+2 2022-02-26 02:32:36    COMPLETED    COMPLETED 2022-02-26  1096    <NA>
+3 2022-02-27 20:46:44    COMPLETED    COMPLETED 2022-02-27  1096    <NA>
+4 2022-03-01 07:00:39    COMPLETED    COMPLETED 2022-03-01  1096    <NA>
+5 2022-03-01 17:36:52    COMPLETED    COMPLETED 2022-03-01  1096    <NA>
+6 2022-02-19 03:34:25 DISCONTINUED DISCONTINUED 2022-02-19  1082   DEATH
+       DTHDT       DTHCAUS        DTHCAT LDDTHELD LDDTHGR1   LSTALVDT DTHADY
+1 2022-03-06 ADVERSE EVENT ADVERSE EVENT       22     <=30 2022-03-06   1106
+2       <NA>          <NA>          <NA>       NA     <NA> 2022-03-17     NA
+3       <NA>          <NA>          <NA>       NA     <NA> 2022-03-11     NA
+4       <NA>          <NA>          <NA>       NA     <NA> 2022-03-26     NA
+5       <NA>          <NA>          <NA>       NA     <NA> 2022-03-15     NA
+6 2022-02-22 ADVERSE EVENT ADVERSE EVENT        3     <=30 2022-02-22   1085
+  ADTHAUT study_duration_secs
+1     Yes            63113904
+2    <NA>            63113904
+3    <NA>            63113904
+4    <NA>            63113904
+5    <NA>            63113904
+6     Yes            63113904
+
+...
+# A tibble: 6 x 56
+  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
+  <chr>   <chr>       <chr>  <chr>  <int> <fct> <fct> <fct> <fct>  <fct>   <fct>
+1 AB12345 AB12345-CH~ id-11  CHN-9     28 YEARS F     NATI~ HISPA~ CHN     Y    
+2 AB12345 AB12345-CH~ id-352 CHN-16    28 YEARS M     ASIAN UNKNO~ CHN     N    
+3 AB12345 AB12345-CH~ id-186 CHN-1     27 YEARS M     ASIAN NOT H~ CHN     N    
+4 AB12345 AB12345-CH~ id-371 CHN-1     28 YEARS F     ASIAN NOT H~ CHN     N    
+5 AB12345 AB12345-CH~ id-233 CHN-1     36 YEARS F     BLAC~ NOT H~ CHN     Y    
+6 AB12345 AB12345-US~ id-131 USA-12    44 YEARS F     AMER~ NOT H~ USA     N    
+# ... with 45 more variables: INVID <chr>, INVNAM <chr>, ARM <fct>,
+#   ARMCD <fct>, ACTARM <fct>, ACTARMCD <fct>, TRT01P <fct>, TRT01A <fct>,
+#   TRT02P <fct>, TRT02A <fct>, REGION1 <fct>, STRATA1 <fct>, STRATA2 <fct>,
+#   BMRKR1 <dbl>, BMRKR2 <fct>, ITTFL <fct>, SAFFL <fct>, BMEASIFL <fct>,
+#   BEP01FL <fct>, AEWITHFL <fct>, RANDDT <date>, TRTSDTM <dttm>,
+#   TRTEDTM <dttm>, TRT01SDTM <dttm>, TRT01EDTM <dttm>, TRT02SDTM <dttm>,
+#   TRT02EDTM <dttm>, AP01SDTM <dttm>, AP01EDTM <dttm>, AP02SDTM <dttm>, ...
+--> Element 2:
+A CDISCTealDataset object containing the following data.frame (2800 rows and 77 columns):
+  STUDYID              USUBJID SUBJID SITEID AGE  AGEU SEX
+1 AB12345 AB12345-BRA-1-id-105 id-105  BRA-1  38 YEARS   M
+2 AB12345 AB12345-BRA-1-id-105 id-105  BRA-1  38 YEARS   M
+3 AB12345 AB12345-BRA-1-id-105 id-105  BRA-1  38 YEARS   M
+4 AB12345 AB12345-BRA-1-id-105 id-105  BRA-1  38 YEARS   M
+5 AB12345 AB12345-BRA-1-id-105 id-105  BRA-1  38 YEARS   M
+6 AB12345 AB12345-BRA-1-id-105 id-105  BRA-1  38 YEARS   M
+                       RACE             ETHNIC COUNTRY DTHFL        INVID
+1 BLACK OR AFRICAN AMERICAN HISPANIC OR LATINO     BRA     N INV ID BRA-1
+2 BLACK OR AFRICAN AMERICAN HISPANIC OR LATINO     BRA     N INV ID BRA-1
+3 BLACK OR AFRICAN AMERICAN HISPANIC OR LATINO     BRA     N INV ID BRA-1
+4 BLACK OR AFRICAN AMERICAN HISPANIC OR LATINO     BRA     N INV ID BRA-1
+5 BLACK OR AFRICAN AMERICAN HISPANIC OR LATINO     BRA     N INV ID BRA-1
+6 BLACK OR AFRICAN AMERICAN HISPANIC OR LATINO     BRA     N INV ID BRA-1
+         INVNAM       ARM ARMCD    ACTARM ACTARMCD    TRT01P    TRT01A
+1 Dr. BRA-1 Doe A: Drug X ARM A A: Drug X    ARM A A: Drug X A: Drug X
+2 Dr. BRA-1 Doe A: Drug X ARM A A: Drug X    ARM A A: Drug X A: Drug X
+3 Dr. BRA-1 Doe A: Drug X ARM A A: Drug X    ARM A A: Drug X A: Drug X
+4 Dr. BRA-1 Doe A: Drug X ARM A A: Drug X    ARM A A: Drug X A: Drug X
+5 Dr. BRA-1 Doe A: Drug X ARM A A: Drug X    ARM A A: Drug X A: Drug X
+6 Dr. BRA-1 Doe A: Drug X ARM A A: Drug X    ARM A A: Drug X A: Drug X
+          TRT02P    TRT02A       REGION1 STRATA1 STRATA2   BMRKR1 BMRKR2 ITTFL
+1 C: Combination A: Drug X South America       B      S1 4.156914 MEDIUM     Y
+2 C: Combination A: Drug X South America       B      S1 4.156914 MEDIUM     Y
+3 C: Combination A: Drug X South America       B      S1 4.156914 MEDIUM     Y
+4 C: Combination A: Drug X South America       B      S1 4.156914 MEDIUM     Y
+5 C: Combination A: Drug X South America       B      S1 4.156914 MEDIUM     Y
+6 C: Combination A: Drug X South America       B      S1 4.156914 MEDIUM     Y
+  SAFFL BMEASIFL BEP01FL AEWITHFL     RANDDT             TRTSDTM
+1     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+2     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+3     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+4     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+5     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+6     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+              TRTEDTM           TRT01SDTM           TRT01EDTM
+1 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+2 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+3 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+4 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+5 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+6 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+            TRT02SDTM           TRT02EDTM            AP01SDTM
+1 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+2 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+3 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+4 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+5 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+6 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+             AP01EDTM            AP02SDTM            AP02EDTM       EOSSTT
+1 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+2 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+3 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+4 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+5 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+6 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+        EOTSTT      EOSDT EOSDY            DCSREAS DTHDT DTHCAUS DTHCAT
+1 DISCONTINUED 2022-02-14   709 PROTOCOL VIOLATION  <NA>    <NA>   <NA>
+2 DISCONTINUED 2022-02-14   709 PROTOCOL VIOLATION  <NA>    <NA>   <NA>
+3 DISCONTINUED 2022-02-14   709 PROTOCOL VIOLATION  <NA>    <NA>   <NA>
+4 DISCONTINUED 2022-02-14   709 PROTOCOL VIOLATION  <NA>    <NA>   <NA>
+5 DISCONTINUED 2022-02-14   709 PROTOCOL VIOLATION  <NA>    <NA>   <NA>
+6 DISCONTINUED 2022-02-14   709 PROTOCOL VIOLATION  <NA>    <NA>   <NA>
+  LDDTHELD LDDTHGR1   LSTALVDT DTHADY ADTHAUT study_duration_secs AGEGR1
+1       NA     <NA> 2022-03-09     NA    <NA>            63113904    <65
+2       NA     <NA> 2022-03-09     NA    <NA>            63113904    <65
+3       NA     <NA> 2022-03-09     NA    <NA>            63113904    <65
+4       NA     <NA> 2022-03-09     NA    <NA>            63113904    <65
+5       NA     <NA> 2022-03-09     NA    <NA>            63113904    <65
+6       NA     <NA> 2022-03-09     NA    <NA>            63113904    <65
+   TRTDURD DCSREAS_GRP                                   PARAM PARAMCD
+1 708.6236  Non-Safety Sum of Longest Diameter by Investigator  SLDINV
+2 708.6236  Non-Safety Sum of Longest Diameter by Investigator  SLDINV
+3 708.6236  Non-Safety Sum of Longest Diameter by Investigator  SLDINV
+4 708.6236  Non-Safety Sum of Longest Diameter by Investigator  SLDINV
+5 708.6236  Non-Safety Sum of Longest Diameter by Investigator  SLDINV
+6 708.6236  Non-Safety Sum of Longest Diameter by Investigator  SLDINV
+                 AVISIT AVISITN                ADTM  ADY   DTYPE     AVAL
+1 POST-BASELINE MINIMUM     999 2021-06-19 00:00:00  468 MINIMUM 141.6140
+2      END OF INDUCTION     999 2021-06-19 00:00:00  468         141.6140
+3              BASELINE       0 2020-03-08 05:28:11    0               NA
+4         CYCLE 4 DAY 1       4 2021-07-27 00:00:00  506         195.2095
+5             SCREENING      -1 2019-11-29 00:00:00 -100         171.4226
+6             FOLLOW UP     999 2022-01-06 00:00:00  669         210.8322
+             AVALC AVALU     BASE ABLFL       CHG      PCHG ONTRTFL ANL01FL
+1 141.614020702645    mm 167.4415       -25.82752 -15.42480       Y        
+2 141.614020702645    mm 167.4415       -25.82752 -15.42480       Y       Y
+3             <NA>    mm 167.4415     Y        NA        NA       Y        
+4 195.209453323539    mm 167.4415        27.76791  16.58365       Y       Y
+5 171.422566332973    mm 167.4415              NA        NA                
+6 210.832161998961    mm 167.4415        43.39062  25.91389       Y       Y
+  ANL02FL ANL03FL
+1               Y
+2                
+3       Y       Y
+4                
+5                
+6       Y        
+
+...
+     STUDYID              USUBJID SUBJID SITEID AGE  AGEU SEX  RACE
+2795 AB12345 AB12345-USA-9-id-130 id-130  USA-9  40 YEARS   M ASIAN
+2796 AB12345 AB12345-USA-9-id-130 id-130  USA-9  40 YEARS   M ASIAN
+2797 AB12345 AB12345-USA-9-id-130 id-130  USA-9  40 YEARS   M ASIAN
+2798 AB12345 AB12345-USA-9-id-130 id-130  USA-9  40 YEARS   M ASIAN
+2799 AB12345 AB12345-USA-9-id-130 id-130  USA-9  40 YEARS   M ASIAN
+2800 AB12345 AB12345-USA-9-id-130 id-130  USA-9  40 YEARS   M ASIAN
+                     ETHNIC COUNTRY DTHFL        INVID        INVNAM       ARM
+2795 NOT HISPANIC OR LATINO     USA     N INV ID USA-9 Dr. USA-9 Doe A: Drug X
+2796 NOT HISPANIC OR LATINO     USA     N INV ID USA-9 Dr. USA-9 Doe A: Drug X
+2797 NOT HISPANIC OR LATINO     USA     N INV ID USA-9 Dr. USA-9 Doe A: Drug X
+2798 NOT HISPANIC OR LATINO     USA     N INV ID USA-9 Dr. USA-9 Doe A: Drug X
+2799 NOT HISPANIC OR LATINO     USA     N INV ID USA-9 Dr. USA-9 Doe A: Drug X
+2800 NOT HISPANIC OR LATINO     USA     N INV ID USA-9 Dr. USA-9 Doe A: Drug X
+     ARMCD    ACTARM ACTARMCD    TRT01P    TRT01A         TRT02P         TRT02A
+2795 ARM A A: Drug X    ARM A A: Drug X A: Drug X C: Combination C: Combination
+2796 ARM A A: Drug X    ARM A A: Drug X A: Drug X C: Combination C: Combination
+2797 ARM A A: Drug X    ARM A A: Drug X A: Drug X C: Combination C: Combination
+2798 ARM A A: Drug X    ARM A A: Drug X A: Drug X C: Combination C: Combination
+2799 ARM A A: Drug X    ARM A A: Drug X A: Drug X C: Combination C: Combination
+2800 ARM A A: Drug X    ARM A A: Drug X A: Drug X C: Combination C: Combination
+           REGION1 STRATA1 STRATA2   BMRKR1 BMRKR2 ITTFL SAFFL BMEASIFL BEP01FL
+2795 North America       A      S1 1.280525 MEDIUM     Y     Y        N       N
+2796 North America       A      S1 1.280525 MEDIUM     Y     Y        N       N
+2797 North America       A      S1 1.280525 MEDIUM     Y     Y        N       N
+2798 North America       A      S1 1.280525 MEDIUM     Y     Y        N       N
+2799 North America       A      S1 1.280525 MEDIUM     Y     Y        N       N
+2800 North America       A      S1 1.280525 MEDIUM     Y     Y        N       N
+     AEWITHFL     RANDDT             TRTSDTM             TRTEDTM
+2795        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+2796        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+2797        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+2798        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+2799        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+2800        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+               TRT01SDTM           TRT01EDTM           TRT02SDTM
+2795 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+2796 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+2797 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+2798 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+2799 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+2800 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+               TRT02EDTM            AP01SDTM            AP01EDTM
+2795 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+2796 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+2797 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+2798 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+2799 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+2800 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+                AP02SDTM            AP02EDTM    EOSSTT    EOTSTT      EOSDT
+2795 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+2796 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+2797 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+2798 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+2799 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+2800 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+     EOSDY DCSREAS DTHDT DTHCAUS DTHCAT LDDTHELD LDDTHGR1   LSTALVDT DTHADY
+2795  1096    <NA>  <NA>    <NA>   <NA>       NA     <NA> 2023-08-09     NA
+2796  1096    <NA>  <NA>    <NA>   <NA>       NA     <NA> 2023-08-09     NA
+2797  1096    <NA>  <NA>    <NA>   <NA>       NA     <NA> 2023-08-09     NA
+2798  1096    <NA>  <NA>    <NA>   <NA>       NA     <NA> 2023-08-09     NA
+2799  1096    <NA>  <NA>    <NA>   <NA>       NA     <NA> 2023-08-09     NA
+2800  1096    <NA>  <NA>    <NA>   <NA>       NA     <NA> 2023-08-09     NA
+     ADTHAUT study_duration_secs AGEGR1  TRTDURD DCSREAS_GRP
+2795    <NA>            63113904    <65 1095.727        <NA>
+2796    <NA>            63113904    <65 1095.727        <NA>
+2797    <NA>            63113904    <65 1095.727        <NA>
+2798    <NA>            63113904    <65 1095.727        <NA>
+2799    <NA>            63113904    <65 1095.727        <NA>
+2800    <NA>            63113904    <65 1095.727        <NA>
+                                       PARAM PARAMCD                AVISIT
+2795 Sum of Longest Diameter by Investigator  SLDINV         CYCLE 4 DAY 1
+2796 Sum of Longest Diameter by Investigator  SLDINV         CYCLE 2 DAY 1
+2797 Sum of Longest Diameter by Investigator  SLDINV      END OF INDUCTION
+2798 Sum of Longest Diameter by Investigator  SLDINV POST-BASELINE MINIMUM
+2799 Sum of Longest Diameter by Investigator  SLDINV             SCREENING
+2800 Sum of Longest Diameter by Investigator  SLDINV             FOLLOW UP
+     AVISITN       ADTM  ADY   DTYPE     AVAL            AVALC AVALU     BASE
+2795       4 2021-12-28  528         137.6150 137.615048148735    mm 131.5196
+2796       2 2021-10-29  468         150.6218  150.62184144683    mm 131.5196
+2797     999 2021-03-21  246         162.3639 162.363854739041    mm 131.5196
+2798     999 2022-02-08  570 MINIMUM 109.8522  109.85217570106    mm 131.5196
+2799      -1 2020-04-09 -100         135.0597 135.059720165159    mm 131.5196
+2800     999 2022-02-08  570         109.8522  109.85217570106    mm 131.5196
+     ABLFL        CHG       PCHG ONTRTFL ANL01FL ANL02FL ANL03FL
+2795         6.095459   4.634639       Y       Y                
+2796        19.102252  14.524264       Y       Y                
+2797        30.844265  23.452221       Y       Y                
+2798       -21.667414 -16.474667       Y                       Y
+2799               NA         NA                                
+2800       -21.667414 -16.474667       Y       Y       Y        
+\end{verbatim}
+
+Note that all keys have to be specified.\end{minipage}%
+\end{tcolorbox}
+
+\begin{verbatim}
+A CDISCTealData object containing 2 TealDataset/TealDatasetConnector object(s) as element(s):
+--> Element 1:
+A CDISCTealDataset object containing the following data.frame (400 rows and 56 columns):
+  STUDYID               USUBJID SUBJID SITEID AGE  AGEU SEX
+1 AB12345  AB12345-CHN-3-id-128 id-128  CHN-3  32 YEARS   M
+2 AB12345 AB12345-CHN-15-id-262 id-262 CHN-15  35 YEARS   M
+3 AB12345  AB12345-RUS-3-id-378 id-378  RUS-3  30 YEARS   F
+4 AB12345 AB12345-CHN-11-id-220 id-220 CHN-11  26 YEARS   F
+5 AB12345  AB12345-CHN-7-id-267 id-267  CHN-7  40 YEARS   M
+6 AB12345 AB12345-CHN-15-id-201 id-201 CHN-15  49 YEARS   M
+                       RACE                 ETHNIC COUNTRY DTHFL         INVID
+1                     ASIAN     HISPANIC OR LATINO     CHN     Y  INV ID CHN-3
+2 BLACK OR AFRICAN AMERICAN NOT HISPANIC OR LATINO     CHN     N INV ID CHN-15
+3                     ASIAN NOT HISPANIC OR LATINO     RUS     N  INV ID RUS-3
+4                     ASIAN NOT HISPANIC OR LATINO     CHN     N INV ID CHN-11
+5                     ASIAN NOT HISPANIC OR LATINO     CHN     N  INV ID CHN-7
+6                     ASIAN NOT HISPANIC OR LATINO     CHN     Y INV ID CHN-15
+          INVNAM            ARM ARMCD         ACTARM ACTARMCD         TRT01P
+1  Dr. CHN-3 Doe      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X
+2 Dr. CHN-15 Doe C: Combination ARM C C: Combination    ARM C C: Combination
+3  Dr. RUS-3 Doe C: Combination ARM C C: Combination    ARM C C: Combination
+4 Dr. CHN-11 Doe     B: Placebo ARM B     B: Placebo    ARM B     B: Placebo
+5  Dr. CHN-7 Doe     B: Placebo ARM B     B: Placebo    ARM B     B: Placebo
+6 Dr. CHN-15 Doe C: Combination ARM C C: Combination    ARM C C: Combination
+          TRT01A         TRT02P         TRT02A REGION1 STRATA1 STRATA2
+1      A: Drug X     B: Placebo      A: Drug X    Asia       C      S2
+2 C: Combination     B: Placebo C: Combination    Asia       C      S1
+3 C: Combination      A: Drug X     B: Placebo Eurasia       A      S1
+4     B: Placebo     B: Placebo     B: Placebo    Asia       B      S2
+5     B: Placebo C: Combination      A: Drug X    Asia       C      S1
+6 C: Combination     B: Placebo C: Combination    Asia       C      S2
+     BMRKR1 BMRKR2 ITTFL SAFFL BMEASIFL BEP01FL AEWITHFL     RANDDT
+1 14.424934 MEDIUM     Y     Y        Y       Y        N 2019-02-22
+2  4.055463    LOW     Y     Y        N       N        Y 2019-02-26
+3  2.803240   HIGH     Y     Y        Y       N        N 2019-02-24
+4 10.262734 MEDIUM     Y     Y        Y       Y        N 2019-02-27
+5  6.206763    LOW     Y     Y        N       N        N 2019-03-01
+6  6.906799 MEDIUM     Y     Y        Y       N        N 2019-03-05
+              TRTSDTM             TRTEDTM           TRT01SDTM
+1 2019-02-24 11:09:18 2022-02-12 03:55:58 2019-02-24 11:09:18
+2 2019-02-26 09:05:00 2022-02-26 02:32:36 2019-02-26 09:05:00
+3 2019-02-28 03:19:08 2022-02-27 20:46:44 2019-02-28 03:19:08
+4 2019-03-01 13:33:03 2022-03-01 07:00:39 2019-03-01 13:33:03
+5 2019-03-02 00:09:16 2022-03-01 17:36:52 2019-03-02 00:09:16
+6 2019-03-05 15:23:44 2022-02-19 03:34:25 2019-03-05 15:23:44
+            TRT01EDTM           TRT02SDTM           TRT02EDTM
+1 2021-02-11 22:06:46 2021-02-11 22:06:46 2022-02-12 03:55:58
+2 2021-02-25 20:43:24 2021-02-25 20:43:24 2022-02-26 02:32:36
+3 2021-02-27 14:57:32 2021-02-27 14:57:32 2022-02-27 20:46:44
+4 2021-03-01 01:11:27 2021-03-01 01:11:27 2022-03-01 07:00:39
+5 2021-03-01 11:47:40 2021-03-01 11:47:40 2022-03-01 17:36:52
+6 2021-02-18 21:45:13 2021-02-18 21:45:13 2022-02-19 03:34:25
+             AP01SDTM            AP01EDTM            AP02SDTM
+1 2019-02-24 11:09:18 2021-02-11 22:06:46 2021-02-11 22:06:46
+2 2019-02-26 09:05:00 2021-02-25 20:43:24 2021-02-25 20:43:24
+3 2019-02-28 03:19:08 2021-02-27 14:57:32 2021-02-27 14:57:32
+4 2019-03-01 13:33:03 2021-03-01 01:11:27 2021-03-01 01:11:27
+5 2019-03-02 00:09:16 2021-03-01 11:47:40 2021-03-01 11:47:40
+6 2019-03-05 15:23:44 2021-02-18 21:45:13 2021-02-18 21:45:13
+             AP02EDTM       EOSSTT       EOTSTT      EOSDT EOSDY DCSREAS
+1 2022-02-12 03:55:58 DISCONTINUED DISCONTINUED 2022-02-12  1084   DEATH
+2 2022-02-26 02:32:36    COMPLETED    COMPLETED 2022-02-26  1096    <NA>
+3 2022-02-27 20:46:44    COMPLETED    COMPLETED 2022-02-27  1096    <NA>
+4 2022-03-01 07:00:39    COMPLETED    COMPLETED 2022-03-01  1096    <NA>
+5 2022-03-01 17:36:52    COMPLETED    COMPLETED 2022-03-01  1096    <NA>
+6 2022-02-19 03:34:25 DISCONTINUED DISCONTINUED 2022-02-19  1082   DEATH
+       DTHDT       DTHCAUS        DTHCAT LDDTHELD LDDTHGR1   LSTALVDT DTHADY
+1 2022-03-06 ADVERSE EVENT ADVERSE EVENT       22     <=30 2022-03-06   1106
+2       <NA>          <NA>          <NA>       NA     <NA> 2022-03-17     NA
+3       <NA>          <NA>          <NA>       NA     <NA> 2022-03-11     NA
+4       <NA>          <NA>          <NA>       NA     <NA> 2022-03-26     NA
+5       <NA>          <NA>          <NA>       NA     <NA> 2022-03-15     NA
+6 2022-02-22 ADVERSE EVENT ADVERSE EVENT        3     <=30 2022-02-22   1085
+  ADTHAUT study_duration_secs
+1     Yes            63113904
+2    <NA>            63113904
+3    <NA>            63113904
+4    <NA>            63113904
+5    <NA>            63113904
+6     Yes            63113904
+
+...
+# A tibble: 6 x 56
+  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
+  <chr>   <chr>       <chr>  <chr>  <int> <fct> <fct> <fct> <fct>  <fct>   <fct>
+1 AB12345 AB12345-CH~ id-11  CHN-9     28 YEARS F     NATI~ HISPA~ CHN     Y    
+2 AB12345 AB12345-CH~ id-352 CHN-16    28 YEARS M     ASIAN UNKNO~ CHN     N    
+3 AB12345 AB12345-CH~ id-186 CHN-1     27 YEARS M     ASIAN NOT H~ CHN     N    
+4 AB12345 AB12345-CH~ id-371 CHN-1     28 YEARS F     ASIAN NOT H~ CHN     N    
+5 AB12345 AB12345-CH~ id-233 CHN-1     36 YEARS F     BLAC~ NOT H~ CHN     Y    
+6 AB12345 AB12345-US~ id-131 USA-12    44 YEARS F     AMER~ NOT H~ USA     N    
+# ... with 45 more variables: INVID <chr>, INVNAM <chr>, ARM <fct>,
+#   ARMCD <fct>, ACTARM <fct>, ACTARMCD <fct>, TRT01P <fct>, TRT01A <fct>,
+#   TRT02P <fct>, TRT02A <fct>, REGION1 <fct>, STRATA1 <fct>, STRATA2 <fct>,
+#   BMRKR1 <dbl>, BMRKR2 <fct>, ITTFL <fct>, SAFFL <fct>, BMEASIFL <fct>,
+#   BEP01FL <fct>, AEWITHFL <fct>, RANDDT <date>, TRTSDTM <dttm>,
+#   TRTEDTM <dttm>, TRT01SDTM <dttm>, TRT01EDTM <dttm>, TRT02SDTM <dttm>,
+#   TRT02EDTM <dttm>, AP01SDTM <dttm>, AP01EDTM <dttm>, AP02SDTM <dttm>, ...
+--> Element 2:
+A CDISCTealDataset object containing the following data.frame (1934 rows and 92 columns):
+  STUDYID              USUBJID SUBJID SITEID AGE  AGEU SEX  RACE
+1 AB12345 AB12345-BRA-1-id-134 id-134  BRA-1  47 YEARS   M WHITE
+2 AB12345 AB12345-BRA-1-id-134 id-134  BRA-1  47 YEARS   M WHITE
+3 AB12345 AB12345-BRA-1-id-134 id-134  BRA-1  47 YEARS   M WHITE
+4 AB12345 AB12345-BRA-1-id-134 id-134  BRA-1  47 YEARS   M WHITE
+5 AB12345 AB12345-BRA-1-id-141 id-141  BRA-1  35 YEARS   F WHITE
+6 AB12345 AB12345-BRA-1-id-141 id-141  BRA-1  35 YEARS   F WHITE
+                  ETHNIC COUNTRY DTHFL        INVID        INVNAM
+1 NOT HISPANIC OR LATINO     BRA     Y INV ID BRA-1 Dr. BRA-1 Doe
+2 NOT HISPANIC OR LATINO     BRA     Y INV ID BRA-1 Dr. BRA-1 Doe
+3 NOT HISPANIC OR LATINO     BRA     Y INV ID BRA-1 Dr. BRA-1 Doe
+4 NOT HISPANIC OR LATINO     BRA     Y INV ID BRA-1 Dr. BRA-1 Doe
+5 NOT HISPANIC OR LATINO     BRA     N INV ID BRA-1 Dr. BRA-1 Doe
+6 NOT HISPANIC OR LATINO     BRA     N INV ID BRA-1 Dr. BRA-1 Doe
+             ARM ARMCD         ACTARM ACTARMCD         TRT01P         TRT01A
+1      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X      A: Drug X
+2      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X      A: Drug X
+3      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X      A: Drug X
+4      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X      A: Drug X
+5 C: Combination ARM C C: Combination    ARM C C: Combination C: Combination
+6 C: Combination ARM C C: Combination    ARM C C: Combination C: Combination
+          TRT02P         TRT02A       REGION1 STRATA1 STRATA2   BMRKR1 BMRKR2
+1     B: Placebo      A: Drug X South America       B      S2 6.462991    LOW
+2     B: Placebo      A: Drug X South America       B      S2 6.462991    LOW
+3     B: Placebo      A: Drug X South America       B      S2 6.462991    LOW
+4     B: Placebo      A: Drug X South America       B      S2 6.462991    LOW
+5 C: Combination C: Combination South America       B      S1 7.516076   HIGH
+6 C: Combination C: Combination South America       B      S1 7.516076   HIGH
+  ITTFL SAFFL BMEASIFL BEP01FL AEWITHFL     RANDDT             TRTSDTM
+1     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
+2     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
+3     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
+4     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
+5     Y     Y        Y       Y        N 2020-07-22 2020-07-25 14:10:56
+6     Y     Y        Y       Y        N 2020-07-22 2020-07-25 14:10:56
+              TRTEDTM           TRT01SDTM           TRT01EDTM
+1 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
+2 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
+3 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
+4 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
+5 2023-07-26 07:38:32 2020-07-25 14:10:56 2022-07-26 01:49:20
+6 2023-07-26 07:38:32 2020-07-25 14:10:56 2022-07-26 01:49:20
+            TRT02SDTM           TRT02EDTM            AP01SDTM
+1 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
+2 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
+3 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
+4 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
+5 2022-07-26 01:49:20 2023-07-26 07:38:32 2020-07-25 14:10:56
+6 2022-07-26 01:49:20 2023-07-26 07:38:32 2020-07-25 14:10:56
+             AP01EDTM            AP02SDTM            AP02EDTM       EOSSTT
+1 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
+2 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
+3 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
+4 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
+5 2022-07-26 01:49:20 2022-07-26 01:49:20 2023-07-26 07:38:32    COMPLETED
+6 2022-07-26 01:49:20 2022-07-26 01:49:20 2023-07-26 07:38:32    COMPLETED
+        EOTSTT      EOSDT EOSDY DCSREAS      DTHDT       DTHCAUS        DTHCAT
+1 DISCONTINUED 2022-02-20   473   DEATH 2022-03-16 ADVERSE EVENT ADVERSE EVENT
+2 DISCONTINUED 2022-02-20   473   DEATH 2022-03-16 ADVERSE EVENT ADVERSE EVENT
+3 DISCONTINUED 2022-02-20   473   DEATH 2022-03-16 ADVERSE EVENT ADVERSE EVENT
+4 DISCONTINUED 2022-02-20   473   DEATH 2022-03-16 ADVERSE EVENT ADVERSE EVENT
+5    COMPLETED 2023-07-26  1096    <NA>       <NA>          <NA>          <NA>
+6    COMPLETED 2023-07-26  1096    <NA>       <NA>          <NA>          <NA>
+  LDDTHELD LDDTHGR1   LSTALVDT DTHADY ADTHAUT study_duration_secs ASEQ AESEQ
+1       24     <=30 2022-03-16    497     Yes            63113904    1     1
+2       24     <=30 2022-03-16    497     Yes            63113904    2     2
+3       24     <=30 2022-03-16    497     Yes            63113904    3     3
+4       24     <=30 2022-03-16    497     Yes            63113904    4     4
+5       NA     <NA> 2023-08-08     NA    <NA>            63113904    1     1
+6       NA     <NA> 2023-08-08     NA    <NA>            63113904    2     2
+         AETERM         AELLT       AEDECOD       AEHLT     AEHLGT AEBODSYS
+1 trm B.2.1.2.1 llt B.2.1.2.1 dcd B.2.1.2.1 hlt B.2.1.2 hlgt B.2.1   cl B.2
+2 trm D.1.1.4.2 llt D.1.1.4.2 dcd D.1.1.4.2 hlt D.1.1.4 hlgt D.1.1   cl D.1
+3 trm A.1.1.1.2 llt A.1.1.1.2 dcd A.1.1.1.2 hlt A.1.1.1 hlgt A.1.1   cl A.1
+4 trm A.1.1.1.2 llt A.1.1.1.2 dcd A.1.1.1.2 hlt A.1.1.1 hlgt A.1.1   cl A.1
+5 trm B.2.1.2.1 llt B.2.1.2.1 dcd B.2.1.2.1 hlt B.2.1.2 hlgt B.2.1   cl B.2
+6 trm D.2.1.5.3 llt D.2.1.5.3 dcd D.2.1.5.3 hlt D.2.1.5 hlgt D.2.1   cl D.2
+  AESOC    AESEV AESER            AEACN AEREL                AEOUT AESDTH
+1  cl B MODERATE     N DOSE NOT CHANGED     N RECOVERING/RESOLVING      N
+2  cl D MODERATE     N DOSE NOT CHANGED     N RECOVERING/RESOLVING      N
+3  cl A MODERATE     Y DOSE NOT CHANGED     N RECOVERING/RESOLVING      N
+4  cl A MODERATE     Y   DRUG WITHDRAWN     N RECOVERING/RESOLVING      N
+5  cl B MODERATE     N   DOSE INCREASED     N   RECOVERED/RESOLVED      N
+6  cl D     MILD     N   DOSE INCREASED     Y   RECOVERED/RESOLVED      N
+  AESCONG AESDISAB AESHOSP AESLIFE AESMIE TRTEMFL AECONTRT     ASTDTM
+1       N        Y       N       N      N       Y        Y 2021-04-15
+2       N        Y       N       N      N       Y        N 2021-05-20
+3       N        Y       N       N      N       Y        Y 2021-09-22
+4       Y        N       N       N      N       Y        N 2021-12-03
+5       N        N       Y       N      N       Y        Y 2021-08-17
+6       N        Y       N       N      N       Y        N 2021-10-23
+      AENDTM ASTDY AENDY            LDOSEDTM AETOXGR SMQ01NAM SMQ02NAM SMQ01SC
+1 2021-10-05   162   335 2020-11-07 08:42:06       3     <NA>     <NA>    <NA>
+2 2021-11-01   197   362 2021-05-18 03:00:40       3     <NA>     <NA>    <NA>
+3 2022-02-17   322   470 2021-05-24 03:31:30       2     <NA>     <NA>    <NA>
+4 2022-01-14   394   436 2021-03-19 15:29:44       2     <NA>     <NA>    <NA>
+5 2021-08-27   388   398 2021-07-22 14:59:07       3     <NA>     <NA>    <NA>
+6 2023-07-13   455  1083 2021-07-16 10:08:53       1     <NA>     <NA>    <NA>
+  SMQ02SC                  CQ01NAM ANL01FL           AERELNST
+1    <NA>                     <NA>       Y               NONE
+2    <NA>                     <NA>       Y CONCURRENT ILLNESS
+3    <NA>                     <NA>       Y CONCURRENT ILLNESS
+4    <NA>                     <NA>       Y CONCURRENT ILLNESS
+5    <NA>                     <NA>       Y CONCURRENT ILLNESS
+6    <NA> D.2.1.5.3/A.1.1.1.1 AESI       Y CONCURRENT ILLNESS
+                         AEACNOTH
+1               PROCEDURE/SURGERY
+2                      MEDICATION
+3 SUBJECT DISCONTINUED FROM STUDY
+4 SUBJECT DISCONTINUED FROM STUDY
+5               PROCEDURE/SURGERY
+6                      MEDICATION
+
+...
+# A tibble: 6 x 92
+  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
+  <chr>   <chr>       <chr>  <chr>  <int> <fct> <fct> <fct> <fct>  <fct>   <fct>
+1 AB12345 AB12345-US~ id-206 USA-8     34 YEARS F     ASIAN NOT H~ USA     N    
+2 AB12345 AB12345-US~ id-206 USA-8     34 YEARS F     ASIAN NOT H~ USA     N    
+3 AB12345 AB12345-US~ id-206 USA-8     34 YEARS F     ASIAN NOT H~ USA     N    
+4 AB12345 AB12345-US~ id-130 USA-9     40 YEARS M     ASIAN NOT H~ USA     N    
+5 AB12345 AB12345-US~ id-130 USA-9     40 YEARS M     ASIAN NOT H~ USA     N    
+6 AB12345 AB12345-US~ id-130 USA-9     40 YEARS M     ASIAN NOT H~ USA     N    
+# ... with 81 more variables: INVID <chr>, INVNAM <chr>, ARM <fct>,
+#   ARMCD <fct>, ACTARM <fct>, ACTARMCD <fct>, TRT01P <fct>, TRT01A <fct>,
+#   TRT02P <fct>, TRT02A <fct>, REGION1 <fct>, STRATA1 <fct>, STRATA2 <fct>,
+#   BMRKR1 <dbl>, BMRKR2 <fct>, ITTFL <fct>, SAFFL <fct>, BMEASIFL <fct>,
+#   BEP01FL <fct>, AEWITHFL <fct>, RANDDT <date>, TRTSDTM <dttm>,
+#   TRTEDTM <dttm>, TRT01SDTM <dttm>, TRT01EDTM <dttm>, TRT02SDTM <dttm>,
+#   TRT02EDTM <dttm>, AP01SDTM <dttm>, AP01EDTM <dttm>, AP02SDTM <dttm>, ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{app }\OtherTok{\textless{}{-}}\NormalTok{ teal}\SpecialCharTok{::}\FunctionTok{init}\NormalTok{(}\AttributeTok{data =} \FunctionTok{cdisc\_data}\NormalTok{(}
+  \FunctionTok{cdisc\_dataset}\NormalTok{(}\StringTok{"ADSL"}\NormalTok{, ADSL),}
+  \FunctionTok{cdisc\_dataset}\NormalTok{(}\StringTok{"ADTR"}\NormalTok{, ADTR, }\AttributeTok{keys =} \FunctionTok{c}\NormalTok{(}\StringTok{"STUDYID"}\NormalTok{, }\StringTok{"USUBJID"}\NormalTok{, }\StringTok{"PARAMCD"}\NormalTok{, }\StringTok{"AVISIT"}\NormalTok{))}
+  \CommentTok{\# \textless{}\textless{}additional dataset code\textgreater{}\textgreater{}}
+\NormalTok{),}
+\AttributeTok{modules =} \FunctionTok{modules}\NormalTok{(}\FunctionTok{tm\_variable\_browser}\NormalTok{(}\AttributeTok{label =} \StringTok{"View Variables"}\NormalTok{)),}
+\AttributeTok{header =} \StringTok{"My first application"}\NormalTok{)}
+
+\FunctionTok{shinyApp}\NormalTok{(app}\SpecialCharTok{$}\NormalTok{ui, app}\SpecialCharTok{$}\NormalTok{server)}
+
+
+\NormalTok{app }\OtherTok{\textless{}{-}}\NormalTok{ teal}\SpecialCharTok{::}\FunctionTok{init}\NormalTok{(}\AttributeTok{data =} \FunctionTok{list}\NormalTok{(}\FunctionTok{cdisc\_dataset}\NormalTok{(}\StringTok{"ADSL"}\NormalTok{, ADSL),}
+  \FunctionTok{cdisc\_dataset}\NormalTok{(}\StringTok{"ADTR"}\NormalTok{, ADTR, }\AttributeTok{keys =} \FunctionTok{c}\NormalTok{(}\StringTok{"STUDYID"}\NormalTok{, }\StringTok{"USUBJID"}\NormalTok{, }\StringTok{"PARAMCD"}\NormalTok{, }\StringTok{"AVISIT"}\NormalTok{))),}
+  \CommentTok{\# \textless{}\textless{}additional dataset code\textgreater{}\textgreater{},}
+\AttributeTok{modules =} \FunctionTok{modules}\NormalTok{(}\FunctionTok{tm\_variable\_browser}\NormalTok{(}\AttributeTok{label =} \StringTok{"View Variables"}\NormalTok{)),}
+\AttributeTok{header =} \StringTok{"My first application"}\NormalTok{)}
+
+\FunctionTok{shinyApp}\NormalTok{(app}\SpecialCharTok{$}\NormalTok{ui, app}\SpecialCharTok{$}\NormalTok{server)}
+
+
+\FunctionTok{class}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{summary}{%
+\chapter{Summary}\label{summary}}
+
+In summary, this book has no content whatsoever.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{1} \SpecialCharTok{+} \DecValTok{1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+[1] 2
+\end{verbatim}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{0}{0}
+\end{CSLReferences}
+
+
+
+\end{document}

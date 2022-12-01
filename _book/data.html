@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -194,7 +194,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#aim-of-this-chapter" id="toc-aim-of-this-chapter" class="nav-link active" data-scroll-target="#aim-of-this-chapter"><span class="toc-section-number">2.1</span>  Aim of this chapter</a></li>
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="toc-section-number">2.2</span>  Setup</a></li>
   <li><a href="#what-data-do-we-use" id="toc-what-data-do-we-use" class="nav-link" data-scroll-target="#what-data-do-we-use"><span class="toc-section-number">2.3</span>  What data do we use</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="toc-section-number">2.4</span>  Getting started</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="toc-section-number">2.4</span>  Getting started</a>
+  <ul class="collapse">
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="toc-section-number">2.4.1</span>  Data</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -211,7 +214,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
-  
     
   </div>
   
@@ -240,7 +242,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scda)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>There are no scda.XXXX libraries installed, like scda.2022.
+<pre><code>There are no scda.XXXX libraries installed, like scda.2021.
 Please install an scda database to take full advantage of the scda package.</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.modules.general)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -335,9 +337,11 @@ Attaching package: 'dplyr'</code></pre>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">character</span>(<span class="dv">0</span>)</span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>init</code> function sets up a shiny app that consists of teal modules.</p>
-<p>Let’s go through the arguments: In the <code>data</code> argument we can define one or more dataframes for the application. If more than one dataframes are specified, they should be combined as a list, e.g.&nbsp;<code>data = list(ADSL, ADTR)</code>.</p>
-<p>The package <code>teal.data</code> provides further arguments with which the data argument of <code>init()</code> can be specified, e.g.&nbsp;the <code>cdisc_data()</code> and the <code>cdisc_dataset()</code> functions which allow the teal app to know the merge key variables of the datasets. The <code>cdisc_data</code> function returns an S6 object.</p>
+<p>The <code>init</code> function sets up a shiny app that consists of teal modules. Let’s go through the arguments:</p>
+<section id="data" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="data"><span class="header-section-number">2.4.1</span> Data</h3>
+<p>In the <code>data</code> argument we can define one or more dataframes for the application. If more than one dataframes are specified, they should be combined as a list, e.g.&nbsp;<code>data = list(ADSL, ADTR)</code>.</p>
+<p>If you work with ADaM datasets, the package <code>teal.data</code> provides helper functions with which the <code>data</code> argument of <code>init()</code> can be specified, — the <code>cdisc_data()</code> and the <code>cdisc_dataset()</code> functions. They allow the teal app to know the merge key variables of the datasets. The <code>cdisc_data</code>function returns an S6 object.</p>
 <div id="key" class="callout-note callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -345,10 +349,7 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <div id="key" class="callout-body-container">
 <p><code>keys</code> are prespecified variables in ADaM data to merge datasets. Each type of dataset requires specific keys to be specified. The package <code>teal.data</code> automatically chooses the correct key variables based on the <code>dataname</code> for the following datasets: ADSL, ADAE, ADEG, ADTTE, ADAETTE, ADCM, ADEX, ADLB, ADMH, ADQS, ADRS, ADSAFTTE, ADVS, ADDV, ADSUB, ADHY.</p>
-</div>
-</div>
-</div>
-<p>If you want to work with other ADaM datasets you must specify the keys manually. ADTR is a Tumor Results Analysis Dataset where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the <code>teal.data</code> package, so we have to specify them manually:</p>
+<p>If you want to work with other ADaM datasets you must specify the keys manually. ADTR is a Tumor Results Analysis Dataset where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the <code>teal.data</code> package, so we would have to specify them manually:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ADTR <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtr</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -396,33 +397,33 @@ A CDISCTealDataset object containing the following data.frame (400 rows and 56 c
 5  6.206763    LOW     Y     Y        N       N        N 2019-03-01
 6  6.906799 MEDIUM     Y     Y        Y       N        N 2019-03-05
               TRTSDTM             TRTEDTM           TRT01SDTM
-1 2019-02-24 12:09:18 2022-02-12 04:55:58 2019-02-24 12:09:18
-2 2019-02-26 10:05:00 2022-02-26 03:32:36 2019-02-26 10:05:00
-3 2019-02-28 04:19:08 2022-02-27 21:46:44 2019-02-28 04:19:08
-4 2019-03-01 14:33:03 2022-03-01 08:00:39 2019-03-01 14:33:03
-5 2019-03-02 01:09:16 2022-03-01 18:36:52 2019-03-02 01:09:16
-6 2019-03-05 16:23:44 2022-02-19 04:34:25 2019-03-05 16:23:44
+1 2019-02-24 11:09:18 2022-02-12 03:55:58 2019-02-24 11:09:18
+2 2019-02-26 09:05:00 2022-02-26 02:32:36 2019-02-26 09:05:00
+3 2019-02-28 03:19:08 2022-02-27 20:46:44 2019-02-28 03:19:08
+4 2019-03-01 13:33:03 2022-03-01 07:00:39 2019-03-01 13:33:03
+5 2019-03-02 00:09:16 2022-03-01 17:36:52 2019-03-02 00:09:16
+6 2019-03-05 15:23:44 2022-02-19 03:34:25 2019-03-05 15:23:44
             TRT01EDTM           TRT02SDTM           TRT02EDTM
-1 2021-02-11 23:06:46 2021-02-11 23:06:46 2022-02-12 04:55:58
-2 2021-02-25 21:43:24 2021-02-25 21:43:24 2022-02-26 03:32:36
-3 2021-02-27 15:57:32 2021-02-27 15:57:32 2022-02-27 21:46:44
-4 2021-03-01 02:11:27 2021-03-01 02:11:27 2022-03-01 08:00:39
-5 2021-03-01 12:47:40 2021-03-01 12:47:40 2022-03-01 18:36:52
-6 2021-02-18 22:45:13 2021-02-18 22:45:13 2022-02-19 04:34:25
+1 2021-02-11 22:06:46 2021-02-11 22:06:46 2022-02-12 03:55:58
+2 2021-02-25 20:43:24 2021-02-25 20:43:24 2022-02-26 02:32:36
+3 2021-02-27 14:57:32 2021-02-27 14:57:32 2022-02-27 20:46:44
+4 2021-03-01 01:11:27 2021-03-01 01:11:27 2022-03-01 07:00:39
+5 2021-03-01 11:47:40 2021-03-01 11:47:40 2022-03-01 17:36:52
+6 2021-02-18 21:45:13 2021-02-18 21:45:13 2022-02-19 03:34:25
              AP01SDTM            AP01EDTM            AP02SDTM
-1 2019-02-24 12:09:18 2021-02-11 23:06:46 2021-02-11 23:06:46
-2 2019-02-26 10:05:00 2021-02-25 21:43:24 2021-02-25 21:43:24
-3 2019-02-28 04:19:08 2021-02-27 15:57:32 2021-02-27 15:57:32
-4 2019-03-01 14:33:03 2021-03-01 02:11:27 2021-03-01 02:11:27
-5 2019-03-02 01:09:16 2021-03-01 12:47:40 2021-03-01 12:47:40
-6 2019-03-05 16:23:44 2021-02-18 22:45:13 2021-02-18 22:45:13
+1 2019-02-24 11:09:18 2021-02-11 22:06:46 2021-02-11 22:06:46
+2 2019-02-26 09:05:00 2021-02-25 20:43:24 2021-02-25 20:43:24
+3 2019-02-28 03:19:08 2021-02-27 14:57:32 2021-02-27 14:57:32
+4 2019-03-01 13:33:03 2021-03-01 01:11:27 2021-03-01 01:11:27
+5 2019-03-02 00:09:16 2021-03-01 11:47:40 2021-03-01 11:47:40
+6 2019-03-05 15:23:44 2021-02-18 21:45:13 2021-02-18 21:45:13
              AP02EDTM       EOSSTT       EOTSTT      EOSDT EOSDY DCSREAS
-1 2022-02-12 04:55:58 DISCONTINUED DISCONTINUED 2022-02-12  1084   DEATH
-2 2022-02-26 03:32:36    COMPLETED    COMPLETED 2022-02-26  1096    &lt;NA&gt;
-3 2022-02-27 21:46:44    COMPLETED    COMPLETED 2022-02-27  1096    &lt;NA&gt;
-4 2022-03-01 08:00:39    COMPLETED    COMPLETED 2022-03-01  1096    &lt;NA&gt;
-5 2022-03-01 18:36:52    COMPLETED    COMPLETED 2022-03-01  1096    &lt;NA&gt;
-6 2022-02-19 04:34:25 DISCONTINUED DISCONTINUED 2022-02-19  1082   DEATH
+1 2022-02-12 03:55:58 DISCONTINUED DISCONTINUED 2022-02-12  1084   DEATH
+2 2022-02-26 02:32:36    COMPLETED    COMPLETED 2022-02-26  1096    &lt;NA&gt;
+3 2022-02-27 20:46:44    COMPLETED    COMPLETED 2022-02-27  1096    &lt;NA&gt;
+4 2022-03-01 07:00:39    COMPLETED    COMPLETED 2022-03-01  1096    &lt;NA&gt;
+5 2022-03-01 17:36:52    COMPLETED    COMPLETED 2022-03-01  1096    &lt;NA&gt;
+6 2022-02-19 03:34:25 DISCONTINUED DISCONTINUED 2022-02-19  1082   DEATH
        DTHDT       DTHCAUS        DTHCAT LDDTHELD LDDTHGR1   LSTALVDT DTHADY
 1 2022-03-06 ADVERSE EVENT ADVERSE EVENT       22     &lt;=30 2022-03-06   1106
 2       &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;       NA     &lt;NA&gt; 2022-03-17     NA
@@ -486,33 +487,33 @@ A CDISCTealDataset object containing the following data.frame (2800 rows and 77 
 5 C: Combination A: Drug X South America       B      S1 4.156914 MEDIUM     Y
 6 C: Combination A: Drug X South America       B      S1 4.156914 MEDIUM     Y
   SAFFL BMEASIFL BEP01FL AEWITHFL     RANDDT             TRTSDTM
-1     Y        Y       Y        N 2020-03-08 2020-03-08 06:28:11
-2     Y        Y       Y        N 2020-03-08 2020-03-08 06:28:11
-3     Y        Y       Y        N 2020-03-08 2020-03-08 06:28:11
-4     Y        Y       Y        N 2020-03-08 2020-03-08 06:28:11
-5     Y        Y       Y        N 2020-03-08 2020-03-08 06:28:11
-6     Y        Y       Y        N 2020-03-08 2020-03-08 06:28:11
+1     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+2     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+3     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+4     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+5     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
+6     Y        Y       Y        N 2020-03-08 2020-03-08 05:28:11
               TRTEDTM           TRT01SDTM           TRT01EDTM
-1 2022-02-14 21:26:11 2020-03-08 06:28:11 2021-02-14 15:36:59
-2 2022-02-14 21:26:11 2020-03-08 06:28:11 2021-02-14 15:36:59
-3 2022-02-14 21:26:11 2020-03-08 06:28:11 2021-02-14 15:36:59
-4 2022-02-14 21:26:11 2020-03-08 06:28:11 2021-02-14 15:36:59
-5 2022-02-14 21:26:11 2020-03-08 06:28:11 2021-02-14 15:36:59
-6 2022-02-14 21:26:11 2020-03-08 06:28:11 2021-02-14 15:36:59
+1 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+2 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+3 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+4 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+5 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
+6 2022-02-14 20:26:11 2020-03-08 05:28:11 2021-02-14 14:36:59
             TRT02SDTM           TRT02EDTM            AP01SDTM
-1 2021-02-14 15:36:59 2022-02-14 21:26:11 2020-03-08 06:28:11
-2 2021-02-14 15:36:59 2022-02-14 21:26:11 2020-03-08 06:28:11
-3 2021-02-14 15:36:59 2022-02-14 21:26:11 2020-03-08 06:28:11
-4 2021-02-14 15:36:59 2022-02-14 21:26:11 2020-03-08 06:28:11
-5 2021-02-14 15:36:59 2022-02-14 21:26:11 2020-03-08 06:28:11
-6 2021-02-14 15:36:59 2022-02-14 21:26:11 2020-03-08 06:28:11
+1 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+2 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+3 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+4 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+5 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
+6 2021-02-14 14:36:59 2022-02-14 20:26:11 2020-03-08 05:28:11
              AP01EDTM            AP02SDTM            AP02EDTM       EOSSTT
-1 2021-02-14 15:36:59 2021-02-14 15:36:59 2022-02-14 21:26:11 DISCONTINUED
-2 2021-02-14 15:36:59 2021-02-14 15:36:59 2022-02-14 21:26:11 DISCONTINUED
-3 2021-02-14 15:36:59 2021-02-14 15:36:59 2022-02-14 21:26:11 DISCONTINUED
-4 2021-02-14 15:36:59 2021-02-14 15:36:59 2022-02-14 21:26:11 DISCONTINUED
-5 2021-02-14 15:36:59 2021-02-14 15:36:59 2022-02-14 21:26:11 DISCONTINUED
-6 2021-02-14 15:36:59 2021-02-14 15:36:59 2022-02-14 21:26:11 DISCONTINUED
+1 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+2 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+3 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+4 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+5 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
+6 2021-02-14 14:36:59 2021-02-14 14:36:59 2022-02-14 20:26:11 DISCONTINUED
         EOTSTT      EOSDT EOSDY            DCSREAS DTHDT DTHCAUS DTHCAT
 1 DISCONTINUED 2022-02-14   709 PROTOCOL VIOLATION  &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;
 2 DISCONTINUED 2022-02-14   709 PROTOCOL VIOLATION  &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;
@@ -535,12 +536,12 @@ A CDISCTealDataset object containing the following data.frame (2800 rows and 77 
 5 708.6236  Non-Safety Sum of Longest Diameter by Investigator  SLDINV
 6 708.6236  Non-Safety Sum of Longest Diameter by Investigator  SLDINV
                  AVISIT AVISITN                ADTM  ADY   DTYPE     AVAL
-1 POST-BASELINE MINIMUM     999 2021-06-19 02:00:00  468 MINIMUM 141.6140
-2      END OF INDUCTION     999 2021-06-19 02:00:00  468         141.6140
-3              BASELINE       0 2020-03-08 06:28:11    0               NA
-4         CYCLE 4 DAY 1       4 2021-07-27 02:00:00  506         195.2095
-5             SCREENING      -1 2019-11-29 01:00:00 -100         171.4226
-6             FOLLOW UP     999 2022-01-06 01:00:00  669         210.8322
+1 POST-BASELINE MINIMUM     999 2021-06-19 00:00:00  468 MINIMUM 141.6140
+2      END OF INDUCTION     999 2021-06-19 00:00:00  468         141.6140
+3              BASELINE       0 2020-03-08 05:28:11    0               NA
+4         CYCLE 4 DAY 1       4 2021-07-27 00:00:00  506         195.2095
+5             SCREENING      -1 2019-11-29 00:00:00 -100         171.4226
+6             FOLLOW UP     999 2022-01-06 00:00:00  669         210.8322
              AVALC AVALU     BASE ABLFL       CHG      PCHG ONTRTFL ANL01FL
 1 141.614020702645    mm 167.4415       -25.82752 -15.42480       Y        
 2 141.614020702645    mm 167.4415       -25.82752 -15.42480       Y       Y
@@ -586,33 +587,33 @@ A CDISCTealDataset object containing the following data.frame (2800 rows and 77 
 2799 North America       A      S1 1.280525 MEDIUM     Y     Y        N       N
 2800 North America       A      S1 1.280525 MEDIUM     Y     Y        N       N
      AEWITHFL     RANDDT             TRTSDTM             TRTEDTM
-2795        N 2020-07-17 2020-07-18 21:28:19 2023-07-19 14:55:55
-2796        N 2020-07-17 2020-07-18 21:28:19 2023-07-19 14:55:55
-2797        N 2020-07-17 2020-07-18 21:28:19 2023-07-19 14:55:55
-2798        N 2020-07-17 2020-07-18 21:28:19 2023-07-19 14:55:55
-2799        N 2020-07-17 2020-07-18 21:28:19 2023-07-19 14:55:55
-2800        N 2020-07-17 2020-07-18 21:28:19 2023-07-19 14:55:55
+2795        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+2796        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+2797        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+2798        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+2799        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
+2800        N 2020-07-17 2020-07-18 19:28:19 2023-07-19 12:55:55
                TRT01SDTM           TRT01EDTM           TRT02SDTM
-2795 2020-07-18 21:28:19 2022-07-19 09:06:43 2022-07-19 09:06:43
-2796 2020-07-18 21:28:19 2022-07-19 09:06:43 2022-07-19 09:06:43
-2797 2020-07-18 21:28:19 2022-07-19 09:06:43 2022-07-19 09:06:43
-2798 2020-07-18 21:28:19 2022-07-19 09:06:43 2022-07-19 09:06:43
-2799 2020-07-18 21:28:19 2022-07-19 09:06:43 2022-07-19 09:06:43
-2800 2020-07-18 21:28:19 2022-07-19 09:06:43 2022-07-19 09:06:43
+2795 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+2796 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+2797 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+2798 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+2799 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
+2800 2020-07-18 19:28:19 2022-07-19 07:06:43 2022-07-19 07:06:43
                TRT02EDTM            AP01SDTM            AP01EDTM
-2795 2023-07-19 14:55:55 2020-07-18 21:28:19 2022-07-19 09:06:43
-2796 2023-07-19 14:55:55 2020-07-18 21:28:19 2022-07-19 09:06:43
-2797 2023-07-19 14:55:55 2020-07-18 21:28:19 2022-07-19 09:06:43
-2798 2023-07-19 14:55:55 2020-07-18 21:28:19 2022-07-19 09:06:43
-2799 2023-07-19 14:55:55 2020-07-18 21:28:19 2022-07-19 09:06:43
-2800 2023-07-19 14:55:55 2020-07-18 21:28:19 2022-07-19 09:06:43
+2795 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+2796 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+2797 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+2798 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+2799 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
+2800 2023-07-19 12:55:55 2020-07-18 19:28:19 2022-07-19 07:06:43
                 AP02SDTM            AP02EDTM    EOSSTT    EOTSTT      EOSDT
-2795 2022-07-19 09:06:43 2023-07-19 14:55:55 COMPLETED COMPLETED 2023-07-19
-2796 2022-07-19 09:06:43 2023-07-19 14:55:55 COMPLETED COMPLETED 2023-07-19
-2797 2022-07-19 09:06:43 2023-07-19 14:55:55 COMPLETED COMPLETED 2023-07-19
-2798 2022-07-19 09:06:43 2023-07-19 14:55:55 COMPLETED COMPLETED 2023-07-19
-2799 2022-07-19 09:06:43 2023-07-19 14:55:55 COMPLETED COMPLETED 2023-07-19
-2800 2022-07-19 09:06:43 2023-07-19 14:55:55 COMPLETED COMPLETED 2023-07-19
+2795 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+2796 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+2797 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+2798 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+2799 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
+2800 2022-07-19 07:06:43 2023-07-19 12:55:55 COMPLETED COMPLETED 2023-07-19
      EOSDY DCSREAS DTHDT DTHCAUS DTHCAT LDDTHELD LDDTHGR1   LSTALVDT DTHADY
 2795  1096    &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;       NA     &lt;NA&gt; 2023-08-09     NA
 2796  1096    &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;       NA     &lt;NA&gt; 2023-08-09     NA
@@ -634,23 +635,26 @@ A CDISCTealDataset object containing the following data.frame (2800 rows and 77 
 2798 Sum of Longest Diameter by Investigator  SLDINV POST-BASELINE MINIMUM
 2799 Sum of Longest Diameter by Investigator  SLDINV             SCREENING
 2800 Sum of Longest Diameter by Investigator  SLDINV             FOLLOW UP
-     AVISITN                ADTM  ADY   DTYPE     AVAL            AVALC AVALU
-2795       4 2021-12-28 01:00:00  528         137.6150 137.615048148735    mm
-2796       2 2021-10-29 02:00:00  468         150.6218  150.62184144683    mm
-2797     999 2021-03-21 01:00:00  246         162.3639 162.363854739041    mm
-2798     999 2022-02-08 01:00:00  570 MINIMUM 109.8522  109.85217570106    mm
-2799      -1 2020-04-09 02:00:00 -100         135.0597 135.059720165159    mm
-2800     999 2022-02-08 01:00:00  570         109.8522  109.85217570106    mm
-         BASE ABLFL        CHG       PCHG ONTRTFL ANL01FL ANL02FL ANL03FL
-2795 131.5196         6.095459   4.634639       Y       Y                
-2796 131.5196        19.102252  14.524264       Y       Y                
-2797 131.5196        30.844265  23.452221       Y       Y                
-2798 131.5196       -21.667414 -16.474667       Y                       Y
-2799 131.5196               NA         NA                                
-2800 131.5196       -21.667414 -16.474667       Y       Y       Y        </code></pre>
+     AVISITN       ADTM  ADY   DTYPE     AVAL            AVALC AVALU     BASE
+2795       4 2021-12-28  528         137.6150 137.615048148735    mm 131.5196
+2796       2 2021-10-29  468         150.6218  150.62184144683    mm 131.5196
+2797     999 2021-03-21  246         162.3639 162.363854739041    mm 131.5196
+2798     999 2022-02-08  570 MINIMUM 109.8522  109.85217570106    mm 131.5196
+2799      -1 2020-04-09 -100         135.0597 135.059720165159    mm 131.5196
+2800     999 2022-02-08  570         109.8522  109.85217570106    mm 131.5196
+     ABLFL        CHG       PCHG ONTRTFL ANL01FL ANL02FL ANL03FL
+2795         6.095459   4.634639       Y       Y                
+2796        19.102252  14.524264       Y       Y                
+2797        30.844265  23.452221       Y       Y                
+2798       -21.667414 -16.474667       Y                       Y
+2799               NA         NA                                
+2800       -21.667414 -16.474667       Y       Y       Y        </code></pre>
 </div>
 </div>
 <p>Note that all keys have to be specified.</p>
+</div>
+</div>
+</div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>A CDISCTealData object containing 2 TealDataset/TealDatasetConnector object(s) as element(s):
@@ -692,33 +696,33 @@ A CDISCTealDataset object containing the following data.frame (400 rows and 56 c
 5  6.206763    LOW     Y     Y        N       N        N 2019-03-01
 6  6.906799 MEDIUM     Y     Y        Y       N        N 2019-03-05
               TRTSDTM             TRTEDTM           TRT01SDTM
-1 2019-02-24 12:09:18 2022-02-12 04:55:58 2019-02-24 12:09:18
-2 2019-02-26 10:05:00 2022-02-26 03:32:36 2019-02-26 10:05:00
-3 2019-02-28 04:19:08 2022-02-27 21:46:44 2019-02-28 04:19:08
-4 2019-03-01 14:33:03 2022-03-01 08:00:39 2019-03-01 14:33:03
-5 2019-03-02 01:09:16 2022-03-01 18:36:52 2019-03-02 01:09:16
-6 2019-03-05 16:23:44 2022-02-19 04:34:25 2019-03-05 16:23:44
+1 2019-02-24 11:09:18 2022-02-12 03:55:58 2019-02-24 11:09:18
+2 2019-02-26 09:05:00 2022-02-26 02:32:36 2019-02-26 09:05:00
+3 2019-02-28 03:19:08 2022-02-27 20:46:44 2019-02-28 03:19:08
+4 2019-03-01 13:33:03 2022-03-01 07:00:39 2019-03-01 13:33:03
+5 2019-03-02 00:09:16 2022-03-01 17:36:52 2019-03-02 00:09:16
+6 2019-03-05 15:23:44 2022-02-19 03:34:25 2019-03-05 15:23:44
             TRT01EDTM           TRT02SDTM           TRT02EDTM
-1 2021-02-11 23:06:46 2021-02-11 23:06:46 2022-02-12 04:55:58
-2 2021-02-25 21:43:24 2021-02-25 21:43:24 2022-02-26 03:32:36
-3 2021-02-27 15:57:32 2021-02-27 15:57:32 2022-02-27 21:46:44
-4 2021-03-01 02:11:27 2021-03-01 02:11:27 2022-03-01 08:00:39
-5 2021-03-01 12:47:40 2021-03-01 12:47:40 2022-03-01 18:36:52
-6 2021-02-18 22:45:13 2021-02-18 22:45:13 2022-02-19 04:34:25
+1 2021-02-11 22:06:46 2021-02-11 22:06:46 2022-02-12 03:55:58
+2 2021-02-25 20:43:24 2021-02-25 20:43:24 2022-02-26 02:32:36
+3 2021-02-27 14:57:32 2021-02-27 14:57:32 2022-02-27 20:46:44
+4 2021-03-01 01:11:27 2021-03-01 01:11:27 2022-03-01 07:00:39
+5 2021-03-01 11:47:40 2021-03-01 11:47:40 2022-03-01 17:36:52
+6 2021-02-18 21:45:13 2021-02-18 21:45:13 2022-02-19 03:34:25
              AP01SDTM            AP01EDTM            AP02SDTM
-1 2019-02-24 12:09:18 2021-02-11 23:06:46 2021-02-11 23:06:46
-2 2019-02-26 10:05:00 2021-02-25 21:43:24 2021-02-25 21:43:24
-3 2019-02-28 04:19:08 2021-02-27 15:57:32 2021-02-27 15:57:32
-4 2019-03-01 14:33:03 2021-03-01 02:11:27 2021-03-01 02:11:27
-5 2019-03-02 01:09:16 2021-03-01 12:47:40 2021-03-01 12:47:40
-6 2019-03-05 16:23:44 2021-02-18 22:45:13 2021-02-18 22:45:13
+1 2019-02-24 11:09:18 2021-02-11 22:06:46 2021-02-11 22:06:46
+2 2019-02-26 09:05:00 2021-02-25 20:43:24 2021-02-25 20:43:24
+3 2019-02-28 03:19:08 2021-02-27 14:57:32 2021-02-27 14:57:32
+4 2019-03-01 13:33:03 2021-03-01 01:11:27 2021-03-01 01:11:27
+5 2019-03-02 00:09:16 2021-03-01 11:47:40 2021-03-01 11:47:40
+6 2019-03-05 15:23:44 2021-02-18 21:45:13 2021-02-18 21:45:13
              AP02EDTM       EOSSTT       EOTSTT      EOSDT EOSDY DCSREAS
-1 2022-02-12 04:55:58 DISCONTINUED DISCONTINUED 2022-02-12  1084   DEATH
-2 2022-02-26 03:32:36    COMPLETED    COMPLETED 2022-02-26  1096    &lt;NA&gt;
-3 2022-02-27 21:46:44    COMPLETED    COMPLETED 2022-02-27  1096    &lt;NA&gt;
-4 2022-03-01 08:00:39    COMPLETED    COMPLETED 2022-03-01  1096    &lt;NA&gt;
-5 2022-03-01 18:36:52    COMPLETED    COMPLETED 2022-03-01  1096    &lt;NA&gt;
-6 2022-02-19 04:34:25 DISCONTINUED DISCONTINUED 2022-02-19  1082   DEATH
+1 2022-02-12 03:55:58 DISCONTINUED DISCONTINUED 2022-02-12  1084   DEATH
+2 2022-02-26 02:32:36    COMPLETED    COMPLETED 2022-02-26  1096    &lt;NA&gt;
+3 2022-02-27 20:46:44    COMPLETED    COMPLETED 2022-02-27  1096    &lt;NA&gt;
+4 2022-03-01 07:00:39    COMPLETED    COMPLETED 2022-03-01  1096    &lt;NA&gt;
+5 2022-03-01 17:36:52    COMPLETED    COMPLETED 2022-03-01  1096    &lt;NA&gt;
+6 2022-02-19 03:34:25 DISCONTINUED DISCONTINUED 2022-02-19  1082   DEATH
        DTHDT       DTHCAUS        DTHCAT LDDTHELD LDDTHGR1   LSTALVDT DTHADY
 1 2022-03-06 ADVERSE EVENT ADVERSE EVENT       22     &lt;=30 2022-03-06   1106
 2       &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;       NA     &lt;NA&gt; 2022-03-17     NA
@@ -782,33 +786,33 @@ A CDISCTealDataset object containing the following data.frame (1934 rows and 92 
 5 C: Combination C: Combination South America       B      S1 7.516076   HIGH
 6 C: Combination C: Combination South America       B      S1 7.516076   HIGH
   ITTFL SAFFL BMEASIFL BEP01FL AEWITHFL     RANDDT             TRTSDTM
-1     Y     Y        Y       N        N 2020-11-03 2020-11-04 04:50:33
-2     Y     Y        Y       N        N 2020-11-03 2020-11-04 04:50:33
-3     Y     Y        Y       N        N 2020-11-03 2020-11-04 04:50:33
-4     Y     Y        Y       N        N 2020-11-03 2020-11-04 04:50:33
-5     Y     Y        Y       Y        N 2020-07-22 2020-07-25 16:10:56
-6     Y     Y        Y       Y        N 2020-07-22 2020-07-25 16:10:56
+1     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
+2     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
+3     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
+4     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
+5     Y     Y        Y       Y        N 2020-07-22 2020-07-25 14:10:56
+6     Y     Y        Y       Y        N 2020-07-22 2020-07-25 14:10:56
               TRTEDTM           TRT01SDTM           TRT01EDTM
-1 2022-02-20 04:01:31 2020-11-04 04:50:33 2021-02-19 22:12:19
-2 2022-02-20 04:01:31 2020-11-04 04:50:33 2021-02-19 22:12:19
-3 2022-02-20 04:01:31 2020-11-04 04:50:33 2021-02-19 22:12:19
-4 2022-02-20 04:01:31 2020-11-04 04:50:33 2021-02-19 22:12:19
-5 2023-07-26 09:38:32 2020-07-25 16:10:56 2022-07-26 03:49:20
-6 2023-07-26 09:38:32 2020-07-25 16:10:56 2022-07-26 03:49:20
+1 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
+2 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
+3 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
+4 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
+5 2023-07-26 07:38:32 2020-07-25 14:10:56 2022-07-26 01:49:20
+6 2023-07-26 07:38:32 2020-07-25 14:10:56 2022-07-26 01:49:20
             TRT02SDTM           TRT02EDTM            AP01SDTM
-1 2021-02-19 22:12:19 2022-02-20 04:01:31 2020-11-04 04:50:33
-2 2021-02-19 22:12:19 2022-02-20 04:01:31 2020-11-04 04:50:33
-3 2021-02-19 22:12:19 2022-02-20 04:01:31 2020-11-04 04:50:33
-4 2021-02-19 22:12:19 2022-02-20 04:01:31 2020-11-04 04:50:33
-5 2022-07-26 03:49:20 2023-07-26 09:38:32 2020-07-25 16:10:56
-6 2022-07-26 03:49:20 2023-07-26 09:38:32 2020-07-25 16:10:56
+1 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
+2 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
+3 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
+4 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
+5 2022-07-26 01:49:20 2023-07-26 07:38:32 2020-07-25 14:10:56
+6 2022-07-26 01:49:20 2023-07-26 07:38:32 2020-07-25 14:10:56
              AP01EDTM            AP02SDTM            AP02EDTM       EOSSTT
-1 2021-02-19 22:12:19 2021-02-19 22:12:19 2022-02-20 04:01:31 DISCONTINUED
-2 2021-02-19 22:12:19 2021-02-19 22:12:19 2022-02-20 04:01:31 DISCONTINUED
-3 2021-02-19 22:12:19 2021-02-19 22:12:19 2022-02-20 04:01:31 DISCONTINUED
-4 2021-02-19 22:12:19 2021-02-19 22:12:19 2022-02-20 04:01:31 DISCONTINUED
-5 2022-07-26 03:49:20 2022-07-26 03:49:20 2023-07-26 09:38:32    COMPLETED
-6 2022-07-26 03:49:20 2022-07-26 03:49:20 2023-07-26 09:38:32    COMPLETED
+1 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
+2 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
+3 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
+4 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
+5 2022-07-26 01:49:20 2022-07-26 01:49:20 2023-07-26 07:38:32    COMPLETED
+6 2022-07-26 01:49:20 2022-07-26 01:49:20 2023-07-26 07:38:32    COMPLETED
         EOTSTT      EOSDT EOSDY DCSREAS      DTHDT       DTHCAUS        DTHCAT
 1 DISCONTINUED 2022-02-20   473   DEATH 2022-03-16 ADVERSE EVENT ADVERSE EVENT
 2 DISCONTINUED 2022-02-20   473   DEATH 2022-03-16 ADVERSE EVENT ADVERSE EVENT
@@ -837,27 +841,27 @@ A CDISCTealDataset object containing the following data.frame (1934 rows and 92 
 4  cl A MODERATE     Y   DRUG WITHDRAWN     N RECOVERING/RESOLVING      N
 5  cl B MODERATE     N   DOSE INCREASED     N   RECOVERED/RESOLVED      N
 6  cl D     MILD     N   DOSE INCREASED     Y   RECOVERED/RESOLVED      N
-  AESCONG AESDISAB AESHOSP AESLIFE AESMIE TRTEMFL AECONTRT              ASTDTM
-1       N        Y       N       N      N       Y        Y 2021-04-15 02:00:00
-2       N        Y       N       N      N       Y        N 2021-05-20 02:00:00
-3       N        Y       N       N      N       Y        Y 2021-09-22 02:00:00
-4       Y        N       N       N      N       Y        N 2021-12-03 01:00:00
-5       N        N       Y       N      N       Y        Y 2021-08-17 02:00:00
-6       N        Y       N       N      N       Y        N 2021-10-23 02:00:00
-               AENDTM ASTDY AENDY            LDOSEDTM AETOXGR SMQ01NAM SMQ02NAM
-1 2021-10-05 02:00:00   162   335 2020-11-07 09:42:06       3     &lt;NA&gt;     &lt;NA&gt;
-2 2021-11-01 01:00:00   197   362 2021-05-18 05:00:40       3     &lt;NA&gt;     &lt;NA&gt;
-3 2022-02-17 01:00:00   322   470 2021-05-24 05:31:30       2     &lt;NA&gt;     &lt;NA&gt;
-4 2022-01-14 01:00:00   394   436 2021-03-19 16:29:44       2     &lt;NA&gt;     &lt;NA&gt;
-5 2021-08-27 02:00:00   388   398 2021-07-22 16:59:07       3     &lt;NA&gt;     &lt;NA&gt;
-6 2023-07-13 02:00:00   455  1083 2021-07-16 12:08:53       1     &lt;NA&gt;     &lt;NA&gt;
-  SMQ01SC SMQ02SC                  CQ01NAM ANL01FL           AERELNST
-1    &lt;NA&gt;    &lt;NA&gt;                     &lt;NA&gt;       Y               NONE
-2    &lt;NA&gt;    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
-3    &lt;NA&gt;    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
-4    &lt;NA&gt;    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
-5    &lt;NA&gt;    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
-6    &lt;NA&gt;    &lt;NA&gt; D.2.1.5.3/A.1.1.1.1 AESI       Y CONCURRENT ILLNESS
+  AESCONG AESDISAB AESHOSP AESLIFE AESMIE TRTEMFL AECONTRT     ASTDTM
+1       N        Y       N       N      N       Y        Y 2021-04-15
+2       N        Y       N       N      N       Y        N 2021-05-20
+3       N        Y       N       N      N       Y        Y 2021-09-22
+4       Y        N       N       N      N       Y        N 2021-12-03
+5       N        N       Y       N      N       Y        Y 2021-08-17
+6       N        Y       N       N      N       Y        N 2021-10-23
+      AENDTM ASTDY AENDY            LDOSEDTM AETOXGR SMQ01NAM SMQ02NAM SMQ01SC
+1 2021-10-05   162   335 2020-11-07 08:42:06       3     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
+2 2021-11-01   197   362 2021-05-18 03:00:40       3     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
+3 2022-02-17   322   470 2021-05-24 03:31:30       2     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
+4 2022-01-14   394   436 2021-03-19 15:29:44       2     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
+5 2021-08-27   388   398 2021-07-22 14:59:07       3     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
+6 2023-07-13   455  1083 2021-07-16 10:08:53       1     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
+  SMQ02SC                  CQ01NAM ANL01FL           AERELNST
+1    &lt;NA&gt;                     &lt;NA&gt;       Y               NONE
+2    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
+3    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
+4    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
+5    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
+6    &lt;NA&gt; D.2.1.5.3/A.1.1.1.1 AESI       Y CONCURRENT ILLNESS
                          AEACNOTH
 1               PROCEDURE/SURGERY
 2                      MEDICATION
@@ -911,6 +915,7 @@ A CDISCTealDataset object containing the following data.frame (1934 rows and 92 
 
 
 </section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -954,24 +959,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1007,42 +995,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>

@@ -1,10 +1,9 @@
 # Data
 
-
 ## Aim of this chapter
 
-
 ## Setup
+
 In this tutorial we will be working with realistic looking but simulated data.
 
 ```{r}
@@ -39,13 +38,12 @@ We first load two synthetic data sets. \`random.cdisc.data::cadsl\` is a Subject
 ADSL <- random.cdisc.data::cadsl
 ```
 
+Data Structure for Adverse Event Analysis
 
- Data Structure for Adverse Event Analysis
 ```{r}
 ADAE <- random.cdisc.data::cadae
 ADAE
 ```
-
 
 ## Getting started
 
@@ -64,24 +62,21 @@ init(
 )
 ```
 
-The `init` function sets up a shiny app that consists of teal modules.
+The `init` function sets up a shiny app that consists of teal modules. Let's go through the arguments:
 
-Let's go through the arguments: In the `data` argument we can define one or more dataframes for the application. If more than one dataframes are specified, they should be combined as a list, e.g. `data = list(ADSL, ADTR)`.
+### Data
 
-The package `teal.data` provides further arguments with which the data argument of `init()` can be specified, e.g. the `cdisc_data()` and the `cdisc_dataset()` functions which allow the teal app to know the merge key variables of the datasets. The `cdisc_data` function returns an S6 object.
+In the `data` argument we can define one or more dataframes for the application. If more than one dataframes are specified, they should be combined as a list, e.g. `data = list(ADSL, ADTR)`.
 
+If you work with ADaM datasets, the package `teal.data` provides helper functions with which the `data` argument of `init()` can be specified, --- the `cdisc_data()` and the `cdisc_dataset()` functions. They allow the teal app to know the merge key variables of the datasets. The `cdisc_data`function returns an S6 object.
 
-::: {#key .callout-note appearance="simple"}
+::: {#note:key .callout-note appearance="simple"}
 `keys` are prespecified variables in ADaM data to merge datasets. Each type of dataset requires specific keys to be specified. The package `teal.data` automatically chooses the correct key variables based on the `dataname` for the following datasets: `r paste(names(teal.data:::default_cdisc_keys), collapse = ", ")`.
-:::
 
-If you want to work with other ADaM datasets you must specify the keys manually. 
-ADTR is a Tumor Results Analysis Dataset where there is one record (row) per subject.
-As of now, this is not part of the default cdisc keys in the `teal.data` package, so we have to specify them manually: 
-
-
+If you want to work with other ADaM datasets you must specify the keys manually. ADTR is a Tumor Results Analysis Dataset where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the `teal.data` package, so we would have to specify them manually:
 
 ```{r}
+#| echo: false
 ADTR <- random.cdisc.data::cadtr
 
 
@@ -89,16 +84,58 @@ cdisc_data(
   cdisc_dataset("ADSL", ADSL),
   cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT")))
 ```
-Note that all keys have to be specified. 
+
+Note that all keys have to be specified.
+:::
+
+### Pre-processing 
+
+Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the \``cdisc_data()`\` output.
+
+Let's see an example of this:
+
+
+ ||| we write a proper rscript file that does some data processing, cool would be something useful. 
+ 
+ 
+
 
 
 ```{r}
+file_example <- tempfile(fileext = ".R")
+writeLines(
+  text = c(
+    "ADSL <- ADSL %>%
+      dplyr::mutate(newdata = 1)"
+  ),
+  con = file_example
+)
+
+
+
+cdisc_ADSL <-
+  cdisc_dataset(dataname = "ADSL", x = ADSL) 
+
+
+
+our_cdisc_data_mutated <- cdisc_ADSL %>% 
+  mutate_dataset(script = file_example)
+get_raw_data(our_cdisc_data_mutated)$newdata
+```
+
+
+
+```{r}
+writeLines()
+
+
+
+
 #| echo: false
-cdisc_data(
+our_cdisc_data <- cdisc_data(
   cdisc_dataset(dataname = "ADSL", x = ADSL),
   cdisc_dataset(dataname = "ADAE", x = ADAE))
 ```
-
 
 ```{r}
 #| eval: false
@@ -125,3 +162,42 @@ shinyApp(app$ui, app$server)
 class(x)
 
 ```
+
+
+
+
+
+
+
+
+
+
+```{r}
+
+ADSL_dataset <- dataset(
+  dataname = "ADSL",
+  x = ADSL,
+  label = "AdAM subject-level dataset"
+)
+ADSL_mutated <- ADSL_dataset %>%
+  mutate_dataset(code = "ADSL$new_variable <- 1")
+
+ADSL_mutated$get_raw_data()$new_variable[1]
+```
+
+```{r}
+file_example <- tempfile(fileext = ".R")
+writeLines(
+  text = c(
+    "ADSL <- ADSL %>%
+      dplyr::mutate(new_variable = new_variable * 2)"
+  ),
+  con = file_example
+)
+
+ADSL_mutated <- ADSL_mutated %>%
+  mutate_dataset(script = file_example)
+
+ADSL_mutated$get_raw_data()$new_variable[1]
+```
+
