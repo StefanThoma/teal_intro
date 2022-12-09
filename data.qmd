@@ -28,6 +28,8 @@ library(sparkline)
 ```{r}
 library(teal)
 library(dplyr)
+
+
 ```
 
 ## What data do we use
@@ -116,13 +118,16 @@ writeLines(
 
 
 cdisc_ADSL <-
-  cdisc_dataset(dataname = "ADSL", x = ADSL) 
+  cdisc_data(cdisc_dataset(dataname = "ADSL", x = ADSL) )
+
+
 
 
 
 our_cdisc_data_mutated <- cdisc_ADSL %>% 
-  mutate_dataset(script = file_example)
-get_raw_data(our_cdisc_data_mutated)$newdata
+  mutate_dataset(script = file_example,
+                 dataname = "ADSL")
+get_raw_data(our_cdisc_data_mutated)$ADSL$newdata
 ```
 
 ```{r}
@@ -133,7 +138,39 @@ our_cdisc_data <- cdisc_data(
 ```
 
 ```{r}
+#| eval: false
+app <- teal::init(data = cdisc_data(
+  cdisc_dataset("ADSL", ADSL),
+  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))
+  # <<additional dataset code>>
+),
+modules = modules(tm_variable_browser(label = "View Variables")),
+header = "My first application")
 
+shinyApp(app$ui, app$server)
+
+
+app <- teal::init(data = list(cdisc_dataset("ADSL", ADSL),
+  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))),
+  # <<additional dataset code>>,
+modules = modules(tm_variable_browser(label = "View Variables")),
+header = "My first application")
+
+shinyApp(app$ui, app$server)
+
+
+class(x)
+
+```
+
+
+
+
+
+
+
+
+```{r}
 ADSL_dataset <- dataset(
   dataname = "ADSL",
   x = ADSL,
@@ -180,3 +217,44 @@ shinyApp(app$ui, app$server)
 The output should look something like this:
 
 ![Data App preview](figures_images/app_data_1.png){fig-alt="Our first app should look like this"}
+=======
+
+```{r}
+library(teal.data)
+library(tidyverse)
+
+ADSL <- random.cdisc.data::cadsl
+
+file_example <- tempfile(fileext = ".R")
+writeLines(
+  text = c(
+    "ADSL <- ADSL %>%
+      dplyr::mutate(newdata = 1)"
+  ),
+  con = file_example
+)
+
+
+
+
+
+## works with cdisc_dataset:
+cdisc_dataset_ADSL <-
+  cdisc_dataset(dataname = "ADSL", x = ADSL) 
+
+cdisc_dataset_mutated <- cdisc_dataset_ADSL %>% 
+  mutate_dataset(script = file_example)
+get_raw_data(cdisc_dataset_mutated)$newdata[1]
+
+
+## does not work with cdisc_data:
+
+cdisc_data_ADSL <-
+  cdisc_data(cdisc_dataset(dataname = "ADSL", x = ADSL) )
+
+cdisc_data_mutated <- cdisc_data_ADSL %>% 
+  mutate_dataset(script = file_example,
+                 dataname = "ADSL")
+get_raw_data(cdisc_data_mutated)$ADSL$newdata[1]
+
+```
