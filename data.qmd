@@ -45,6 +45,13 @@ ADAE <- random.cdisc.data::cadae
 ADAE
 ```
 
+Analysis data-set for time to event.
+
+```{r}
+ADTTE <- random.cdisc.data::cadtte
+ADTTE
+```
+
 ## Getting started
 
 The most crucial function of the `teal` package(s) is the `teal::init()` function, which is structured as follows:
@@ -88,18 +95,13 @@ cdisc_data(
 Note that all keys have to be specified.
 :::
 
-### Pre-processing 
+### Pre-processing
 
 Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the \``cdisc_data()`\` output.
 
 Let's see an example of this:
 
-
- ||| we write a proper rscript file that does some data processing, cool would be something useful. 
- 
- 
-
-
+\|\|\| we write a proper rscript file that does some data processing, cool would be something useful.
 
 ```{r}
 file_example <- tempfile(fileext = ".R")
@@ -123,54 +125,12 @@ our_cdisc_data_mutated <- cdisc_ADSL %>%
 get_raw_data(our_cdisc_data_mutated)$newdata
 ```
 
-
-
 ```{r}
-writeLines()
-
-
-
-
 #| echo: false
 our_cdisc_data <- cdisc_data(
   cdisc_dataset(dataname = "ADSL", x = ADSL),
   cdisc_dataset(dataname = "ADAE", x = ADAE))
 ```
-
-```{r}
-#| eval: false
-app <- teal::init(data = cdisc_data(
-  cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))
-  # <<additional dataset code>>
-),
-modules = modules(tm_variable_browser(label = "View Variables")),
-header = "My first application")
-
-shinyApp(app$ui, app$server)
-
-
-app <- teal::init(data = list(cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))),
-  # <<additional dataset code>>,
-modules = modules(tm_variable_browser(label = "View Variables")),
-header = "My first application")
-
-shinyApp(app$ui, app$server)
-
-
-class(x)
-
-```
-
-
-
-
-
-
-
-
-
 
 ```{r}
 
@@ -201,3 +161,22 @@ ADSL_mutated <- ADSL_mutated %>%
 ADSL_mutated$get_raw_data()$new_variable[1]
 ```
 
+## Define the app
+
+```{r}
+#| eval: false
+app <- teal::init(data = cdisc_data(
+  cdisc_dataset("ADSL", ADSL),
+  cdisc_dataset("ADAE", ADAE),
+  cdisc_dataset("ADTTE", ADTTE)
+  # <<additional dataset code>>
+),
+modules = modules(tm_variable_browser(label = "View Variables")),
+header = "My first application")
+
+shinyApp(app$ui, app$server)
+```
+
+The output should look something like this:
+
+![Data App preview](figures_images/app_data_1.png){fig-alt="Our first app should look like this"}

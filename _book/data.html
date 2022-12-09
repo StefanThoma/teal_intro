@@ -197,7 +197,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="toc-section-number">2.4</span>  Getting started</a>
   <ul class="collapse">
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="toc-section-number">2.4.1</span>  Data</a></li>
+  <li><a href="#pre-processing" id="toc-pre-processing" class="nav-link" data-scroll-target="#pre-processing"><span class="toc-section-number">2.4.2</span>  Pre-processing</a></li>
   </ul></li>
+  <li><a href="#define-the-app" id="toc-define-the-app" class="nav-link" data-scroll-target="#define-the-app"><span class="toc-section-number">2.5</span>  Define the app</a></li>
   </ul>
 </nav>
     </div>
@@ -322,41 +324,62 @@ Attaching package: 'dplyr'</code></pre>
 #   TRT02SDTM &lt;dttm&gt;, TRT02EDTM &lt;dttm&gt;, AP01SDTM &lt;dttm&gt;, AP01EDTM &lt;dttm&gt;, …</code></pre>
 </div>
 </div>
+<p>Analysis data-set for time to event.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ADTTE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtte</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ADTTE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,000 × 68
+   STUDYID USUBJID    SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
+   &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;   &lt;fct&gt;
+ 1 AB12345 AB12345-B… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
+ 2 AB12345 AB12345-B… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
+ 3 AB12345 AB12345-B… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
+ 4 AB12345 AB12345-B… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
+ 5 AB12345 AB12345-B… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
+ 6 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
+ 7 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
+ 8 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
+ 9 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
+10 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
+# … with 1,990 more rows, and 57 more variables: INVID &lt;chr&gt;, INVNAM &lt;chr&gt;,
+#   ARM &lt;fct&gt;, ARMCD &lt;fct&gt;, ACTARM &lt;fct&gt;, ACTARMCD &lt;fct&gt;, TRT01P &lt;fct&gt;,
+#   TRT01A &lt;fct&gt;, TRT02P &lt;fct&gt;, TRT02A &lt;fct&gt;, REGION1 &lt;fct&gt;, STRATA1 &lt;fct&gt;,
+#   STRATA2 &lt;fct&gt;, BMRKR1 &lt;dbl&gt;, BMRKR2 &lt;fct&gt;, ITTFL &lt;fct&gt;, SAFFL &lt;fct&gt;,
+#   BMEASIFL &lt;fct&gt;, BEP01FL &lt;fct&gt;, AEWITHFL &lt;fct&gt;, RANDDT &lt;date&gt;,
+#   TRTSDTM &lt;dttm&gt;, TRTEDTM &lt;dttm&gt;, TRT01SDTM &lt;dttm&gt;, TRT01EDTM &lt;dttm&gt;,
+#   TRT02SDTM &lt;dttm&gt;, TRT02EDTM &lt;dttm&gt;, AP01SDTM &lt;dttm&gt;, AP01EDTM &lt;dttm&gt;, …</code></pre>
+</div>
+</div>
 </section>
 <section id="getting-started" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">2.4</span> Getting started</h2>
 <p>The most crucial function of the <code>teal</code> package(s) is the <code>teal::init()</code> function, which is structured as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>(</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  data,</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  modules,</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">filter =</span> <span class="fu">list</span>(),</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Title Here"</span>),</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Footer Here"</span>),</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">character</span>(<span class="dv">0</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  data,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  modules,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">filter =</span> <span class="fu">list</span>(),</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Title Here"</span>),</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Footer Here"</span>),</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">character</span>(<span class="dv">0</span>)</span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>init</code> function sets up a shiny app that consists of teal modules. Let’s go through the arguments:</p>
 <section id="data" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="data"><span class="header-section-number">2.4.1</span> Data</h3>
 <p>In the <code>data</code> argument we can define one or more dataframes for the application. If more than one dataframes are specified, they should be combined as a list, e.g.&nbsp;<code>data = list(ADSL, ADTR)</code>.</p>
 <p>If you work with ADaM datasets, the package <code>teal.data</code> provides helper functions with which the <code>data</code> argument of <code>init()</code> can be specified, — the <code>cdisc_data()</code> and the <code>cdisc_dataset()</code> functions. They allow the teal app to know the merge key variables of the datasets. The <code>cdisc_data</code>function returns an S6 object.</p>
-<div id="key" class="callout-note callout callout-style-simple">
+<div id="note:key" class="callout-note callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div id="key" class="callout-body-container">
+<div id="note:key" class="callout-body-container">
 <p><code>keys</code> are prespecified variables in ADaM data to merge datasets. Each type of dataset requires specific keys to be specified. The package <code>teal.data</code> automatically chooses the correct key variables based on the <code>dataname</code> for the following datasets: ADSL, ADAE, ADEG, ADTTE, ADAETTE, ADCM, ADEX, ADLB, ADMH, ADQS, ADRS, ADSAFTTE, ADVS, ADDV, ADSUB, ADHY.</p>
 <p>If you want to work with other ADaM datasets you must specify the keys manually. ADTR is a Tumor Results Analysis Dataset where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the <code>teal.data</code> package, so we would have to specify them manually:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ADTR <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtr</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cdisc_data</span>(</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL),</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTR"</span>, ADTR, <span class="at">keys =</span> <span class="fu">c</span>(<span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"AVISIT"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>A CDISCTealData object containing 2 TealDataset/TealDatasetConnector object(s) as element(s):
 --&gt; Element 1:
@@ -655,266 +678,106 @@ A CDISCTealDataset object containing the following data.frame (2800 rows and 77 
 </div>
 </div>
 </div>
+</section>
+<section id="pre-processing" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="pre-processing"><span class="header-section-number">2.4.2</span> Pre-processing</h3>
+<p>Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the `<code>cdisc_data()</code>` output.</p>
+<p>Let’s see an example of this:</p>
+<p>||| we write a proper rscript file that does some data processing, cool would be something useful.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>A CDISCTealData object containing 2 TealDataset/TealDatasetConnector object(s) as element(s):
---&gt; Element 1:
-A CDISCTealDataset object containing the following data.frame (400 rows and 56 columns):
-  STUDYID               USUBJID SUBJID SITEID AGE  AGEU SEX
-1 AB12345  AB12345-CHN-3-id-128 id-128  CHN-3  32 YEARS   M
-2 AB12345 AB12345-CHN-15-id-262 id-262 CHN-15  35 YEARS   M
-3 AB12345  AB12345-RUS-3-id-378 id-378  RUS-3  30 YEARS   F
-4 AB12345 AB12345-CHN-11-id-220 id-220 CHN-11  26 YEARS   F
-5 AB12345  AB12345-CHN-7-id-267 id-267  CHN-7  40 YEARS   M
-6 AB12345 AB12345-CHN-15-id-201 id-201 CHN-15  49 YEARS   M
-                       RACE                 ETHNIC COUNTRY DTHFL         INVID
-1                     ASIAN     HISPANIC OR LATINO     CHN     Y  INV ID CHN-3
-2 BLACK OR AFRICAN AMERICAN NOT HISPANIC OR LATINO     CHN     N INV ID CHN-15
-3                     ASIAN NOT HISPANIC OR LATINO     RUS     N  INV ID RUS-3
-4                     ASIAN NOT HISPANIC OR LATINO     CHN     N INV ID CHN-11
-5                     ASIAN NOT HISPANIC OR LATINO     CHN     N  INV ID CHN-7
-6                     ASIAN NOT HISPANIC OR LATINO     CHN     Y INV ID CHN-15
-          INVNAM            ARM ARMCD         ACTARM ACTARMCD         TRT01P
-1  Dr. CHN-3 Doe      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X
-2 Dr. CHN-15 Doe C: Combination ARM C C: Combination    ARM C C: Combination
-3  Dr. RUS-3 Doe C: Combination ARM C C: Combination    ARM C C: Combination
-4 Dr. CHN-11 Doe     B: Placebo ARM B     B: Placebo    ARM B     B: Placebo
-5  Dr. CHN-7 Doe     B: Placebo ARM B     B: Placebo    ARM B     B: Placebo
-6 Dr. CHN-15 Doe C: Combination ARM C C: Combination    ARM C C: Combination
-          TRT01A         TRT02P         TRT02A REGION1 STRATA1 STRATA2
-1      A: Drug X     B: Placebo      A: Drug X    Asia       C      S2
-2 C: Combination     B: Placebo C: Combination    Asia       C      S1
-3 C: Combination      A: Drug X     B: Placebo Eurasia       A      S1
-4     B: Placebo     B: Placebo     B: Placebo    Asia       B      S2
-5     B: Placebo C: Combination      A: Drug X    Asia       C      S1
-6 C: Combination     B: Placebo C: Combination    Asia       C      S2
-     BMRKR1 BMRKR2 ITTFL SAFFL BMEASIFL BEP01FL AEWITHFL     RANDDT
-1 14.424934 MEDIUM     Y     Y        Y       Y        N 2019-02-22
-2  4.055463    LOW     Y     Y        N       N        Y 2019-02-26
-3  2.803240   HIGH     Y     Y        Y       N        N 2019-02-24
-4 10.262734 MEDIUM     Y     Y        Y       Y        N 2019-02-27
-5  6.206763    LOW     Y     Y        N       N        N 2019-03-01
-6  6.906799 MEDIUM     Y     Y        Y       N        N 2019-03-05
-              TRTSDTM             TRTEDTM           TRT01SDTM
-1 2019-02-24 11:09:18 2022-02-12 03:55:58 2019-02-24 11:09:18
-2 2019-02-26 09:05:00 2022-02-26 02:32:36 2019-02-26 09:05:00
-3 2019-02-28 03:19:08 2022-02-27 20:46:44 2019-02-28 03:19:08
-4 2019-03-01 13:33:03 2022-03-01 07:00:39 2019-03-01 13:33:03
-5 2019-03-02 00:09:16 2022-03-01 17:36:52 2019-03-02 00:09:16
-6 2019-03-05 15:23:44 2022-02-19 03:34:25 2019-03-05 15:23:44
-            TRT01EDTM           TRT02SDTM           TRT02EDTM
-1 2021-02-11 22:06:46 2021-02-11 22:06:46 2022-02-12 03:55:58
-2 2021-02-25 20:43:24 2021-02-25 20:43:24 2022-02-26 02:32:36
-3 2021-02-27 14:57:32 2021-02-27 14:57:32 2022-02-27 20:46:44
-4 2021-03-01 01:11:27 2021-03-01 01:11:27 2022-03-01 07:00:39
-5 2021-03-01 11:47:40 2021-03-01 11:47:40 2022-03-01 17:36:52
-6 2021-02-18 21:45:13 2021-02-18 21:45:13 2022-02-19 03:34:25
-             AP01SDTM            AP01EDTM            AP02SDTM
-1 2019-02-24 11:09:18 2021-02-11 22:06:46 2021-02-11 22:06:46
-2 2019-02-26 09:05:00 2021-02-25 20:43:24 2021-02-25 20:43:24
-3 2019-02-28 03:19:08 2021-02-27 14:57:32 2021-02-27 14:57:32
-4 2019-03-01 13:33:03 2021-03-01 01:11:27 2021-03-01 01:11:27
-5 2019-03-02 00:09:16 2021-03-01 11:47:40 2021-03-01 11:47:40
-6 2019-03-05 15:23:44 2021-02-18 21:45:13 2021-02-18 21:45:13
-             AP02EDTM       EOSSTT       EOTSTT      EOSDT EOSDY DCSREAS
-1 2022-02-12 03:55:58 DISCONTINUED DISCONTINUED 2022-02-12  1084   DEATH
-2 2022-02-26 02:32:36    COMPLETED    COMPLETED 2022-02-26  1096    &lt;NA&gt;
-3 2022-02-27 20:46:44    COMPLETED    COMPLETED 2022-02-27  1096    &lt;NA&gt;
-4 2022-03-01 07:00:39    COMPLETED    COMPLETED 2022-03-01  1096    &lt;NA&gt;
-5 2022-03-01 17:36:52    COMPLETED    COMPLETED 2022-03-01  1096    &lt;NA&gt;
-6 2022-02-19 03:34:25 DISCONTINUED DISCONTINUED 2022-02-19  1082   DEATH
-       DTHDT       DTHCAUS        DTHCAT LDDTHELD LDDTHGR1   LSTALVDT DTHADY
-1 2022-03-06 ADVERSE EVENT ADVERSE EVENT       22     &lt;=30 2022-03-06   1106
-2       &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;       NA     &lt;NA&gt; 2022-03-17     NA
-3       &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;       NA     &lt;NA&gt; 2022-03-11     NA
-4       &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;       NA     &lt;NA&gt; 2022-03-26     NA
-5       &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;       NA     &lt;NA&gt; 2022-03-15     NA
-6 2022-02-22 ADVERSE EVENT ADVERSE EVENT        3     &lt;=30 2022-02-22   1085
-  ADTHAUT study_duration_secs
-1     Yes            63113904
-2    &lt;NA&gt;            63113904
-3    &lt;NA&gt;            63113904
-4    &lt;NA&gt;            63113904
-5    &lt;NA&gt;            63113904
-6     Yes            63113904
-
-...
-# A tibble: 6 × 56
-  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
-  &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;   &lt;fct&gt;
-1 AB12345 AB12345-CH… id-11  CHN-9     28 YEARS F     NATI… HISPA… CHN     Y    
-2 AB12345 AB12345-CH… id-352 CHN-16    28 YEARS M     ASIAN UNKNO… CHN     N    
-3 AB12345 AB12345-CH… id-186 CHN-1     27 YEARS M     ASIAN NOT H… CHN     N    
-4 AB12345 AB12345-CH… id-371 CHN-1     28 YEARS F     ASIAN NOT H… CHN     N    
-5 AB12345 AB12345-CH… id-233 CHN-1     36 YEARS F     BLAC… NOT H… CHN     Y    
-6 AB12345 AB12345-US… id-131 USA-12    44 YEARS F     AMER… NOT H… USA     N    
-# … with 45 more variables: INVID &lt;chr&gt;, INVNAM &lt;chr&gt;, ARM &lt;fct&gt;, ARMCD &lt;fct&gt;,
-#   ACTARM &lt;fct&gt;, ACTARMCD &lt;fct&gt;, TRT01P &lt;fct&gt;, TRT01A &lt;fct&gt;, TRT02P &lt;fct&gt;,
-#   TRT02A &lt;fct&gt;, REGION1 &lt;fct&gt;, STRATA1 &lt;fct&gt;, STRATA2 &lt;fct&gt;, BMRKR1 &lt;dbl&gt;,
-#   BMRKR2 &lt;fct&gt;, ITTFL &lt;fct&gt;, SAFFL &lt;fct&gt;, BMEASIFL &lt;fct&gt;, BEP01FL &lt;fct&gt;,
-#   AEWITHFL &lt;fct&gt;, RANDDT &lt;date&gt;, TRTSDTM &lt;dttm&gt;, TRTEDTM &lt;dttm&gt;,
-#   TRT01SDTM &lt;dttm&gt;, TRT01EDTM &lt;dttm&gt;, TRT02SDTM &lt;dttm&gt;, TRT02EDTM &lt;dttm&gt;,
-#   AP01SDTM &lt;dttm&gt;, AP01EDTM &lt;dttm&gt;, AP02SDTM &lt;dttm&gt;, AP02EDTM &lt;dttm&gt;, …
---&gt; Element 2:
-A CDISCTealDataset object containing the following data.frame (1934 rows and 92 columns):
-  STUDYID              USUBJID SUBJID SITEID AGE  AGEU SEX  RACE
-1 AB12345 AB12345-BRA-1-id-134 id-134  BRA-1  47 YEARS   M WHITE
-2 AB12345 AB12345-BRA-1-id-134 id-134  BRA-1  47 YEARS   M WHITE
-3 AB12345 AB12345-BRA-1-id-134 id-134  BRA-1  47 YEARS   M WHITE
-4 AB12345 AB12345-BRA-1-id-134 id-134  BRA-1  47 YEARS   M WHITE
-5 AB12345 AB12345-BRA-1-id-141 id-141  BRA-1  35 YEARS   F WHITE
-6 AB12345 AB12345-BRA-1-id-141 id-141  BRA-1  35 YEARS   F WHITE
-                  ETHNIC COUNTRY DTHFL        INVID        INVNAM
-1 NOT HISPANIC OR LATINO     BRA     Y INV ID BRA-1 Dr. BRA-1 Doe
-2 NOT HISPANIC OR LATINO     BRA     Y INV ID BRA-1 Dr. BRA-1 Doe
-3 NOT HISPANIC OR LATINO     BRA     Y INV ID BRA-1 Dr. BRA-1 Doe
-4 NOT HISPANIC OR LATINO     BRA     Y INV ID BRA-1 Dr. BRA-1 Doe
-5 NOT HISPANIC OR LATINO     BRA     N INV ID BRA-1 Dr. BRA-1 Doe
-6 NOT HISPANIC OR LATINO     BRA     N INV ID BRA-1 Dr. BRA-1 Doe
-             ARM ARMCD         ACTARM ACTARMCD         TRT01P         TRT01A
-1      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X      A: Drug X
-2      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X      A: Drug X
-3      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X      A: Drug X
-4      A: Drug X ARM A      A: Drug X    ARM A      A: Drug X      A: Drug X
-5 C: Combination ARM C C: Combination    ARM C C: Combination C: Combination
-6 C: Combination ARM C C: Combination    ARM C C: Combination C: Combination
-          TRT02P         TRT02A       REGION1 STRATA1 STRATA2   BMRKR1 BMRKR2
-1     B: Placebo      A: Drug X South America       B      S2 6.462991    LOW
-2     B: Placebo      A: Drug X South America       B      S2 6.462991    LOW
-3     B: Placebo      A: Drug X South America       B      S2 6.462991    LOW
-4     B: Placebo      A: Drug X South America       B      S2 6.462991    LOW
-5 C: Combination C: Combination South America       B      S1 7.516076   HIGH
-6 C: Combination C: Combination South America       B      S1 7.516076   HIGH
-  ITTFL SAFFL BMEASIFL BEP01FL AEWITHFL     RANDDT             TRTSDTM
-1     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
-2     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
-3     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
-4     Y     Y        Y       N        N 2020-11-03 2020-11-04 03:50:33
-5     Y     Y        Y       Y        N 2020-07-22 2020-07-25 14:10:56
-6     Y     Y        Y       Y        N 2020-07-22 2020-07-25 14:10:56
-              TRTEDTM           TRT01SDTM           TRT01EDTM
-1 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
-2 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
-3 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
-4 2022-02-20 03:01:31 2020-11-04 03:50:33 2021-02-19 21:12:19
-5 2023-07-26 07:38:32 2020-07-25 14:10:56 2022-07-26 01:49:20
-6 2023-07-26 07:38:32 2020-07-25 14:10:56 2022-07-26 01:49:20
-            TRT02SDTM           TRT02EDTM            AP01SDTM
-1 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
-2 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
-3 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
-4 2021-02-19 21:12:19 2022-02-20 03:01:31 2020-11-04 03:50:33
-5 2022-07-26 01:49:20 2023-07-26 07:38:32 2020-07-25 14:10:56
-6 2022-07-26 01:49:20 2023-07-26 07:38:32 2020-07-25 14:10:56
-             AP01EDTM            AP02SDTM            AP02EDTM       EOSSTT
-1 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
-2 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
-3 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
-4 2021-02-19 21:12:19 2021-02-19 21:12:19 2022-02-20 03:01:31 DISCONTINUED
-5 2022-07-26 01:49:20 2022-07-26 01:49:20 2023-07-26 07:38:32    COMPLETED
-6 2022-07-26 01:49:20 2022-07-26 01:49:20 2023-07-26 07:38:32    COMPLETED
-        EOTSTT      EOSDT EOSDY DCSREAS      DTHDT       DTHCAUS        DTHCAT
-1 DISCONTINUED 2022-02-20   473   DEATH 2022-03-16 ADVERSE EVENT ADVERSE EVENT
-2 DISCONTINUED 2022-02-20   473   DEATH 2022-03-16 ADVERSE EVENT ADVERSE EVENT
-3 DISCONTINUED 2022-02-20   473   DEATH 2022-03-16 ADVERSE EVENT ADVERSE EVENT
-4 DISCONTINUED 2022-02-20   473   DEATH 2022-03-16 ADVERSE EVENT ADVERSE EVENT
-5    COMPLETED 2023-07-26  1096    &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
-6    COMPLETED 2023-07-26  1096    &lt;NA&gt;       &lt;NA&gt;          &lt;NA&gt;          &lt;NA&gt;
-  LDDTHELD LDDTHGR1   LSTALVDT DTHADY ADTHAUT study_duration_secs ASEQ AESEQ
-1       24     &lt;=30 2022-03-16    497     Yes            63113904    1     1
-2       24     &lt;=30 2022-03-16    497     Yes            63113904    2     2
-3       24     &lt;=30 2022-03-16    497     Yes            63113904    3     3
-4       24     &lt;=30 2022-03-16    497     Yes            63113904    4     4
-5       NA     &lt;NA&gt; 2023-08-08     NA    &lt;NA&gt;            63113904    1     1
-6       NA     &lt;NA&gt; 2023-08-08     NA    &lt;NA&gt;            63113904    2     2
-         AETERM         AELLT       AEDECOD       AEHLT     AEHLGT AEBODSYS
-1 trm B.2.1.2.1 llt B.2.1.2.1 dcd B.2.1.2.1 hlt B.2.1.2 hlgt B.2.1   cl B.2
-2 trm D.1.1.4.2 llt D.1.1.4.2 dcd D.1.1.4.2 hlt D.1.1.4 hlgt D.1.1   cl D.1
-3 trm A.1.1.1.2 llt A.1.1.1.2 dcd A.1.1.1.2 hlt A.1.1.1 hlgt A.1.1   cl A.1
-4 trm A.1.1.1.2 llt A.1.1.1.2 dcd A.1.1.1.2 hlt A.1.1.1 hlgt A.1.1   cl A.1
-5 trm B.2.1.2.1 llt B.2.1.2.1 dcd B.2.1.2.1 hlt B.2.1.2 hlgt B.2.1   cl B.2
-6 trm D.2.1.5.3 llt D.2.1.5.3 dcd D.2.1.5.3 hlt D.2.1.5 hlgt D.2.1   cl D.2
-  AESOC    AESEV AESER            AEACN AEREL                AEOUT AESDTH
-1  cl B MODERATE     N DOSE NOT CHANGED     N RECOVERING/RESOLVING      N
-2  cl D MODERATE     N DOSE NOT CHANGED     N RECOVERING/RESOLVING      N
-3  cl A MODERATE     Y DOSE NOT CHANGED     N RECOVERING/RESOLVING      N
-4  cl A MODERATE     Y   DRUG WITHDRAWN     N RECOVERING/RESOLVING      N
-5  cl B MODERATE     N   DOSE INCREASED     N   RECOVERED/RESOLVED      N
-6  cl D     MILD     N   DOSE INCREASED     Y   RECOVERED/RESOLVED      N
-  AESCONG AESDISAB AESHOSP AESLIFE AESMIE TRTEMFL AECONTRT     ASTDTM
-1       N        Y       N       N      N       Y        Y 2021-04-15
-2       N        Y       N       N      N       Y        N 2021-05-20
-3       N        Y       N       N      N       Y        Y 2021-09-22
-4       Y        N       N       N      N       Y        N 2021-12-03
-5       N        N       Y       N      N       Y        Y 2021-08-17
-6       N        Y       N       N      N       Y        N 2021-10-23
-      AENDTM ASTDY AENDY            LDOSEDTM AETOXGR SMQ01NAM SMQ02NAM SMQ01SC
-1 2021-10-05   162   335 2020-11-07 08:42:06       3     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
-2 2021-11-01   197   362 2021-05-18 03:00:40       3     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
-3 2022-02-17   322   470 2021-05-24 03:31:30       2     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
-4 2022-01-14   394   436 2021-03-19 15:29:44       2     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
-5 2021-08-27   388   398 2021-07-22 14:59:07       3     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
-6 2023-07-13   455  1083 2021-07-16 10:08:53       1     &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;
-  SMQ02SC                  CQ01NAM ANL01FL           AERELNST
-1    &lt;NA&gt;                     &lt;NA&gt;       Y               NONE
-2    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
-3    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
-4    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
-5    &lt;NA&gt;                     &lt;NA&gt;       Y CONCURRENT ILLNESS
-6    &lt;NA&gt; D.2.1.5.3/A.1.1.1.1 AESI       Y CONCURRENT ILLNESS
-                         AEACNOTH
-1               PROCEDURE/SURGERY
-2                      MEDICATION
-3 SUBJECT DISCONTINUED FROM STUDY
-4 SUBJECT DISCONTINUED FROM STUDY
-5               PROCEDURE/SURGERY
-6                      MEDICATION
-
-...
-# A tibble: 6 × 92
-  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
-  &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;   &lt;fct&gt;
-1 AB12345 AB12345-US… id-206 USA-8     34 YEARS F     ASIAN NOT H… USA     N    
-2 AB12345 AB12345-US… id-206 USA-8     34 YEARS F     ASIAN NOT H… USA     N    
-3 AB12345 AB12345-US… id-206 USA-8     34 YEARS F     ASIAN NOT H… USA     N    
-4 AB12345 AB12345-US… id-130 USA-9     40 YEARS M     ASIAN NOT H… USA     N    
-5 AB12345 AB12345-US… id-130 USA-9     40 YEARS M     ASIAN NOT H… USA     N    
-6 AB12345 AB12345-US… id-130 USA-9     40 YEARS M     ASIAN NOT H… USA     N    
-# … with 81 more variables: INVID &lt;chr&gt;, INVNAM &lt;chr&gt;, ARM &lt;fct&gt;, ARMCD &lt;fct&gt;,
-#   ACTARM &lt;fct&gt;, ACTARMCD &lt;fct&gt;, TRT01P &lt;fct&gt;, TRT01A &lt;fct&gt;, TRT02P &lt;fct&gt;,
-#   TRT02A &lt;fct&gt;, REGION1 &lt;fct&gt;, STRATA1 &lt;fct&gt;, STRATA2 &lt;fct&gt;, BMRKR1 &lt;dbl&gt;,
-#   BMRKR2 &lt;fct&gt;, ITTFL &lt;fct&gt;, SAFFL &lt;fct&gt;, BMEASIFL &lt;fct&gt;, BEP01FL &lt;fct&gt;,
-#   AEWITHFL &lt;fct&gt;, RANDDT &lt;date&gt;, TRTSDTM &lt;dttm&gt;, TRTEDTM &lt;dttm&gt;,
-#   TRT01SDTM &lt;dttm&gt;, TRT01EDTM &lt;dttm&gt;, TRT02SDTM &lt;dttm&gt;, TRT02EDTM &lt;dttm&gt;,
-#   AP01SDTM &lt;dttm&gt;, AP01EDTM &lt;dttm&gt;, AP02SDTM &lt;dttm&gt;, AP02EDTM &lt;dttm&gt;, …</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(<span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL),</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTR"</span>, ADTR, <span class="at">keys =</span> <span class="fu">c</span>(<span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"AVISIT"</span>))</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &lt;&lt;additional dataset code&gt;&gt;</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="at">modules =</span> <span class="fu">modules</span>(<span class="fu">tm_variable_browser</span>(<span class="at">label =</span> <span class="st">"View Variables"</span>)),</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="at">header =</span> <span class="st">"My first application"</span>)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(app<span class="sc">$</span>ui, app<span class="sc">$</span>server)</span>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>file_example <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".R"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">c</span>(</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ADSL &lt;- ADSL %&gt;%</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="st">      dplyr::mutate(newdata = 1)"</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">con =</span> file_example</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(<span class="at">data =</span> <span class="fu">list</span>(<span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL),</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTR"</span>, ADTR, <span class="at">keys =</span> <span class="fu">c</span>(<span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"AVISIT"</span>))),</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &lt;&lt;additional dataset code&gt;&gt;,</span></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="at">modules =</span> <span class="fu">modules</span>(<span class="fu">tm_variable_browser</span>(<span class="at">label =</span> <span class="st">"View Variables"</span>)),</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a><span class="at">header =</span> <span class="st">"My first application"</span>)</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(app<span class="sc">$</span>ui, app<span class="sc">$</span>server)</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>cdisc_ADSL <span class="ot">&lt;-</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="at">dataname =</span> <span class="st">"ADSL"</span>, <span class="at">x =</span> ADSL) </span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>our_cdisc_data_mutated <span class="ot">&lt;-</span> cdisc_ADSL <span class="sc">%&gt;%</span> </span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_dataset</span>(<span class="at">script =</span> file_example)</span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="fu">get_raw_data</span>(our_cdisc_data_mutated)<span class="sc">$</span>newdata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [38] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ [75] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[112] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[149] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[186] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[223] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[260] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[297] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[334] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+[371] 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1</code></pre>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ADSL_dataset <span class="ot">&lt;-</span> <span class="fu">dataset</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataname =</span> <span class="st">"ADSL"</span>,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> ADSL,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"AdAM subject-level dataset"</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>ADSL_mutated <span class="ot">&lt;-</span> ADSL_dataset <span class="sc">%&gt;%</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_dataset</span>(<span class="at">code =</span> <span class="st">"ADSL$new_variable &lt;- 1"</span>)</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>ADSL_mutated<span class="sc">$</span><span class="fu">get_raw_data</span>()<span class="sc">$</span>new_variable[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>file_example <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".R"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">c</span>(</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ADSL &lt;- ADSL %&gt;%</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="st">      dplyr::mutate(new_variable = new_variable * 2)"</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">con =</span> file_example</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>ADSL_mutated <span class="ot">&lt;-</span> ADSL_mutated <span class="sc">%&gt;%</span></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_dataset</span>(<span class="at">script =</span> file_example)</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>ADSL_mutated<span class="sc">$</span><span class="fu">get_raw_data</span>()<span class="sc">$</span>new_variable[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="define-the-app" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="define-the-app"><span class="header-section-number">2.5</span> Define the app</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(<span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL),</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &lt;&lt;additional dataset code&gt;&gt;</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>),</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="at">modules =</span> <span class="fu">modules</span>(<span class="fu">tm_variable_browser</span>(<span class="at">label =</span> <span class="st">"View Variables"</span>)),</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="at">header =</span> <span class="st">"My first application"</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(app<span class="sc">$</span>ui, app<span class="sc">$</span>server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The output should look something like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures_images/app_data_1.png" class="img-fluid figure-img" alt="Our first app should look like this"></p>
+<p></p><figcaption class="figure-caption">Data App preview</figcaption><p></p>
+</figure>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

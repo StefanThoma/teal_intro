@@ -1,0 +1,7 @@
+---
+title: "efficacy"
+author: "Stefan Thoma"
+editor: visual
+---
+
+http://docs.roche.com/#/agile-R/2022_01_28/teal/sample_apps/sample-app-efficacy/
