@@ -7,8 +7,9 @@ book:
   date: "`r format(Sys.time(), '%d %B, %Y')`"
   chapters:
     - index.qmd
-    - intro.qmd
-    - data.qmd
+    - introduction.qmd
+    - data.qmd           
+    - efficacy.qmd
     - summary.qmd
     - references.qmd
 

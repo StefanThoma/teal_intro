@@ -1,7 +1,33 @@
 # Preface {.unnumbered}
 
-This is a collection of materials used for the introductory content of teal found on the [pharmaverse youtube channel](https://www.youtube.com/@pharmaverse6572).
+## Who ist this for
 
-```{r}
-1 + 1
-```
+This tutorial is aimed at data scientists / analysts who want to write their first `teal` application. 
+We expect you to already have some R experience and that you know what you want to achieve with the application. 
+You do not need to know how to create a shiny application. 
+The `teal` package aims to make the creation of (teal-specific) shiny applications relatively intuitive without the need to understand how shiny works exactly. 
+Shiny knowledge is useful once you want to either modify an application, or write your own teal module from scratch. 
+
+## What will you learn
+
+
+
+## How is it structured
+
+All chapters in this book follow a common structure: 
+First, the learning goals of a chapter is defined. 
+We then go through the step-by-step process of using specific `teal` modules. 
+In each chapter we combine what we learned into one code chunk with which we can create a functional teal application. 
+As every `teal` app requires data, the app created in the introduction will be the fundamental building block of the apps in the subsequent chapters. 
+In the *toy apps* created in each chapter you should be able to understand every line of code. 
+The code for a more developed app (but built for the same purpose) and a deployed instance of that app is linked at the end of each chapter. 
+What you learned in this chapter should give you a good understanding of how the more developed application works.
+
+## Where can you find more
+
+
+
+<!-- This is a collection of materials used for the introductory content of teal found on the [pharmaverse youtube channel](https://www.youtube.com/@pharmaverse6572). -->
+
+
+
