@@ -2,10 +2,10 @@
 
 ## Aim of this chapter
 
-- Understand the structure of `teal` apps
-- Understand the utility of `teal` apps
-- Get familiar with the workflow to create a `teal` app
-- Be able to write your own first app to display data
+-   Understand the structure of `teal` apps
+-   Understand the utility of `teal` apps
+-   Get familiar with the workflow to create a `teal` app
+-   Be able to write your own first app to display data
 
 ## Structure of teal apps
 
@@ -23,6 +23,17 @@ The layout is pre-set within each module. However, user can decide overall tab o
 
 ![Typical teal app layout](figures_images/teal_panel_layout.png){#fig:layout fig-alt="Structure of a typical teal app"}
 
+### Modules
+
+`teal` modules are modular building blocks for your `teal` app. They implement specific app functionalities, such as outlier exploration, data visualizations, and survival analysis. Although modules can be created from scratch, many `teal` modules have already been released and can be found in the following packages:
+
+-   `teal.modules.general`: general modules for exploring relational/independent/CDISC data
+
+-   `teal.modules.clinical`: modules specific to CDISC data and clinical trial reporting
+
+-   `teal.modules.hermes`: modules for analyzing [MultiAssayExperiment objects](https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html)
+
+are shiny modules built within the teal framework that specify analysis to be performed.
 
 ## Setup
 
@@ -34,9 +45,12 @@ if (!require("remotes")) install.packages("remotes")
 
 # install teal
 remotes::install_github("insightsengineering/teal@*release")
+
 # install teal.modules.general
 remotes::install_github("insightsengineering/teal.modules.general@*release")
 
+# install teal.modules.hermes
+remotes::install_github("insightsengineering/teal.modules.hermes@*release")
 ```
 
 ```{r}
@@ -54,7 +68,7 @@ library(dplyr)
 
 ```
 
-## What data do we use
+## What data we use in this project
 
 We first load two synthetic data sets. `random.cdisc.data::cadsl` is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable `USUBJID`. According to [CDISC](https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl) the main purpose of ADSL is to provide a "(...) source for denominators for populations of interest, stratification variables, and other important subject subgroups".
 
@@ -76,8 +90,16 @@ ADTTE <- random.cdisc.data::cadtte
 ADTTE
 ```
 
-## Getting started
+## Creating your first app
 
+### Code structure
+
+First, you want to define the project metadata. 
+This can include the author name, the study name, the molecule name, etc.
+then, we have a section where we can define parameters for the app. 
+This can be simple parameter values but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g. preselected variables of interest.
+
+### xxx not sur eof name yet
 The most crucial function of the `teal` package(s) is the `teal::init()` function, which is structured as follows:
 
 ```{r}
@@ -89,13 +111,12 @@ init(
   filter = list(),
   header = tags$p("Add Title Here"),
   footer = tags$p("Add Footer Here"),
-  id = character(0)
-)
+  id = character(0))
 ```
 
-The `init` function sets up a shiny app that consists of teal modules. Let's go through the arguments:
+The `init` function sets up a shiny app that consists of `teal` modules. Let's go through the arguments:
 
-### Data
+### `data`
 
 In the `data` argument we can define one or more data-frames for the application. If more than one data-frames are specified, they should be combined as a list, e.g. `data = list(ADSL, ADTR)`.
 
@@ -158,17 +179,7 @@ app <- teal::init(data = cdisc_data(
   #  <<additional init arguments code>>
 ```
 
-## Modules
-
-`teal` modules are modular building blocks for your `shiny` app. They implement specific app functionalities, such as outlier exploration, data visualizations, and survival analysis. Although modules can be created from scratch, many `teal` modules have already been released and can be found in the following packages:
-
--   `teal.modules.general`: general modules for exploring relational/independent/CDISC data
-
--   `teal.modules.clinical`: modules specific to CDISC data and clinical trial reporting
-
--   `teal.modules.hermes`: modules for analyzing [MultiAssayExperiment objects](https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html)
-
-are shiny modules built within the teal framework that specify analysis to be performed.
+### `modules`
 
 ## Define the app
 
