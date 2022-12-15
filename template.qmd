@@ -1,0 +1,28 @@
+# Template
+
+This is a template file for new chapters. If you want to create a new chapter, simply copy this template, and adjust as needed.
+
+**At the end of this chapter you should be able to **
+
+-   write your own chapter
+-   keep the chapters looking consistent
+-   especially from data.qmd onward 
+
+
+## Setup
+
+
+
+## Modules
+
+
+
+## Toy app
+
+
+
+
+## Production app
+
+
+

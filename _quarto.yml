@@ -8,7 +8,7 @@ book:
   chapters:
     - index.qmd
     - introduction.qmd
-    - data.qmd           
+    - data.qmd
     - efficacy.qmd
     - summary.qmd
     - references.qmd

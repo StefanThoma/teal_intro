@@ -1,11 +1,11 @@
 # Introduction
 
-## Aim of this chapter
 
--   Understand the structure of `teal` apps
--   Understand the utility of `teal` apps
--   Get familiar with the workflow to create a `teal` app
--   Be able to write your own first app to display data
+**At the end of this chapter you should be able to **
+
+-   understand the structure and utlility of `teal` apps
+-   understand the utility of `teal` apps
+-   determine whether `teal` apps are useful for *you*
 
 ## Structure of teal apps
 
@@ -64,11 +64,7 @@ library(sparkline)
 ```{r}
 library(teal)
 library(dplyr)
-
-
 ```
-
-## What data we use in this project
 
 We first load two synthetic data sets. `random.cdisc.data::cadsl` is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable `USUBJID`. According to [CDISC](https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl) the main purpose of ADSL is to provide a "(...) source for denominators for populations of interest, stratification variables, and other important subject subgroups".
 
@@ -83,160 +79,9 @@ ADAE <- random.cdisc.data::cadae
 ADAE
 ```
 
-Analysis data-set for time to event.
+Analysis data-set for time to event (efficacy).
 
 ```{r}
 ADTTE <- random.cdisc.data::cadtte
 ADTTE
-```
-
-## Creating your first app
-
-### Code structure
-
-First, you want to define the project metadata. 
-This can include the author name, the study name, the molecule name, etc.
-then, we have a section where we can define parameters for the app. 
-This can be simple parameter values but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g. preselected variables of interest.
-
-### xxx not sur eof name yet
-The most crucial function of the `teal` package(s) is the `teal::init()` function, which is structured as follows:
-
-```{r}
-#| eval: FALSE
-init(
-  data,
-  modules,
-  title = NULL,
-  filter = list(),
-  header = tags$p("Add Title Here"),
-  footer = tags$p("Add Footer Here"),
-  id = character(0))
-```
-
-The `init` function sets up a shiny app that consists of `teal` modules. Let's go through the arguments:
-
-### `data`
-
-In the `data` argument we can define one or more data-frames for the application. If more than one data-frames are specified, they should be combined as a list, e.g. `data = list(ADSL, ADTR)`.
-
-If you work with ADaM datasets, the package `teal.data` provides helper functions with which the `data` argument of `init()` can be specified, --- the `cdisc_data()` and the `cdisc_dataset()` functions. They allow the teal app to know the merge key variables of the data-sets. The `cdisc_data`function returns an S6 object.
-
-::: {#note:key .callout-note appearance="simple"}
-`keys` are prespecified variables in ADaM data to merge data-sets. Each type of data-set requires specific keys to be specified. The package `teal.data` automatically chooses the correct key variables based on the `dataname` for the following data-sets: `r paste(names(teal.data:::default_cdisc_keys), collapse = ", ")`.
-
-If you want to work with other ADaM data-sets you must specify the keys manually. ADTR is a Tumor Results Analysis data-set where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the `teal.data` package, so we would have to specify them manually:
-
-```{r}
-#| eval: false
-ADTR <- random.cdisc.data::cadtr
-
-
-cdisc_data(
-  cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT")))
-```
-
-Note that all keys have to be specified.
-:::
-
-### Pre-processing
-
-Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the \``cdisc_data()`\` output. One such preprocessing steps could be the creation of a new variable in the ADSL data-set which splits patients into two age groups where patients younger than 40 are `AGEGR = 0` and patients older than 40 are `AGEGR = 1`.
-
-```{r}
-# you would write this in a seperate file directly, without the writeLines command.
-writeLines(
-  text = c("ADSL <- ADSL %>%
-      dplyr::mutate(AGEGR = if_else(AGE < 40, 0, 1, NA_real_))"),
-  con = "ADSL_preproc.R"
-)
-```
-
-The resulting R file looks something like this:
-
-`r readr::read_file("ADSL_preproc.R")`
-
-```{r}
-ADSL_processed <- ADSL %>% 
-  cdisc_dataset("ADSL", .) %>% 
-  mutate_dataset(script = "ADSL_preproc.R")
-# check if the new variable exists:
-ADSL_processed$get_raw_data()$AGEGR
-```
-
-In a real world case we would not necessarily want to separately save the preprocessed `ADSL` in our environment. Instead, we would apply the preprocessing within the `data` argument of the `init()` function, e.g., like this:
-
-```{r}
-#| eval: false
-app <- teal::init(data = cdisc_data(
-  cdisc_dataset("ADSL", ADSL) %>% 
-    mutate_dataset(script = "ADSL_preproc.R"),
-  cdisc_dataset("ADAE", ADAE),
-  cdisc_dataset("ADTTE", ADTTE)
-  # <<additional dataset code>> 
-  ),
-  #  <<additional init arguments code>>
-```
-
-### `modules`
-
-## Define the app
-
-```{r}
-#| eval: false
-app <- teal::init(data = cdisc_data(
-  cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADAE", ADAE),
-  cdisc_dataset("ADTTE", ADTTE)
-  # <<additional dataset code>>
-),
-modules = modules(tm_variable_browser(label = "View Variables")),
-header = "My first application")
-
-shinyApp(app$ui, app$server)
-```
-
-The output should look something like this:
-
-# ![Data App preview](figures_images/app_data_1.png){fig-alt="Our first app should look like this"}
-
-```{r}
-library(teal.data)
-library(tidyverse)
-
-ADSL <- random.cdisc.data::cadsl
-
-file_example <- tempfile(fileext = ".R")
-writeLines(
-  text = c(
-    "ADSL <- ADSL %>%
-      dplyr::mutate(newdata = 1)"
-  ),
-  con = file_example
-)
-
-
-
-
-
-## works with cdisc_dataset:
-cdisc_dataset_ADSL <-
-  cdisc_dataset(dataname = "ADSL", x = ADSL) 
-
-cdisc_dataset_mutated <- cdisc_dataset_ADSL %>% 
-  mutate_dataset(script = file_example)
-get_raw_data(cdisc_dataset_mutated)$newdata[1]
-
-
-## does not work with cdisc_data:
-
-cdisc_data_ADSL <-
-  cdisc_data(cdisc_dataset(dataname = "ADSL", x = ADSL) )
-
-cdisc_data_mutated <- cdisc_data_ADSL %>% 
-  mutate_dataset(script = file_example,
-                 dataname = "ADSL")
-get_raw_data(cdisc_data_mutated)$ADSL$newdata[1]
-
 ```
