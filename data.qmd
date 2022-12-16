@@ -39,7 +39,6 @@ remotes::install_github("insightsengineering/teal.modules.hermes@*release")
 ```
 
 ```{r load packages data app}
-
 ```
 
 We first load two synthetic data sets. `random.cdisc.data::cadsl` is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable `USUBJID`. According to [CDISC](https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl) the main purpose of ADSL is to provide a "(...) source for denominators for populations of interest, stratification variables, and other important subject subgroups".
@@ -86,7 +85,8 @@ init(
   filter = list(),
   header = tags$p("Add Title Here"),
   footer = tags$p("Add Footer Here"),
-  id = character(0))
+  id = character(0)
+)
 ```
 
 The `init()` function sets up a shiny app that consists of `teal` modules. Let's go through the arguments:
@@ -107,7 +107,8 @@ ADTR <- random.cdisc.data::cadtr
 
 cdisc_data(
   cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT")))
+  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))
+)
 ```
 
 Note that all keys have to be specified.
@@ -132,8 +133,8 @@ The resulting R file looks something like this:
 `r readr::read_file("ADSL_preproc.R")`
 
 ```{r}
-ADSL_processed <- ADSL %>% 
-  cdisc_dataset("ADSL", .) %>% 
+ADSL_processed <- ADSL %>%
+  cdisc_dataset("ADSL", .) %>%
   mutate_dataset(script = "ADSL_preproc.R")
 # check if the new variable exists:
 ADSL_processed$get_raw_data()$AGEGR
@@ -143,12 +144,13 @@ In a real world case we would not necessarily want to separately save the pre-pr
 
 ```{r}
 #| eval: false
-app <- teal::init(data = cdisc_data(
-  cdisc_dataset("ADSL", ADSL) %>% 
-    mutate_dataset(script = "ADSL_preproc.R"),
-  cdisc_dataset("ADAE", ADAE),
-  cdisc_dataset("ADTTE", ADTTE)
-  # <<additional dataset code>> 
+app <- teal::init(
+  data = cdisc_data(
+    cdisc_dataset("ADSL", ADSL) %>%
+      mutate_dataset(script = "ADSL_preproc.R"),
+    cdisc_dataset("ADAE", ADAE),
+    cdisc_dataset("ADTTE", ADTTE)
+    # <<additional dataset code>>
   )
   # , <<additional init arguments code>>
 )
@@ -167,7 +169,6 @@ Combining everything above, our `init()` function looks like this:
 
 ```{r init data app}
 #| eval: false
-
 ```
 
 ## Toy app
