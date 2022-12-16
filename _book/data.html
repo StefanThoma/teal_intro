@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>teaching_material_book - 2&nbsp; Introduction</title>
+<title>teaching_material_book - 2&nbsp; Data app</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,8 +93,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./efficacy.html" rel="next">
+<link href="./introduction.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -134,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data app</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -164,17 +164,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./introduction.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  <a href="./data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data app</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  <a href="./efficacy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">efficacy</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -191,17 +196,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aim-of-this-chapter" id="toc-aim-of-this-chapter" class="nav-link active" data-scroll-target="#aim-of-this-chapter"><span class="toc-section-number">2.1</span>  Aim of this chapter</a></li>
-  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="toc-section-number">2.2</span>  Setup</a></li>
-  <li><a href="#what-data-do-we-use" id="toc-what-data-do-we-use" class="nav-link" data-scroll-target="#what-data-do-we-use"><span class="toc-section-number">2.3</span>  What data do we use</a></li>
-  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started"><span class="toc-section-number">2.4</span>  Getting started</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup"><span class="toc-section-number">2.1</span>  Setup</a></li>
+  <li><a href="#your-first-app" id="toc-your-first-app" class="nav-link" data-scroll-target="#your-first-app"><span class="toc-section-number">2.2</span>  Your first app</a></li>
+  <li><a href="#code-structure" id="toc-code-structure" class="nav-link" data-scroll-target="#code-structure"><span class="toc-section-number">2.3</span>  Code structure</a></li>
+  <li><a href="#init" id="toc-init" class="nav-link" data-scroll-target="#init"><span class="toc-section-number">2.4</span>  <code>init()</code></a>
   <ul class="collapse">
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="toc-section-number">2.4.1</span>  Data</a></li>
-  <li><a href="#pre-processing" id="toc-pre-processing" class="nav-link" data-scroll-target="#pre-processing"><span class="toc-section-number">2.4.2</span>  Pre-processing</a></li>
+  <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules"><span class="toc-section-number">2.4.1</span>  <code>modules</code></a></li>
   </ul></li>
-  <li><a href="#modules" id="toc-modules" class="nav-link" data-scroll-target="#modules"><span class="toc-section-number">2.5</span>  Modules</a></li>
-  <li><a href="#define-the-app" id="toc-define-the-app" class="nav-link" data-scroll-target="#define-the-app"><span class="toc-section-number">2.6</span>  Define the app</a></li>
-  <li><a href="#data-app-preview" id="toc-data-app-preview" class="nav-link" data-scroll-target="#data-app-preview"><span class="toc-section-number">3</span>  <img src="figures_images/app_data_1.png" class="img-fluid" alt="Our first app should look like this"></a></li>
+  <li><a href="#toy-app" id="toc-toy-app" class="nav-link" data-scroll-target="#toy-app"><span class="toc-section-number">2.5</span>  Toy app</a></li>
+  <li><a href="#production-app" id="toc-production-app" class="nav-link" data-scroll-target="#production-app"><span class="toc-section-number">2.6</span>  Production app</a></li>
   </ul>
 </nav>
     </div>
@@ -210,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data app</span></h1>
 </div>
 
 
@@ -225,22 +228,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="aim-of-this-chapter" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="aim-of-this-chapter"><span class="header-section-number">2.1</span> Aim of this chapter</h2>
-</section>
-<section id="setup" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="setup"><span class="header-section-number">2.2</span> Setup</h2>
+<p>The App created at the end of this chapter will be the basic building block of all subsequent chapters in this book. The structure of the app code will remain consistent throughout the book — make sure you understand each line of code of the <em>toy</em> application at the end.</p>
+<p><strong>At the end of this chapter you should be able to</strong></p>
+<ul>
+<li>understand the code structure of <code>teal</code> apps</li>
+<li>understand the workflow to create a <code>teal</code> app</li>
+<li>install and load the relevant packages</li>
+<li>write your own app that displays data</li>
+</ul>
+<section id="setup" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="setup"><span class="header-section-number">2.1</span> Setup</h2>
 <p>In this tutorial we will be working with realistic looking but simulated data.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"remotes"</span>)) <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal@*release"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal.modules.general</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal.modules.general@*release"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal.modules.general</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal.modules.general@*release"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal.modules.hermes</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal.modules.hermes@*release"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(random.cdisc.data)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(random.cdisc.data) <span class="co"># this package provides the data used</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: shiny</code></pre>
@@ -273,107 +285,602 @@ Please install an scda database to take full advantage of the scda package.</cod
 <pre><code>
 You are using teal version 0.12.0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparkline)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparkline)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
+<pre><code>── Attaching packages
+───────────────────────────────────────
+tidyverse 1.3.2 ──</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
+<pre><code>✔ tibble  3.1.8      ✔ dplyr   1.0.10
+✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+✔ readr   2.1.3      ✔ forcats 0.5.2 
+✔ purrr   0.3.5      
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ tidyr::extract()    masks magrittr::extract()
+✖ dplyr::filter()     masks stats::filter()
+✖ dplyr::lag()        masks stats::lag()
+✖ tidyr::replace_na() masks random.cdisc.data::replace_na()
+✖ purrr::set_names()  masks magrittr::set_names()</code></pre>
 </div>
 </div>
-</section>
-<section id="what-data-do-we-use" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="what-data-do-we-use"><span class="header-section-number">2.3</span> What data do we use</h2>
 <p>We first load two synthetic data sets. <code>random.cdisc.data::cadsl</code> is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable <code>USUBJID</code>. According to <a href="https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl">CDISC</a> the main purpose of ADSL is to provide a “(…) source for denominators for populations of interest, stratification variables, and other important subject subgroups”.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadsl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>We can now load the three data-sets:</p>
 <p>Data Structure for Adverse Event Analysis</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>ADAE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadae</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ADAE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,934 × 92
-   STUDYID USUBJID    SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
-   &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;   &lt;fct&gt;
- 1 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
- 2 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
- 3 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
- 4 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
- 5 AB12345 AB12345-B… id-141 BRA-1     35 YEARS F     WHITE NOT H… BRA     N    
- 6 AB12345 AB12345-B… id-141 BRA-1     35 YEARS F     WHITE NOT H… BRA     N    
- 7 AB12345 AB12345-B… id-141 BRA-1     35 YEARS F     WHITE NOT H… BRA     N    
- 8 AB12345 AB12345-B… id-141 BRA-1     35 YEARS F     WHITE NOT H… BRA     N    
- 9 AB12345 AB12345-B… id-141 BRA-1     35 YEARS F     WHITE NOT H… BRA     N    
-10 AB12345 AB12345-B… id-141 BRA-1     35 YEARS F     WHITE NOT H… BRA     N    
-# … with 1,924 more rows, and 81 more variables: INVID &lt;chr&gt;, INVNAM &lt;chr&gt;,
-#   ARM &lt;fct&gt;, ARMCD &lt;fct&gt;, ACTARM &lt;fct&gt;, ACTARMCD &lt;fct&gt;, TRT01P &lt;fct&gt;,
-#   TRT01A &lt;fct&gt;, TRT02P &lt;fct&gt;, TRT02A &lt;fct&gt;, REGION1 &lt;fct&gt;, STRATA1 &lt;fct&gt;,
-#   STRATA2 &lt;fct&gt;, BMRKR1 &lt;dbl&gt;, BMRKR2 &lt;fct&gt;, ITTFL &lt;fct&gt;, SAFFL &lt;fct&gt;,
-#   BMEASIFL &lt;fct&gt;, BEP01FL &lt;fct&gt;, AEWITHFL &lt;fct&gt;, RANDDT &lt;date&gt;,
-#   TRTSDTM &lt;dttm&gt;, TRTEDTM &lt;dttm&gt;, TRT01SDTM &lt;dttm&gt;, TRT01EDTM &lt;dttm&gt;,
-#   TRT02SDTM &lt;dttm&gt;, TRT02EDTM &lt;dttm&gt;, AP01SDTM &lt;dttm&gt;, AP01EDTM &lt;dttm&gt;, …</code></pre>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadsl</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ADAE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadae</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ADTTE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtte</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>Analysis data-set for time to event.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Data-set name</th>
+<th>Explanation</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ADSL</td>
+<td>Analysis data-set subject level</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ADAE</td>
+<td>Analysis data-set for adverse events</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>ADTTE</td>
+<td>Analysis data-set for time to event</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Analysis data-set for time to event (efficacy).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>ADTTE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtte</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ADTTE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="fu">list</span>(ADSL, ADAE, ADTTE), summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2,000 × 68
-   STUDYID USUBJID    SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
-   &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;   &lt;fct&gt;
- 1 AB12345 AB12345-B… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
- 2 AB12345 AB12345-B… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
- 3 AB12345 AB12345-B… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
- 4 AB12345 AB12345-B… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
- 5 AB12345 AB12345-B… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
- 6 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
- 7 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
- 8 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
- 9 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
-10 AB12345 AB12345-B… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
-# … with 1,990 more rows, and 57 more variables: INVID &lt;chr&gt;, INVNAM &lt;chr&gt;,
-#   ARM &lt;fct&gt;, ARMCD &lt;fct&gt;, ACTARM &lt;fct&gt;, ACTARMCD &lt;fct&gt;, TRT01P &lt;fct&gt;,
-#   TRT01A &lt;fct&gt;, TRT02P &lt;fct&gt;, TRT02A &lt;fct&gt;, REGION1 &lt;fct&gt;, STRATA1 &lt;fct&gt;,
-#   STRATA2 &lt;fct&gt;, BMRKR1 &lt;dbl&gt;, BMRKR2 &lt;fct&gt;, ITTFL &lt;fct&gt;, SAFFL &lt;fct&gt;,
-#   BMEASIFL &lt;fct&gt;, BEP01FL &lt;fct&gt;, AEWITHFL &lt;fct&gt;, RANDDT &lt;date&gt;,
-#   TRTSDTM &lt;dttm&gt;, TRTEDTM &lt;dttm&gt;, TRT01SDTM &lt;dttm&gt;, TRT01EDTM &lt;dttm&gt;,
-#   TRT02SDTM &lt;dttm&gt;, TRT02EDTM &lt;dttm&gt;, AP01SDTM &lt;dttm&gt;, AP01EDTM &lt;dttm&gt;, …</code></pre>
+<pre><code>[[1]]
+   STUDYID            USUBJID             SUBJID             SITEID         
+ Length:400         Length:400         Length:400         Length:400        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+      AGE           AGEU     SEX    
+ Min.   :20.00   YEARS:400   F:231  
+ 1st Qu.:29.00               M:169  
+ Median :34.00                      
+ Mean   :34.88                      
+ 3rd Qu.:39.00                      
+ Max.   :69.00                      
+                                    
+                                        RACE                        ETHNIC   
+ ASIAN                                    :208    NOT REPORTED         : 27  
+ BLACK OR AFRICAN AMERICAN                : 91   HISPANIC OR LATINO    : 48  
+ WHITE                                    : 74   NOT HISPANIC OR LATINO:308  
+ AMERICAN INDIAN OR ALASKA NATIVE         : 25   UNKNOWN               : 17  
+ MULTIPLE                                 :  1                               
+ NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER:  1                               
+ (Other)                                  :  0                               
+    COUNTRY    DTHFL      INVID              INVNAM         
+ CHN    :219   N:330   Length:400         Length:400        
+ USA    : 40   Y: 70   Class :character   Class :character  
+ PAK    : 31           Mode  :character   Mode  :character  
+ BRA    : 30                                                
+ NGA    : 26                                                
+ RUS    : 19                                                
+ (Other): 35                                                
+             ARM        ARMCD                ACTARM     ACTARMCD  
+ A: Drug X     :134   ARM A:134   A: Drug X     :134   ARM A:134  
+ B: Placebo    :134   ARM B:134   B: Placebo    :134   ARM B:134  
+ C: Combination:132   ARM C:132   C: Combination:132   ARM C:132  
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+            TRT01P               TRT01A               TRT02P   
+ A: Drug X     :134   A: Drug X     :134   A: Drug X     :134  
+ B: Placebo    :134   B: Placebo    :134   B: Placebo    :134  
+ C: Combination:132   C: Combination:132   C: Combination:132  
+                                                               
+                                                               
+                                                               
+                                                               
+            TRT02A             REGION1    STRATA1 STRATA2      BMRKR1       
+ A: Drug X     :134   Africa       : 26   A:122   S1:196   Min.   : 0.1654  
+ B: Placebo    :134   Asia         :268   B:135   S2:204   1st Qu.: 3.3552  
+ C: Combination:132   Eurasia      : 19   C:143            Median : 4.8392  
+                      Europe       :  9                    Mean   : 5.7628  
+                      North America: 48                    3rd Qu.: 7.4481  
+                      South America: 30                    Max.   :21.3934  
+                                                                            
+    BMRKR2    ITTFL   SAFFL   BMEASIFL BEP01FL AEWITHFL     RANDDT          
+ LOW   :135   Y:400   Y:400   Y:203    Y:197   Y: 23    Min.   :2019-02-22  
+ MEDIUM:135                   N:197    N:203   N:377    1st Qu.:2019-09-13  
+ HIGH  :130                                             Median :2020-02-16  
+                                                        Mean   :2020-02-20  
+                                                        3rd Qu.:2020-08-14  
+                                                        Max.   :2021-02-14  
+                                                                            
+    TRTSDTM                          TRTEDTM                      
+ Min.   :2019-02-24 12:09:18.68   Min.   :2022-02-12 04:55:58.68  
+ 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2022-02-17 18:30:10.18  
+ Median :2020-02-18 15:58:51.68   Median :2022-07-17 05:19:26.68  
+ Mean   :2020-02-23 06:56:04.97   Mean   :2022-11-02 17:00:49.00  
+ 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2023-08-02 04:10:13.18  
+ Max.   :2021-02-17 15:42:27.68   Max.   :2024-02-18 09:10:03.68  
+                                  NA's   :73                      
+   TRT01SDTM                        TRT01EDTM                     
+ Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
+ 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2021-02-17 12:40:58.18  
+ Median :2020-02-18 15:58:51.68   Median :2021-07-16 23:30:14.68  
+ Mean   :2020-02-23 06:56:04.97   Mean   :2021-11-02 11:11:37.00  
+ 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2022-08-01 22:21:01.18  
+ Max.   :2021-02-17 15:42:27.68   Max.   :2023-02-18 03:20:51.68  
+                                  NA's   :73                      
+   TRT02SDTM                        TRT02EDTM                     
+ Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
+ 1st Qu.:2021-02-17 12:40:58.18   1st Qu.:2022-02-17 18:30:10.18  
+ Median :2021-07-16 23:30:14.68   Median :2022-07-17 05:19:26.68  
+ Mean   :2021-11-02 11:11:37.00   Mean   :2022-11-02 17:00:49.00  
+ 3rd Qu.:2022-08-01 22:21:01.18   3rd Qu.:2023-08-02 04:10:13.18  
+ Max.   :2023-02-18 03:20:51.68   Max.   :2024-02-18 09:10:03.68  
+ NA's   :73                       NA's   :73                      
+    AP01SDTM                         AP01EDTM                     
+ Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
+ 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2021-02-17 12:40:58.18  
+ Median :2020-02-18 15:58:51.68   Median :2021-07-16 23:30:14.68  
+ Mean   :2020-02-23 06:56:04.97   Mean   :2021-11-02 11:11:37.00  
+ 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2022-08-01 22:21:01.18  
+ Max.   :2021-02-17 15:42:27.68   Max.   :2023-02-18 03:20:51.68  
+                                  NA's   :73                      
+    AP02SDTM                         AP02EDTM                     
+ Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
+ 1st Qu.:2021-02-17 12:40:58.18   1st Qu.:2022-02-17 18:30:10.18  
+ Median :2021-07-16 23:30:14.68   Median :2022-07-17 05:19:26.68  
+ Mean   :2021-11-02 11:11:37.00   Mean   :2022-11-02 17:00:49.00  
+ 3rd Qu.:2022-08-01 22:21:01.18   3rd Qu.:2023-08-02 04:10:13.18  
+ Max.   :2023-02-18 03:20:51.68   Max.   :2024-02-18 09:10:03.68  
+ NA's   :73                       NA's   :73                      
+          EOSSTT             EOTSTT        EOSDT                EOSDY       
+ COMPLETED   :207   COMPLETED   :207   Min.   :2022-02-12   Min.   : 369.0  
+ DISCONTINUED:120   DISCONTINUED:120   1st Qu.:2022-02-17   1st Qu.: 868.0  
+ ONGOING     : 73   ONGOING     : 73   Median :2022-07-17   Median :1096.0  
+                                       Mean   :2022-11-02   Mean   : 965.8  
+                                       3rd Qu.:2023-08-01   3rd Qu.:1096.0  
+                                       Max.   :2024-02-18   Max.   :1096.0  
+                                       NA's   :73           NA's   :73      
+               DCSREAS        DTHDT                           DTHCAUS   
+ DEATH             : 70   Min.   :2022-02-14   ADVERSE EVENT      : 26  
+ ADVERSE EVENT     : 14   1st Qu.:2022-03-01   DISEASE PROGRESSION: 20  
+ PROTOCOL VIOLATION: 12   Median :2022-03-11   MISSING            :  7  
+ LACK OF EFFICACY  :  7   Mean   :2022-03-13   LOST TO FOLLOW UP  :  6  
+ PHYSICIAN DECISION:  7   3rd Qu.:2022-03-27   SUICIDE            :  5  
+ (Other)           : 10   Max.   :2022-04-10   (Other)            :  6  
+ NA's              :280   NA's   :330          NA's               :330  
+                 DTHCAT       LDDTHELD    LDDTHGR1      LSTALVDT         
+ ADVERSE EVENT      : 26   Min.   : 1.0   &lt;=30: 39   Min.   :2022-02-14  
+ OTHER              : 24   1st Qu.:12.0   &gt;30 : 31   1st Qu.:2022-03-15  
+ PROGRESSIVE DISEASE: 20   Median :25.0   NA's:330   Median :2022-08-07  
+ NA's               :330   Mean   :26.2              Mean   :2022-11-23  
+                           3rd Qu.:39.0              3rd Qu.:2023-08-21  
+                           Max.   :50.0              Max.   :2024-03-07  
+                           NA's   :330               NA's   :73          
+     DTHADY       ADTHAUT    study_duration_secs
+ Min.   : 399.0   No  : 10   Min.   :63113904   
+ 1st Qu.: 567.8   Yes : 47   1st Qu.:63113904   
+ Median : 765.5   NA's:343   Median :63113904   
+ Mean   : 762.4              Mean   :63113904   
+ 3rd Qu.: 923.0              3rd Qu.:63113904   
+ Max.   :1122.0              Max.   :63113904   
+ NA's   :330                                    
+
+[[2]]
+   STUDYID            USUBJID             SUBJID             SITEID         
+ Length:1934        Length:1934        Length:1934        Length:1934       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+      AGE           AGEU      SEX     
+ Min.   :20.00   YEARS:1934   F:1174  
+ 1st Qu.:29.00                M: 760  
+ Median :34.00                        
+ Mean   :34.77                        
+ 3rd Qu.:39.00                        
+ Max.   :69.00                        
+                                      
+                                        RACE                        ETHNIC    
+ ASIAN                                    :979    NOT REPORTED         : 138  
+ BLACK OR AFRICAN AMERICAN                :469   HISPANIC OR LATINO    : 262  
+ WHITE                                    :367   NOT HISPANIC OR LATINO:1470  
+ AMERICAN INDIAN OR ALASKA NATIVE         :109   UNKNOWN               :  64  
+ MULTIPLE                                 :  6                                
+ NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER:  4                                
+ (Other)                                  :  0                                
+    COUNTRY     DTHFL       INVID              INVNAM         
+ CHN    :1061   N:1609   Length:1934        Length:1934       
+ USA    : 207   Y: 325   Class :character   Class :character  
+ BRA    : 156            Mode  :character   Mode  :character  
+ PAK    : 137                                                 
+ NGA    : 127                                                 
+ RUS    :  97                                                 
+ (Other): 149                                                 
+             ARM        ARMCD                ACTARM     ACTARMCD  
+ A: Drug X     :609   ARM A:609   A: Drug X     :609   ARM A:609  
+ B: Placebo    :622   ARM B:622   B: Placebo    :622   ARM B:622  
+ C: Combination:703   ARM C:703   C: Combination:703   ARM C:703  
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+            TRT01P               TRT01A               TRT02P   
+ A: Drug X     :609   A: Drug X     :609   A: Drug X     :659  
+ B: Placebo    :622   B: Placebo    :622   B: Placebo    :647  
+ C: Combination:703   C: Combination:703   C: Combination:628  
+                                                               
+                                                               
+                                                               
+                                                               
+            TRT02A             REGION1     STRATA1 STRATA2       BMRKR1       
+ A: Drug X     :625   Africa       : 127   A:590   S1: 882   Min.   : 0.1654  
+ B: Placebo    :701   Asia         :1273   B:661   S2:1052   1st Qu.: 3.3426  
+ C: Combination:608   Eurasia      :  97   C:683             Median : 5.0342  
+                      Europe       :  31                     Mean   : 5.8690  
+                      North America: 250                     3rd Qu.: 7.6002  
+                      South America: 156                     Max.   :21.3934  
+                                                                              
+    BMRKR2    ITTFL    SAFFL    BMEASIFL BEP01FL AEWITHFL     RANDDT          
+ LOW   :664   Y:1934   Y:1934   Y: 932   Y:984   Y: 136   Min.   :2019-02-22  
+ MEDIUM:685                     N:1002   N:950   N:1798   1st Qu.:2019-09-13  
+ HIGH  :585                                               Median :2020-02-17  
+                                                          Mean   :2020-02-22  
+                                                          3rd Qu.:2020-08-21  
+                                                          Max.   :2021-02-09  
+                                                                              
+    TRTSDTM                          TRTEDTM                      
+ Min.   :2019-02-24 12:09:18.68   Min.   :2022-02-12 04:55:58.68  
+ 1st Qu.:2019-09-16 20:21:14.68   1st Qu.:2022-02-17 04:34:27.68  
+ Median :2020-02-21 17:10:24.68   Median :2022-07-28 19:11:19.68  
+ Mean   :2020-02-25 10:02:54.85   Mean   :2022-11-12 11:11:22.47  
+ 3rd Qu.:2020-08-24 06:57:06.18   3rd Qu.:2023-08-06 21:34:02.68  
+ Max.   :2021-02-11 22:33:08.68   Max.   :2024-02-09 23:56:28.68  
+                                  NA's   :348                     
+   TRT01SDTM                        TRT01EDTM                     
+ Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
+ 1st Qu.:2019-09-16 20:21:14.68   1st Qu.:2021-02-16 22:45:15.68  
+ Median :2020-02-21 17:10:24.68   Median :2021-07-28 13:22:07.68  
+ Mean   :2020-02-25 10:02:54.85   Mean   :2021-11-12 05:22:10.47  
+ 3rd Qu.:2020-08-24 06:57:06.18   3rd Qu.:2022-08-06 15:44:50.68  
+ Max.   :2021-02-11 22:33:08.68   Max.   :2023-02-09 18:07:16.68  
+                                  NA's   :348                     
+   TRT02SDTM                        TRT02EDTM                     
+ Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
+ 1st Qu.:2021-02-16 22:45:15.68   1st Qu.:2022-02-17 04:34:27.68  
+ Median :2021-07-28 13:22:07.68   Median :2022-07-28 19:11:19.68  
+ Mean   :2021-11-12 05:22:10.47   Mean   :2022-11-12 11:11:22.47  
+ 3rd Qu.:2022-08-06 15:44:50.68   3rd Qu.:2023-08-06 21:34:02.68  
+ Max.   :2023-02-09 18:07:16.68   Max.   :2024-02-09 23:56:28.68  
+ NA's   :348                      NA's   :348                     
+    AP01SDTM                         AP01EDTM                     
+ Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
+ 1st Qu.:2019-09-16 20:21:14.68   1st Qu.:2021-02-16 22:45:15.68  
+ Median :2020-02-21 17:10:24.68   Median :2021-07-28 13:22:07.68  
+ Mean   :2020-02-25 10:02:54.85   Mean   :2021-11-12 05:22:10.47  
+ 3rd Qu.:2020-08-24 06:57:06.18   3rd Qu.:2022-08-06 15:44:50.68  
+ Max.   :2021-02-11 22:33:08.68   Max.   :2023-02-09 18:07:16.68  
+                                  NA's   :348                     
+    AP02SDTM                         AP02EDTM                     
+ Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
+ 1st Qu.:2021-02-16 22:45:15.68   1st Qu.:2022-02-17 04:34:27.68  
+ Median :2021-07-28 13:22:07.68   Median :2022-07-28 19:11:19.68  
+ Mean   :2021-11-12 05:22:10.47   Mean   :2022-11-12 11:11:22.47  
+ 3rd Qu.:2022-08-06 15:44:50.68   3rd Qu.:2023-08-06 21:34:02.68  
+ Max.   :2023-02-09 18:07:16.68   Max.   :2024-02-09 23:56:28.68  
+ NA's   :348                      NA's   :348                     
+          EOSSTT              EOTSTT         EOSDT                EOSDY       
+ COMPLETED   :1021   COMPLETED   :1021   Min.   :2022-02-12   Min.   : 369.0  
+ DISCONTINUED: 565   DISCONTINUED: 565   1st Qu.:2022-02-17   1st Qu.: 892.0  
+ ONGOING     : 348   ONGOING     : 348   Median :2022-07-28   Median :1096.0  
+                                         Mean   :2022-11-11   Mean   : 972.9  
+                                         3rd Qu.:2023-08-06   3rd Qu.:1096.0  
+                                         Max.   :2024-02-09   Max.   :1096.0  
+                                         NA's   :348          NA's   :348     
+               DCSREAS         DTHDT                           DTHCAUS    
+ DEATH             : 325   Min.   :2022-02-14   ADVERSE EVENT      : 124  
+ ADVERSE EVENT     :  81   1st Qu.:2022-03-01   DISEASE PROGRESSION: 101  
+ LACK OF EFFICACY  :  44   Median :2022-03-13   MISSING            :  32  
+ PROTOCOL VIOLATION:  39   Mean   :2022-03-14   LOST TO FOLLOW UP  :  22  
+ PHYSICIAN DECISION:  34   3rd Qu.:2022-03-29   SUICIDE            :  20  
+ (Other)           :  42   Max.   :2022-04-09   (Other)            :  26  
+ NA's              :1369   NA's   :1609         NA's               :1609  
+                 DTHCAT        LDDTHELD     LDDTHGR1       LSTALVDT         
+ ADVERSE EVENT      : 124   Min.   : 1.00   &lt;=30: 182   Min.   :2022-02-14  
+ OTHER              : 100   1st Qu.:12.00   &gt;30 : 143   1st Qu.:2022-03-16  
+ PROGRESSIVE DISEASE: 101   Median :25.00   NA's:1609   Median :2022-08-12  
+ NA's               :1609   Mean   :26.98               Mean   :2022-12-02  
+                            3rd Qu.:40.00               3rd Qu.:2023-08-29  
+                            Max.   :50.00               Max.   :2024-02-29  
+                            NA's   :1609                NA's   :348         
+     DTHADY       ADTHAUT     study_duration_secs      ASEQ       
+ Min.   : 399.0   No  :  38   Min.   :63113904    Min.   : 1.000  
+ 1st Qu.: 579.0   Yes : 233   1st Qu.:63113904    1st Qu.: 2.000  
+ Median : 757.0   NA's:1663   Median :63113904    Median : 3.000  
+ Mean   : 767.4               Mean   :63113904    Mean   : 3.954  
+ 3rd Qu.: 936.0               3rd Qu.:63113904    3rd Qu.: 6.000  
+ Max.   :1106.0               Max.   :63113904    Max.   :10.000  
+ NA's   :1609                                                     
+     AESEQ                  AETERM              AELLT              AEDECOD   
+ Min.   : 1.000   trm B.2.2.3.1:217   llt B.2.2.3.1:217   dcd B.2.2.3.1:217  
+ 1st Qu.: 2.000   trm A.1.1.1.1:214   llt A.1.1.1.1:214   dcd A.1.1.1.1:214  
+ Median : 3.000   trm A.1.1.1.2:208   llt A.1.1.1.2:208   dcd A.1.1.1.2:208  
+ Mean   : 3.954   trm D.2.1.5.3:208   llt D.2.1.5.3:208   dcd D.2.1.5.3:208  
+ 3rd Qu.: 6.000   trm B.2.1.2.1:193   llt B.2.1.2.1:193   dcd B.2.1.2.1:193  
+ Max.   :10.000   trm D.1.1.4.2:185   llt D.1.1.4.2:185   dcd D.1.1.4.2:185  
+                  (Other)      :709   (Other)      :709   (Other)      :709  
+         AEHLT            AEHLGT      AEBODSYS    AESOC          AESEV    
+ hlt A.1.1.1:422   hlgt A.1.1:422   cl A.1:422   cl A:422   MILD    :639  
+ hlt B.2.2.3:217   hlgt D.1.1:368   cl B.1:178   cl B:588   MODERATE:752  
+ hlt D.2.1.5:208   hlgt B.2.2:217   cl B.2:410   cl C:348   SEVERE  :543  
+ hlt B.2.1.2:193   hlgt D.2.1:208   cl C.1:182   cl D:576                 
+ hlt D.1.1.4:185   hlgt B.2.1:193   cl C.2:166                            
+ hlt D.1.1.1:183   hlgt C.1.1:182   cl D.1:368                            
+ (Other)    :526   (Other)   :344   cl D.2:208                            
+ AESER       AEACN           AEREL       AEOUT           AESDTH   AESCONG 
+ N:1148   Length:1934        N:1017   Length:1934        N:1573   N:1627  
+ Y: 786   Class :character   Y: 917   Class :character   Y: 361   Y: 307  
+          Mode  :character            Mode  :character                    
+                                                                          
+                                                                          
+                                                                          
+                                                                          
+ AESDISAB AESHOSP  AESLIFE  AESMIE   TRTEMFL  AECONTRT
+ N:1608   N:1584   N:1784   N:1494    :   1   N:1164  
+ Y: 326   Y: 350   Y: 150   Y: 440   Y:1933   Y: 770  
+                                                      
+                                                      
+                                                      
+                                                      
+                                                      
+     ASTDTM                          AENDTM                      
+ Min.   :2019-03-23 01:00:00.0   Min.   :2019-07-14 02:00:00.00  
+ 1st Qu.:2020-09-13 14:00:00.0   1st Qu.:2021-07-03 02:00:00.00  
+ Median :2021-05-16 14:00:00.0   Median :2021-12-18 01:00:00.00  
+ Mean   :2021-05-31 05:39:38.9   Mean   :2022-01-26 14:53:10.49  
+ 3rd Qu.:2021-12-27 01:00:00.0   3rd Qu.:2022-09-27 02:00:00.00  
+ Max.   :2024-01-02 01:00:00.0   Max.   :2024-01-23 01:00:00.00  
+                                                                 
+     ASTDY            AENDY           LDOSEDTM                      AETOXGR
+ Min.   :   0.0   Min.   :   5.0   Min.   :2019-03-16 12:13:13.17   1:639  
+ 1st Qu.: 215.2   1st Qu.: 511.0   1st Qu.:2020-03-03 09:07:03.99   2:374  
+ Median : 422.0   Median : 709.5   Median :2020-10-02 08:38:33.20   3:378  
+ Mean   : 461.3   Mean   : 701.7   Mean   :2020-10-11 01:17:57.76   4:182  
+ 3rd Qu.: 674.8   3rd Qu.: 941.0   3rd Qu.:2021-03-23 07:46:41.46   5:361  
+ Max.   :1095.0   Max.   :1097.0   Max.   :2023-09-25 18:45:44.75          
+                                                                           
+   SMQ01NAM           SMQ02NAM           SMQ01SC            SMQ02SC         
+ Length:1934        Length:1934        Length:1934        Length:1934       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+   CQ01NAM          ANL01FL                 AERELNST  
+ Length:1934         : 348   CONCURRENT ILLNESS :576  
+ Class :character   Y:1586   DISEASE UNDER STUDY:566  
+ Mode  :character            NONE               :218  
+                             OTHER              :574  
+                                                      
+                                                      
+                                                      
+                            AEACNOTH  
+ MEDICATION                     :353  
+ NONE                           :391  
+ PROCEDURE/SURGERY              :793  
+ SUBJECT DISCONTINUED FROM STUDY:397  
+                                      
+                                      
+                                      
+
+[[3]]
+   STUDYID            USUBJID             SUBJID             SITEID         
+ Length:2000        Length:2000        Length:2000        Length:2000       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+      AGE           AGEU      SEX     
+ Min.   :20.00   YEARS:2000   F:1155  
+ 1st Qu.:29.00                M: 845  
+ Median :34.00                        
+ Mean   :34.88                        
+ 3rd Qu.:39.00                        
+ Max.   :69.00                        
+                                      
+                                        RACE                         ETHNIC    
+ ASIAN                                    :1040    NOT REPORTED         : 135  
+ BLACK OR AFRICAN AMERICAN                : 455   HISPANIC OR LATINO    : 240  
+ WHITE                                    : 370   NOT HISPANIC OR LATINO:1540  
+ AMERICAN INDIAN OR ALASKA NATIVE         : 125   UNKNOWN               :  85  
+ MULTIPLE                                 :   5                                
+ NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER:   5                                
+ (Other)                                  :   0                                
+    COUNTRY     DTHFL       INVID              INVNAM         
+ CHN    :1095   N:1650   Length:2000        Length:2000       
+ USA    : 200   Y: 350   Class :character   Class :character  
+ PAK    : 155            Mode  :character   Mode  :character  
+ BRA    : 150                                                 
+ NGA    : 130                                                 
+ RUS    :  95                                                 
+ (Other): 175                                                 
+             ARM        ARMCD                ACTARM     ACTARMCD  
+ A: Drug X     :670   ARM A:670   A: Drug X     :670   ARM A:670  
+ B: Placebo    :670   ARM B:670   B: Placebo    :670   ARM B:670  
+ C: Combination:660   ARM C:660   C: Combination:660   ARM C:660  
+                                                                  
+                                                                  
+                                                                  
+                                                                  
+            TRT01P               TRT01A               TRT02P   
+ A: Drug X     :670   A: Drug X     :670   A: Drug X     :670  
+ B: Placebo    :670   B: Placebo    :670   B: Placebo    :670  
+ C: Combination:660   C: Combination:660   C: Combination:660  
+                                                               
+                                                               
+                                                               
+                                                               
+            TRT02A             REGION1     STRATA1 STRATA2       BMRKR1       
+ A: Drug X     :670   Africa       : 130   A:610   S1: 980   Min.   : 0.1654  
+ B: Placebo    :670   Asia         :1340   B:675   S2:1020   1st Qu.: 3.3552  
+ C: Combination:660   Eurasia      :  95   C:715             Median : 4.8392  
+                      Europe       :  45                     Mean   : 5.7628  
+                      North America: 240                     3rd Qu.: 7.4481  
+                      South America: 150                     Max.   :21.3934  
+                                                                              
+    BMRKR2    ITTFL    SAFFL    BMEASIFL BEP01FL  AEWITHFL     RANDDT          
+ LOW   :675   Y:2000   Y:2000   Y:1015   Y: 985   Y: 115   Min.   :2019-02-22  
+ MEDIUM:675                     N: 985   N:1015   N:1885   1st Qu.:2019-09-13  
+ HIGH  :650                                                Median :2020-02-16  
+                                                           Mean   :2020-02-20  
+                                                           3rd Qu.:2020-08-14  
+                                                           Max.   :2021-02-14  
+                                                                               
+    TRTSDTM                          TRTEDTM                      
+ Min.   :2019-02-24 12:09:18.68   Min.   :2022-02-12 04:55:58.68  
+ 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2022-02-17 18:28:14.68  
+ Median :2020-02-18 15:58:51.68   Median :2022-07-17 05:19:26.68  
+ Mean   :2020-02-23 06:56:04.97   Mean   :2022-11-02 17:00:49.00  
+ 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2023-08-02 12:16:13.68  
+ Max.   :2021-02-17 15:42:27.68   Max.   :2024-02-18 09:10:03.68  
+                                  NA's   :365                     
+   TRT01SDTM                        TRT01EDTM                     
+ Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
+ 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2021-02-17 12:39:02.68  
+ Median :2020-02-18 15:58:51.68   Median :2021-07-16 23:30:14.68  
+ Mean   :2020-02-23 06:56:04.97   Mean   :2021-11-02 11:11:37.00  
+ 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2022-08-02 06:27:01.68  
+ Max.   :2021-02-17 15:42:27.68   Max.   :2023-02-18 03:20:51.68  
+                                  NA's   :365                     
+   TRT02SDTM                        TRT02EDTM                     
+ Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
+ 1st Qu.:2021-02-17 12:39:02.68   1st Qu.:2022-02-17 18:28:14.68  
+ Median :2021-07-16 23:30:14.68   Median :2022-07-17 05:19:26.68  
+ Mean   :2021-11-02 11:11:37.00   Mean   :2022-11-02 17:00:49.00  
+ 3rd Qu.:2022-08-02 06:27:01.68   3rd Qu.:2023-08-02 12:16:13.68  
+ Max.   :2023-02-18 03:20:51.68   Max.   :2024-02-18 09:10:03.68  
+ NA's   :365                      NA's   :365                     
+    AP01SDTM                         AP01EDTM                     
+ Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
+ 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2021-02-17 12:39:02.68  
+ Median :2020-02-18 15:58:51.68   Median :2021-07-16 23:30:14.68  
+ Mean   :2020-02-23 06:56:04.97   Mean   :2021-11-02 11:11:37.00  
+ 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2022-08-02 06:27:01.68  
+ Max.   :2021-02-17 15:42:27.68   Max.   :2023-02-18 03:20:51.68  
+                                  NA's   :365                     
+    AP02SDTM                         AP02EDTM                     
+ Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
+ 1st Qu.:2021-02-17 12:39:02.68   1st Qu.:2022-02-17 18:28:14.68  
+ Median :2021-07-16 23:30:14.68   Median :2022-07-17 05:19:26.68  
+ Mean   :2021-11-02 11:11:37.00   Mean   :2022-11-02 17:00:49.00  
+ 3rd Qu.:2022-08-02 06:27:01.68   3rd Qu.:2023-08-02 12:16:13.68  
+ Max.   :2023-02-18 03:20:51.68   Max.   :2024-02-18 09:10:03.68  
+ NA's   :365                      NA's   :365                     
+          EOSSTT              EOTSTT         EOSDT                EOSDY       
+ COMPLETED   :1035   COMPLETED   :1035   Min.   :2022-02-12   Min.   : 369.0  
+ DISCONTINUED: 600   DISCONTINUED: 600   1st Qu.:2022-02-17   1st Qu.: 865.0  
+ ONGOING     : 365   ONGOING     : 365   Median :2022-07-17   Median :1096.0  
+                                         Mean   :2022-11-02   Mean   : 965.8  
+                                         3rd Qu.:2023-08-02   3rd Qu.:1096.0  
+                                         Max.   :2024-02-18   Max.   :1096.0  
+                                         NA's   :365          NA's   :365     
+               DCSREAS         DTHDT                           DTHCAUS    
+ DEATH             : 350   Min.   :2022-02-14   ADVERSE EVENT      : 130  
+ ADVERSE EVENT     :  70   1st Qu.:2022-03-01   DISEASE PROGRESSION: 100  
+ PROTOCOL VIOLATION:  60   Median :2022-03-11   MISSING            :  35  
+ LACK OF EFFICACY  :  35   Mean   :2022-03-13   LOST TO FOLLOW UP  :  30  
+ PHYSICIAN DECISION:  35   3rd Qu.:2022-03-28   SUICIDE            :  25  
+ (Other)           :  50   Max.   :2022-04-10   (Other)            :  30  
+ NA's              :1400   NA's   :1650         NA's               :1650  
+                 DTHCAT        LDDTHELD    LDDTHGR1       LSTALVDT         
+ ADVERSE EVENT      : 130   Min.   : 1.0   &lt;=30: 195   Min.   :2022-02-14  
+ OTHER              : 120   1st Qu.:12.0   &gt;30 : 155   1st Qu.:2022-03-15  
+ PROGRESSIVE DISEASE: 100   Median :25.0   NA's:1650   Median :2022-08-07  
+ NA's               :1650   Mean   :26.2               Mean   :2022-11-23  
+                            3rd Qu.:39.0               3rd Qu.:2023-08-23  
+                            Max.   :50.0               Max.   :2024-03-07  
+                            NA's   :1650               NA's   :365         
+     DTHADY       ADTHAUT     study_duration_secs      ASEQ          TTESEQ    
+ Min.   : 399.0   No  :  50   Min.   :63113904    Min.   :1.00   Min.   :1.00  
+ 1st Qu.: 564.0   Yes : 235   1st Qu.:63113904    1st Qu.:1.75   1st Qu.:1.75  
+ Median : 765.5   NA's:1715   Median :63113904    Median :2.50   Median :2.50  
+ Mean   : 762.4               Mean   :63113904    Mean   :2.50   Mean   :2.50  
+ 3rd Qu.: 924.0               3rd Qu.:63113904    3rd Qu.:3.25   3rd Qu.:3.25  
+ Max.   :1122.0               Max.   :63113904    Max.   :4.00   Max.   :4.00  
+ NA's   :1650                                     NA's   :400    NA's   :400   
+                            PARAM     PARAMCD         AVAL           AVALU     
+ Duration of Confirmed Response:400   CRSD:400   Min.   :   0.00   COUNT: 400  
+ Event Free Survival           :400   EFS :400   1st Qu.:  35.74   DAYS :1600  
+ Overall Survival              :400   OS  :400   Median : 209.89               
+ Progression Free Survival     :400   PFS :400   Mean   : 395.45               
+ Total Number of Exacerbations :400   TNE :400   3rd Qu.: 531.73               
+                                                 Max.   :4708.68               
+                                                                               
+      ADTM                          ADY              CNSR      
+ Min.   :2019-03-14 01:00:00   Min.   :   0.0   Min.   :0.000  
+ 1st Qu.:2020-09-24 02:00:00   1st Qu.: 211.0   1st Qu.:0.000  
+ Median :2021-05-16 02:00:00   Median : 434.0   Median :0.000  
+ Mean   :2021-05-28 14:42:18   Mean   : 460.8   Mean   :0.307  
+ 3rd Qu.:2021-12-11 07:00:00   3rd Qu.: 678.2   3rd Qu.:1.000  
+ Max.   :2024-01-07 01:00:00   Max.   :1095.0   Max.   :1.000  
+ NA's   :400                   NA's   :400                     
+   EVNTDESC           CNSDTDSC           lgTMATRSK      
+ Length:2000        Length:2000        Min.   :-7.3986  
+ Class :character   Class :character   1st Qu.:-2.2568  
+ Mode  :character   Mode  :character   Median :-1.4884  
+                                       Mean   :-1.7128  
+                                       3rd Qu.:-0.8414  
+                                       Max.   : 1.1114  
+                                       NA's   :1600     </code></pre>
 </div>
 </div>
 </section>
-<section id="getting-started" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="getting-started"><span class="header-section-number">2.4</span> Getting started</h2>
-<p>The most crucial function of the <code>teal</code> package(s) is the <code>teal::init()</code> function, which is structured as follows:</p>
+<section id="your-first-app" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="your-first-app"><span class="header-section-number">2.2</span> Your first app</h2>
+<p>As is generally the case when you start a project, you should have an approximate idea of what you would like to achieve. In this case, the aim is to create an app that visualizes variables of three connected study data-sets.</p>
+</section>
+<section id="code-structure" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="code-structure"><span class="header-section-number">2.3</span> Code structure</h2>
+<p>First, you want to define the project metadata. This can include the author name, the study name, the molecule name, etc. then, we have a section where we can define parameters for the app. This can be simple parameter values but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g.&nbsp;preselected variables of interest.</p>
+<p>After that, we define the app using the <code>init()</code> function. This function takes data, modules, and html input and returns a list (usually named <code>app</code>) containing the user interface (the <code>ui</code> object) and back end (the <code>server</code> object) of the application. In the final step we instantiate the app by calling <code>shinyApp(app$ui, app$server)</code>.</p>
+</section>
+<section id="init" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="init"><span class="header-section-number">2.4</span> <code>init()</code></h2>
+<p>The most crucial function of the <code>teal</code> package(s) is <a href="https://insightsengineering.github.io/teal/main/reference/init.html?q=init#null">the <code>teal::init()</code> function</a>, which is structured as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>(</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  data,</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  modules,</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">filter =</span> <span class="fu">list</span>(),</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Title Here"</span>),</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Footer Here"</span>),</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">character</span>(<span class="dv">0</span>)</span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  data,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  modules,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">filter =</span> <span class="fu">list</span>(),</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Title Here"</span>),</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Footer Here"</span>),</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">character</span>(<span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>The <code>init</code> function sets up a shiny app that consists of teal modules. Let’s go through the arguments:</p>
-<section id="data" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="data"><span class="header-section-number">2.4.1</span> Data</h3>
-<p>In the <code>data</code> argument we can define one or more data-frames for the application. If more than one data-frames are specified, they should be combined as a list, e.g.&nbsp;<code>data = list(ADSL, ADTR)</code>.</p>
-<p>If you work with ADaM datasets, the package <code>teal.data</code> provides helper functions with which the <code>data</code> argument of <code>init()</code> can be specified, — the <code>cdisc_data()</code> and the <code>cdisc_dataset()</code> functions. They allow the teal app to know the merge key variables of the data-sets. The <code>cdisc_data</code>function returns an S6 object.</p>
+<p>The <code>init()</code> function sets up a shiny app that consists of <code>teal</code> modules. Let’s go through the arguments:</p>
+<p><strong><code>data</code></strong></p>
+<p>In the <code>data</code> argument we define one or more data-frames for the application. If more than one data-frames are specified, they should be combined as a list, e.g.&nbsp;<code>data = list(ADSL, ADTR)</code>. <!-- For relational data-sets you can define merge keys.  --> For ADaM data-sets, the package <code>teal.data</code> provides helper functions with which the <code>data</code> argument of <code>init()</code> can be specified, — the <code>cdisc_data()</code> and the <code>cdisc_dataset()</code> functions. They allow the teal app to know the merge key variables of the data-sets. The <code>cdisc_data</code>function returns an S6 object.</p>
 <div id="note:key" class="callout-note callout callout-style-simple">
 <div class="callout-body d-flex">
 <div class="callout-icon-container">
@@ -383,37 +890,44 @@ Attaching package: 'dplyr'</code></pre>
 <p><code>keys</code> are prespecified variables in ADaM data to merge data-sets. Each type of data-set requires specific keys to be specified. The package <code>teal.data</code> automatically chooses the correct key variables based on the <code>dataname</code> for the following data-sets: ADSL, ADAE, ADEG, ADTTE, ADAETTE, ADCM, ADEX, ADLB, ADMH, ADQS, ADRS, ADSAFTTE, ADVS, ADDV, ADSUB, ADHY.</p>
 <p>If you want to work with other ADaM data-sets you must specify the keys manually. ADTR is a Tumor Results Analysis data-set where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the <code>teal.data</code> package, so we would have to specify them manually:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ADTR <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtr</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cdisc_data</span>(</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL),</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTR"</span>, ADTR, <span class="at">keys =</span> <span class="fu">c</span>(<span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"AVISIT"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ADTR <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtr</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cdisc_data</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTR"</span>, ADTR, <span class="at">keys =</span> <span class="fu">c</span>(<span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"AVISIT"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that all keys have to be specified.</p>
 </div>
 </div>
 </div>
-</section>
-<section id="pre-processing" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="pre-processing"><span class="header-section-number">2.4.2</span> Pre-processing</h3>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+pre-processing
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the `<code>cdisc_data()</code>` output. One such preprocessing steps could be the creation of a new variable in the ADSL data-set which splits patients into two age groups where patients younger than 40 are <code>AGEGR = 0</code> and patients older than 40 are <code>AGEGR = 1</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you would write this in a seperate file directly, without the writeLines command.</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">c</span>(<span class="st">"ADSL &lt;- ADSL %&gt;%</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="st">      dplyr::mutate(AGEGR = if_else(AGE &lt; 40, 0, 1, NA_real_))"</span>),</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">con =</span> <span class="st">"ADSL_preproc.R"</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you would write this in a seperate file directly, without the writeLines command.</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">c</span>(<span class="st">"ADSL &lt;- ADSL %&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">      dplyr::mutate(AGEGR = if_else(AGE &lt; 40, 0, 1, NA_real_))"</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">con =</span> <span class="st">"ADSL_preproc.R"</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The resulting R file looks something like this:</p>
 <p>ADSL &lt;- ADSL %&gt;% dplyr::mutate(AGEGR = if_else(AGE &lt; 40, 0, 1, NA_real_))</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ADSL_processed <span class="ot">&lt;-</span> ADSL <span class="sc">%&gt;%</span> </span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, .) <span class="sc">%&gt;%</span> </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"ADSL_preproc.R"</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check if the new variable exists:</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>ADSL_processed<span class="sc">$</span><span class="fu">get_raw_data</span>()<span class="sc">$</span>AGEGR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ADSL_processed <span class="ot">&lt;-</span> ADSL <span class="sc">%&gt;%</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, .) <span class="sc">%&gt;%</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"ADSL_preproc.R"</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check if the new variable exists:</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>ADSL_processed<span class="sc">$</span><span class="fu">get_raw_data</span>()<span class="sc">$</span>AGEGR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 0 0 0 0 1 1 0 0 0 0 1 0 1 0 0 1 1 0 0 1 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0
  [38] 0 0 1 1 0 0 0 0 0 1 0 0 0 0 1 1 0 0 1 0 0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
@@ -430,101 +944,89 @@ Attaching package: 'dplyr'</code></pre>
 </div>
 <p>In a real world case we would not necessarily want to separately save the preprocessed <code>ADSL</code> in our environment. Instead, we would apply the preprocessing within the <code>data</code> argument of the <code>init()</code> function, e.g., like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(<span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span> </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"ADSL_preproc.R"</span>),</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &lt;&lt;additional dataset code&gt;&gt; </span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  &lt;&lt;additional init arguments code&gt;&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(<span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"ADSL_preproc.R"</span>),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &lt;&lt;additional dataset code&gt;&gt; </span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#  &lt;&lt;additional init arguments code&gt;&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<section id="modules" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="modules"><span class="header-section-number">2.4.1</span> <code>modules</code></h3>
+<p><strong>header</strong></p>
+<p><strong>footer</strong></p>
+<p><strong>id</strong></p>
+<p>Combining everything above, our <code>init()</code> function looks like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"ADSL_preproc.R"</span>),</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">modules =</span> <span class="fu">modules</span>(<span class="fu">tm_variable_browser</span>(<span class="at">label =</span> <span class="st">"View Variables"</span>)),</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="st">"My first application"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> <span class="st">"footer"</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="modules" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="modules"><span class="header-section-number">2.5</span> Modules</h2>
-<p><code>teal</code> modules are modular building blocks for your <code>shiny</code> app. They implement specific app functionalities, such as outlier exploration, data visualizations, and survival analysis. Although modules can be created from scratch, many <code>teal</code> modules have already been released and can be found in the following packages:</p>
-<ul>
-<li><p><code>teal.modules.general</code>: general modules for exploring relational/independent/CDISC data</p></li>
-<li><p><code>teal.modules.clinical</code>: modules specific to CDISC data and clinical trial reporting</p></li>
-<li><p><code>teal.modules.hermes</code>: modules for analyzing <a href="https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html">MultiAssayExperiment objects</a></p></li>
-</ul>
-<p>are shiny modules built within the teal framework that specify analysis to be performed.</p>
-</section>
-<section id="define-the-app" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="define-the-app"><span class="header-section-number">2.6</span> Define the app</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(<span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL),</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &lt;&lt;additional dataset code&gt;&gt;</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>),</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="at">modules =</span> <span class="fu">modules</span>(<span class="fu">tm_variable_browser</span>(<span class="at">label =</span> <span class="st">"View Variables"</span>)),</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="at">header =</span> <span class="st">"My first application"</span>)</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(app<span class="sc">$</span>ui, app<span class="sc">$</span>server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="toy-app" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="toy-app"><span class="header-section-number">2.5</span> Toy app</h2>
+<div class="cell" data-file="data_app.R">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data app</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- load packages data app ----</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(random.cdisc.data) <span class="co"># this package provides the data used</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.data)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scda)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.modules.general)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparkline)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- parameter data app ----</span></span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>author <span class="ot">&lt;-</span> <span class="st">"Stefan Thoma"</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>molecule <span class="ot">&lt;-</span> <span class="st">"hexadromedar"</span></span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- load data data app ----</span></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadsl</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>ADAE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadae</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>ADTTE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtte</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- init data app ----</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span></span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"ADSL_preproc.R"</span>),</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">modules =</span> <span class="fu">modules</span>(<span class="fu">tm_variable_browser</span>(<span class="at">label =</span> <span class="st">"View Variables"</span>)),</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="st">"My first application"</span>,</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> <span class="st">"footer"</span></span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- run data app ----</span></span>
+<span id="cb27-37"><a href="#cb27-37" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(app<span class="sc">$</span>ui, app<span class="sc">$</span>server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The output should look something like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures_images/app_data_1.png" class="img-fluid figure-img" alt="Our first app should look like this"></p>
+<p></p><figcaption class="figure-caption">Data App preview</figcaption><p></p>
+</figure>
+</div>
 </section>
-<section id="data-app-preview" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> <img src="figures_images/app_data_1.png" class="img-fluid" alt="Our first app should look like this"></h1>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.data)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
-✔ tibble  3.1.8     ✔ purrr   0.3.5
-✔ tidyr   1.2.1     ✔ stringr 1.5.0
-✔ readr   2.1.3     ✔ forcats 0.5.2
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ tidyr::extract()    masks magrittr::extract()
-✖ dplyr::filter()     masks stats::filter()
-✖ dplyr::lag()        masks stats::lag()
-✖ tidyr::replace_na() masks random.cdisc.data::replace_na()
-✖ purrr::set_names()  masks magrittr::set_names()</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadsl</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>file_example <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">".R"</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="fu">c</span>(</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="st">"ADSL &lt;- ADSL %&gt;%</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="st">      dplyr::mutate(newdata = 1)"</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">con =</span> file_example</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="do">## works with cdisc_dataset:</span></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>cdisc_dataset_ADSL <span class="ot">&lt;-</span></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="at">dataname =</span> <span class="st">"ADSL"</span>, <span class="at">x =</span> ADSL) </span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>cdisc_dataset_mutated <span class="ot">&lt;-</span> cdisc_dataset_ADSL <span class="sc">%&gt;%</span> </span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_dataset</span>(<span class="at">script =</span> file_example)</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="fu">get_raw_data</span>(cdisc_dataset_mutated)<span class="sc">$</span>newdata[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="do">## does not work with cdisc_data:</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>cdisc_data_ADSL <span class="ot">&lt;-</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_data</span>(<span class="fu">cdisc_dataset</span>(<span class="at">dataname =</span> <span class="st">"ADSL"</span>, <span class="at">x =</span> ADSL) )</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>cdisc_data_mutated <span class="ot">&lt;-</span> cdisc_data_ADSL <span class="sc">%&gt;%</span> </span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_dataset</span>(<span class="at">script =</span> file_example,</span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dataname =</span> <span class="st">"ADSL"</span>)</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="fu">get_raw_data</span>(cdisc_data_mutated)<span class="sc">$</span>ADSL<span class="sc">$</span>newdata[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Unknown or uninitialised column: `newdata`.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>NULL</code></pre>
-</div>
-</div>
+<section id="production-app" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="production-app"><span class="header-section-number">2.6</span> Production app</h2>
 
 
 </section>
@@ -665,13 +1167,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link">
+      <a href="./introduction.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./efficacy.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">efficacy</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

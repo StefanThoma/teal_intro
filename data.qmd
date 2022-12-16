@@ -1,21 +1,71 @@
 # Data app
 
+```{r}
+#| include: false
+#| eval: true
 
-The App created at the end of this chapter will be the basic building block of all subsequent chapters in this book.
-The structure of the app code will remain consistent throughout the book --- make sure you understand each line of code of the *toy* application at the end.
+# here I define parameters for this chapters
 
-**At the end of this chapter you should be able to **
+
+# read app file
+knitr::read_chunk(path = "data_app.R")
+```
+
+The App created at the end of this chapter will be the basic building block of all subsequent chapters in this book. The structure of the app code will remain consistent throughout the book --- make sure you understand each line of code of the *toy* application at the end.
+
+**At the end of this chapter you should be able to**
 
 -   understand the code structure of `teal` apps
 -   understand the workflow to create a `teal` app
--   install and load the relevant packages 
+-   install and load the relevant packages
 -   write your own app that displays data
+
+## Setup
+
+In this tutorial we will be working with realistic looking but simulated data.
+
+```{r}
+#| eval: FALSE
+if (!require("remotes")) install.packages("remotes")
+
+# install teal
+remotes::install_github("insightsengineering/teal@*release")
+
+# install teal.modules.general
+remotes::install_github("insightsengineering/teal.modules.general@*release")
+
+# install teal.modules.hermes
+remotes::install_github("insightsengineering/teal.modules.hermes@*release")
+```
+
+```{r load packages data app}
+
+```
+
+We first load two synthetic data sets. `random.cdisc.data::cadsl` is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable `USUBJID`. According to [CDISC](https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl) the main purpose of ADSL is to provide a "(...) source for denominators for populations of interest, stratification variables, and other important subject subgroups".
+
+We can now load the three data-sets:
+
+Data Structure for Adverse Event Analysis
+
+| Data-set name | Explanation                          | Purpose        |
+|---------------|--------------------------------------|----------------|
+| ADSL          | Analysis data-set subject level      | Filtering      |
+| ADAE          | Analysis data-set for adverse events | Adverse events |
+| ADTTE         | Analysis data-set for time to event  | Efficacy       |
+
+```{r load data data app}
+```
+
+Let's look at the first three rows of the data-frames.
+
+```{r}
+map(list(ADSL, ADAE, ADTTE), head, 3)
+```
 
 ## Your first app
 
-As is generally the case when you start a project, you should have an approximate idea of what you would like to achieve. 
-In this case, the aim is to create an app that visualizes variables of three connected study data-sets. 
-
+As is generally the case when you start a project, you should have an approximate idea of what you would like to achieve. In this case, the aim is to create an app that visualizes variables of three connected study data-sets.
 
 ## Code structure
 
@@ -106,69 +156,29 @@ app <- teal::init(data = cdisc_data(
 
 ### `modules`
 
-
 **header**
 
 **footer**
 
 **id**
 
+Combining everything above, our `init()` function looks like this:
 
-## Define the app
-
-```{r}
+```{r init data app}
 #| eval: false
-app <- teal::init(data = cdisc_data(
-  cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADAE", ADAE),
-  cdisc_dataset("ADTTE", ADTTE)
-),
-modules = modules(tm_variable_browser(label = "View Variables")),
-header = "My first application")
 
-shinyApp(app$ui, app$server)
+```
+
+## Toy app
+
+We have now gone through all steps to create your first teal app.
+
+```{r, file = "data_app.R"}
+#| eval: false
 ```
 
 The output should look something like this:
 
-# ![Data App preview](figures_images/app_data_1.png){fig-alt="Our first app should look like this"}
+![Data App preview](figures_images/app_data_1.png){fig-alt="Our first app should look like this"}
 
-```{r}
-library(teal.data)
-library(tidyverse)
-
-ADSL <- random.cdisc.data::cadsl
-
-file_example <- tempfile(fileext = ".R")
-writeLines(
-  text = c(
-    "ADSL <- ADSL %>%
-      dplyr::mutate(newdata = 1)"
-  ),
-  con = file_example
-)
-
-
-
-
-
-## works with cdisc_dataset:
-cdisc_dataset_ADSL <-
-  cdisc_dataset(dataname = "ADSL", x = ADSL) 
-
-cdisc_dataset_mutated <- cdisc_dataset_ADSL %>% 
-  mutate_dataset(script = file_example)
-get_raw_data(cdisc_dataset_mutated)$newdata[1]
-
-
-## does not work with cdisc_data:
-
-cdisc_data_ADSL <-
-  cdisc_data(cdisc_dataset(dataname = "ADSL", x = ADSL) )
-
-cdisc_data_mutated <- cdisc_data_ADSL %>% 
-  mutate_dataset(script = file_example,
-                 dataname = "ADSL")
-get_raw_data(cdisc_data_mutated)$ADSL$newdata[1]
-
-```
+## Production app
