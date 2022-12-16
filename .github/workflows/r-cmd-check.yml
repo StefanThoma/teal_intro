@@ -8,6 +8,5 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
-        shell: Rscript {0}
       - name: Build book
         run: R CMD quarto render
