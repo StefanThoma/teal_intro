@@ -4,7 +4,7 @@ project:
 book:
   title: "teaching_material_book"
   author: "Stefan Thoma"
-  date: "`r format(Sys.time(), '%d %B, %Y')`"
+  date: "`r paste(Sys.time())`"
   favicon: teal_fav.png
   chapters:
     - index.qmd

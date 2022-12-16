@@ -1,6 +1,6 @@
 name: Test Coverage
 on:
-  pull_request: {branches: [main]}
+  pull_request: {branches: ["master"]}
 jobs:
   Coverage:
     runs-on: ubuntu-latest

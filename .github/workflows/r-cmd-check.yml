@@ -1,6 +1,6 @@
 name: R CMD check
 on:
-  pull_request: {branches: ['main']}
+  pull_request: {branches: ['master']}
 jobs:
   Check:
     runs-on: ubuntu-latest

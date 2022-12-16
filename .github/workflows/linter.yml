@@ -1,6 +1,6 @@
 name: Lint Code Base
 on:
-  pull_request: {branches: ['main']}
+  pull_request: {branches: ['master']}
 jobs:
   Linter:
     runs-on: ubuntu-latest

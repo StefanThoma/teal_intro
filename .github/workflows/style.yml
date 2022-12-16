@@ -1,6 +1,6 @@
 name: Style
 on:
-  pull_request: {branches: ['main']}
+  pull_request: {branches: ['master']}
 jobs:
   Style:
     runs-on: ubuntu-latest
