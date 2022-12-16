@@ -5,6 +5,7 @@ book:
   title: "teaching_material_book"
   author: "Stefan Thoma"
   date: "`r format(Sys.time(), '%d %B, %Y')`"
+  favicon: teal_fav.png
   chapters:
     - index.qmd
     - introduction.qmd

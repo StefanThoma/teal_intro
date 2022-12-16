@@ -95,6 +95,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <meta name="quarto:offset" content="./">
 <link href="./efficacy.html" rel="next">
 <link href="./introduction.html" rel="prev">
+<link href="./teal_fav.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -309,550 +310,90 @@ tidyverse 1.3.2 ──</code></pre>
 <p>We first load two synthetic data sets. <code>random.cdisc.data::cadsl</code> is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable <code>USUBJID</code>. According to <a href="https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl">CDISC</a> the main purpose of ADSL is to provide a “(…) source for denominators for populations of interest, stratification variables, and other important subject subgroups”.</p>
 <p>We can now load the three data-sets:</p>
 <p>Data Structure for Adverse Event Analysis</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadsl</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ADAE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadae</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ADTTE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtte</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <table class="table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 55%">
+<col style="width: 23%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Data-set name</th>
 <th>Explanation</th>
-<th>Meaning</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>ADSL</td>
 <td>Analysis data-set subject level</td>
-<td></td>
+<td>Filtering</td>
 </tr>
 <tr class="even">
 <td>ADAE</td>
 <td>Analysis data-set for adverse events</td>
-<td></td>
+<td>Adverse events</td>
 </tr>
 <tr class="odd">
 <td>ADTTE</td>
 <td>Analysis data-set for time to event</td>
-<td></td>
+<td>Efficacy</td>
 </tr>
 </tbody>
 </table>
-<p>Analysis data-set for time to event (efficacy).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="fu">list</span>(ADSL, ADAE, ADTTE), summary)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadsl</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ADAE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadae</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>ADTTE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtte</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s look at the first three rows of the data-frames.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="fu">list</span>(ADSL, ADAE, ADTTE), head, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
-   STUDYID            USUBJID             SUBJID             SITEID         
- Length:400         Length:400         Length:400         Length:400        
- Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                            
-                                                                            
-                                                                            
-                                                                            
-      AGE           AGEU     SEX    
- Min.   :20.00   YEARS:400   F:231  
- 1st Qu.:29.00               M:169  
- Median :34.00                      
- Mean   :34.88                      
- 3rd Qu.:39.00                      
- Max.   :69.00                      
-                                    
-                                        RACE                        ETHNIC   
- ASIAN                                    :208    NOT REPORTED         : 27  
- BLACK OR AFRICAN AMERICAN                : 91   HISPANIC OR LATINO    : 48  
- WHITE                                    : 74   NOT HISPANIC OR LATINO:308  
- AMERICAN INDIAN OR ALASKA NATIVE         : 25   UNKNOWN               : 17  
- MULTIPLE                                 :  1                               
- NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER:  1                               
- (Other)                                  :  0                               
-    COUNTRY    DTHFL      INVID              INVNAM         
- CHN    :219   N:330   Length:400         Length:400        
- USA    : 40   Y: 70   Class :character   Class :character  
- PAK    : 31           Mode  :character   Mode  :character  
- BRA    : 30                                                
- NGA    : 26                                                
- RUS    : 19                                                
- (Other): 35                                                
-             ARM        ARMCD                ACTARM     ACTARMCD  
- A: Drug X     :134   ARM A:134   A: Drug X     :134   ARM A:134  
- B: Placebo    :134   ARM B:134   B: Placebo    :134   ARM B:134  
- C: Combination:132   ARM C:132   C: Combination:132   ARM C:132  
-                                                                  
-                                                                  
-                                                                  
-                                                                  
-            TRT01P               TRT01A               TRT02P   
- A: Drug X     :134   A: Drug X     :134   A: Drug X     :134  
- B: Placebo    :134   B: Placebo    :134   B: Placebo    :134  
- C: Combination:132   C: Combination:132   C: Combination:132  
-                                                               
-                                                               
-                                                               
-                                                               
-            TRT02A             REGION1    STRATA1 STRATA2      BMRKR1       
- A: Drug X     :134   Africa       : 26   A:122   S1:196   Min.   : 0.1654  
- B: Placebo    :134   Asia         :268   B:135   S2:204   1st Qu.: 3.3552  
- C: Combination:132   Eurasia      : 19   C:143            Median : 4.8392  
-                      Europe       :  9                    Mean   : 5.7628  
-                      North America: 48                    3rd Qu.: 7.4481  
-                      South America: 30                    Max.   :21.3934  
-                                                                            
-    BMRKR2    ITTFL   SAFFL   BMEASIFL BEP01FL AEWITHFL     RANDDT          
- LOW   :135   Y:400   Y:400   Y:203    Y:197   Y: 23    Min.   :2019-02-22  
- MEDIUM:135                   N:197    N:203   N:377    1st Qu.:2019-09-13  
- HIGH  :130                                             Median :2020-02-16  
-                                                        Mean   :2020-02-20  
-                                                        3rd Qu.:2020-08-14  
-                                                        Max.   :2021-02-14  
-                                                                            
-    TRTSDTM                          TRTEDTM                      
- Min.   :2019-02-24 12:09:18.68   Min.   :2022-02-12 04:55:58.68  
- 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2022-02-17 18:30:10.18  
- Median :2020-02-18 15:58:51.68   Median :2022-07-17 05:19:26.68  
- Mean   :2020-02-23 06:56:04.97   Mean   :2022-11-02 17:00:49.00  
- 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2023-08-02 04:10:13.18  
- Max.   :2021-02-17 15:42:27.68   Max.   :2024-02-18 09:10:03.68  
-                                  NA's   :73                      
-   TRT01SDTM                        TRT01EDTM                     
- Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
- 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2021-02-17 12:40:58.18  
- Median :2020-02-18 15:58:51.68   Median :2021-07-16 23:30:14.68  
- Mean   :2020-02-23 06:56:04.97   Mean   :2021-11-02 11:11:37.00  
- 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2022-08-01 22:21:01.18  
- Max.   :2021-02-17 15:42:27.68   Max.   :2023-02-18 03:20:51.68  
-                                  NA's   :73                      
-   TRT02SDTM                        TRT02EDTM                     
- Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
- 1st Qu.:2021-02-17 12:40:58.18   1st Qu.:2022-02-17 18:30:10.18  
- Median :2021-07-16 23:30:14.68   Median :2022-07-17 05:19:26.68  
- Mean   :2021-11-02 11:11:37.00   Mean   :2022-11-02 17:00:49.00  
- 3rd Qu.:2022-08-01 22:21:01.18   3rd Qu.:2023-08-02 04:10:13.18  
- Max.   :2023-02-18 03:20:51.68   Max.   :2024-02-18 09:10:03.68  
- NA's   :73                       NA's   :73                      
-    AP01SDTM                         AP01EDTM                     
- Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
- 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2021-02-17 12:40:58.18  
- Median :2020-02-18 15:58:51.68   Median :2021-07-16 23:30:14.68  
- Mean   :2020-02-23 06:56:04.97   Mean   :2021-11-02 11:11:37.00  
- 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2022-08-01 22:21:01.18  
- Max.   :2021-02-17 15:42:27.68   Max.   :2023-02-18 03:20:51.68  
-                                  NA's   :73                      
-    AP02SDTM                         AP02EDTM                     
- Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
- 1st Qu.:2021-02-17 12:40:58.18   1st Qu.:2022-02-17 18:30:10.18  
- Median :2021-07-16 23:30:14.68   Median :2022-07-17 05:19:26.68  
- Mean   :2021-11-02 11:11:37.00   Mean   :2022-11-02 17:00:49.00  
- 3rd Qu.:2022-08-01 22:21:01.18   3rd Qu.:2023-08-02 04:10:13.18  
- Max.   :2023-02-18 03:20:51.68   Max.   :2024-02-18 09:10:03.68  
- NA's   :73                       NA's   :73                      
-          EOSSTT             EOTSTT        EOSDT                EOSDY       
- COMPLETED   :207   COMPLETED   :207   Min.   :2022-02-12   Min.   : 369.0  
- DISCONTINUED:120   DISCONTINUED:120   1st Qu.:2022-02-17   1st Qu.: 868.0  
- ONGOING     : 73   ONGOING     : 73   Median :2022-07-17   Median :1096.0  
-                                       Mean   :2022-11-02   Mean   : 965.8  
-                                       3rd Qu.:2023-08-01   3rd Qu.:1096.0  
-                                       Max.   :2024-02-18   Max.   :1096.0  
-                                       NA's   :73           NA's   :73      
-               DCSREAS        DTHDT                           DTHCAUS   
- DEATH             : 70   Min.   :2022-02-14   ADVERSE EVENT      : 26  
- ADVERSE EVENT     : 14   1st Qu.:2022-03-01   DISEASE PROGRESSION: 20  
- PROTOCOL VIOLATION: 12   Median :2022-03-11   MISSING            :  7  
- LACK OF EFFICACY  :  7   Mean   :2022-03-13   LOST TO FOLLOW UP  :  6  
- PHYSICIAN DECISION:  7   3rd Qu.:2022-03-27   SUICIDE            :  5  
- (Other)           : 10   Max.   :2022-04-10   (Other)            :  6  
- NA's              :280   NA's   :330          NA's               :330  
-                 DTHCAT       LDDTHELD    LDDTHGR1      LSTALVDT         
- ADVERSE EVENT      : 26   Min.   : 1.0   &lt;=30: 39   Min.   :2022-02-14  
- OTHER              : 24   1st Qu.:12.0   &gt;30 : 31   1st Qu.:2022-03-15  
- PROGRESSIVE DISEASE: 20   Median :25.0   NA's:330   Median :2022-08-07  
- NA's               :330   Mean   :26.2              Mean   :2022-11-23  
-                           3rd Qu.:39.0              3rd Qu.:2023-08-21  
-                           Max.   :50.0              Max.   :2024-03-07  
-                           NA's   :330               NA's   :73          
-     DTHADY       ADTHAUT    study_duration_secs
- Min.   : 399.0   No  : 10   Min.   :63113904   
- 1st Qu.: 567.8   Yes : 47   1st Qu.:63113904   
- Median : 765.5   NA's:343   Median :63113904   
- Mean   : 762.4              Mean   :63113904   
- 3rd Qu.: 923.0              3rd Qu.:63113904   
- Max.   :1122.0              Max.   :63113904   
- NA's   :330                                    
+# A tibble: 3 × 56
+  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
+  &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;   &lt;fct&gt;
+1 AB12345 AB12345-CH… id-128 CHN-3     32 YEARS M     ASIAN HISPA… CHN     Y    
+2 AB12345 AB12345-CH… id-262 CHN-15    35 YEARS M     BLAC… NOT H… CHN     N    
+3 AB12345 AB12345-RU… id-378 RUS-3     30 YEARS F     ASIAN NOT H… RUS     N    
+# … with 45 more variables: INVID &lt;chr&gt;, INVNAM &lt;chr&gt;, ARM &lt;fct&gt;, ARMCD &lt;fct&gt;,
+#   ACTARM &lt;fct&gt;, ACTARMCD &lt;fct&gt;, TRT01P &lt;fct&gt;, TRT01A &lt;fct&gt;, TRT02P &lt;fct&gt;,
+#   TRT02A &lt;fct&gt;, REGION1 &lt;fct&gt;, STRATA1 &lt;fct&gt;, STRATA2 &lt;fct&gt;, BMRKR1 &lt;dbl&gt;,
+#   BMRKR2 &lt;fct&gt;, ITTFL &lt;fct&gt;, SAFFL &lt;fct&gt;, BMEASIFL &lt;fct&gt;, BEP01FL &lt;fct&gt;,
+#   AEWITHFL &lt;fct&gt;, RANDDT &lt;date&gt;, TRTSDTM &lt;dttm&gt;, TRTEDTM &lt;dttm&gt;,
+#   TRT01SDTM &lt;dttm&gt;, TRT01EDTM &lt;dttm&gt;, TRT02SDTM &lt;dttm&gt;, TRT02EDTM &lt;dttm&gt;,
+#   AP01SDTM &lt;dttm&gt;, AP01EDTM &lt;dttm&gt;, AP02SDTM &lt;dttm&gt;, AP02EDTM &lt;dttm&gt;, …
 
 [[2]]
-   STUDYID            USUBJID             SUBJID             SITEID         
- Length:1934        Length:1934        Length:1934        Length:1934       
- Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                            
-                                                                            
-                                                                            
-                                                                            
-      AGE           AGEU      SEX     
- Min.   :20.00   YEARS:1934   F:1174  
- 1st Qu.:29.00                M: 760  
- Median :34.00                        
- Mean   :34.77                        
- 3rd Qu.:39.00                        
- Max.   :69.00                        
-                                      
-                                        RACE                        ETHNIC    
- ASIAN                                    :979    NOT REPORTED         : 138  
- BLACK OR AFRICAN AMERICAN                :469   HISPANIC OR LATINO    : 262  
- WHITE                                    :367   NOT HISPANIC OR LATINO:1470  
- AMERICAN INDIAN OR ALASKA NATIVE         :109   UNKNOWN               :  64  
- MULTIPLE                                 :  6                                
- NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER:  4                                
- (Other)                                  :  0                                
-    COUNTRY     DTHFL       INVID              INVNAM         
- CHN    :1061   N:1609   Length:1934        Length:1934       
- USA    : 207   Y: 325   Class :character   Class :character  
- BRA    : 156            Mode  :character   Mode  :character  
- PAK    : 137                                                 
- NGA    : 127                                                 
- RUS    :  97                                                 
- (Other): 149                                                 
-             ARM        ARMCD                ACTARM     ACTARMCD  
- A: Drug X     :609   ARM A:609   A: Drug X     :609   ARM A:609  
- B: Placebo    :622   ARM B:622   B: Placebo    :622   ARM B:622  
- C: Combination:703   ARM C:703   C: Combination:703   ARM C:703  
-                                                                  
-                                                                  
-                                                                  
-                                                                  
-            TRT01P               TRT01A               TRT02P   
- A: Drug X     :609   A: Drug X     :609   A: Drug X     :659  
- B: Placebo    :622   B: Placebo    :622   B: Placebo    :647  
- C: Combination:703   C: Combination:703   C: Combination:628  
-                                                               
-                                                               
-                                                               
-                                                               
-            TRT02A             REGION1     STRATA1 STRATA2       BMRKR1       
- A: Drug X     :625   Africa       : 127   A:590   S1: 882   Min.   : 0.1654  
- B: Placebo    :701   Asia         :1273   B:661   S2:1052   1st Qu.: 3.3426  
- C: Combination:608   Eurasia      :  97   C:683             Median : 5.0342  
-                      Europe       :  31                     Mean   : 5.8690  
-                      North America: 250                     3rd Qu.: 7.6002  
-                      South America: 156                     Max.   :21.3934  
-                                                                              
-    BMRKR2    ITTFL    SAFFL    BMEASIFL BEP01FL AEWITHFL     RANDDT          
- LOW   :664   Y:1934   Y:1934   Y: 932   Y:984   Y: 136   Min.   :2019-02-22  
- MEDIUM:685                     N:1002   N:950   N:1798   1st Qu.:2019-09-13  
- HIGH  :585                                               Median :2020-02-17  
-                                                          Mean   :2020-02-22  
-                                                          3rd Qu.:2020-08-21  
-                                                          Max.   :2021-02-09  
-                                                                              
-    TRTSDTM                          TRTEDTM                      
- Min.   :2019-02-24 12:09:18.68   Min.   :2022-02-12 04:55:58.68  
- 1st Qu.:2019-09-16 20:21:14.68   1st Qu.:2022-02-17 04:34:27.68  
- Median :2020-02-21 17:10:24.68   Median :2022-07-28 19:11:19.68  
- Mean   :2020-02-25 10:02:54.85   Mean   :2022-11-12 11:11:22.47  
- 3rd Qu.:2020-08-24 06:57:06.18   3rd Qu.:2023-08-06 21:34:02.68  
- Max.   :2021-02-11 22:33:08.68   Max.   :2024-02-09 23:56:28.68  
-                                  NA's   :348                     
-   TRT01SDTM                        TRT01EDTM                     
- Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
- 1st Qu.:2019-09-16 20:21:14.68   1st Qu.:2021-02-16 22:45:15.68  
- Median :2020-02-21 17:10:24.68   Median :2021-07-28 13:22:07.68  
- Mean   :2020-02-25 10:02:54.85   Mean   :2021-11-12 05:22:10.47  
- 3rd Qu.:2020-08-24 06:57:06.18   3rd Qu.:2022-08-06 15:44:50.68  
- Max.   :2021-02-11 22:33:08.68   Max.   :2023-02-09 18:07:16.68  
-                                  NA's   :348                     
-   TRT02SDTM                        TRT02EDTM                     
- Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
- 1st Qu.:2021-02-16 22:45:15.68   1st Qu.:2022-02-17 04:34:27.68  
- Median :2021-07-28 13:22:07.68   Median :2022-07-28 19:11:19.68  
- Mean   :2021-11-12 05:22:10.47   Mean   :2022-11-12 11:11:22.47  
- 3rd Qu.:2022-08-06 15:44:50.68   3rd Qu.:2023-08-06 21:34:02.68  
- Max.   :2023-02-09 18:07:16.68   Max.   :2024-02-09 23:56:28.68  
- NA's   :348                      NA's   :348                     
-    AP01SDTM                         AP01EDTM                     
- Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
- 1st Qu.:2019-09-16 20:21:14.68   1st Qu.:2021-02-16 22:45:15.68  
- Median :2020-02-21 17:10:24.68   Median :2021-07-28 13:22:07.68  
- Mean   :2020-02-25 10:02:54.85   Mean   :2021-11-12 05:22:10.47  
- 3rd Qu.:2020-08-24 06:57:06.18   3rd Qu.:2022-08-06 15:44:50.68  
- Max.   :2021-02-11 22:33:08.68   Max.   :2023-02-09 18:07:16.68  
-                                  NA's   :348                     
-    AP02SDTM                         AP02EDTM                     
- Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
- 1st Qu.:2021-02-16 22:45:15.68   1st Qu.:2022-02-17 04:34:27.68  
- Median :2021-07-28 13:22:07.68   Median :2022-07-28 19:11:19.68  
- Mean   :2021-11-12 05:22:10.47   Mean   :2022-11-12 11:11:22.47  
- 3rd Qu.:2022-08-06 15:44:50.68   3rd Qu.:2023-08-06 21:34:02.68  
- Max.   :2023-02-09 18:07:16.68   Max.   :2024-02-09 23:56:28.68  
- NA's   :348                      NA's   :348                     
-          EOSSTT              EOTSTT         EOSDT                EOSDY       
- COMPLETED   :1021   COMPLETED   :1021   Min.   :2022-02-12   Min.   : 369.0  
- DISCONTINUED: 565   DISCONTINUED: 565   1st Qu.:2022-02-17   1st Qu.: 892.0  
- ONGOING     : 348   ONGOING     : 348   Median :2022-07-28   Median :1096.0  
-                                         Mean   :2022-11-11   Mean   : 972.9  
-                                         3rd Qu.:2023-08-06   3rd Qu.:1096.0  
-                                         Max.   :2024-02-09   Max.   :1096.0  
-                                         NA's   :348          NA's   :348     
-               DCSREAS         DTHDT                           DTHCAUS    
- DEATH             : 325   Min.   :2022-02-14   ADVERSE EVENT      : 124  
- ADVERSE EVENT     :  81   1st Qu.:2022-03-01   DISEASE PROGRESSION: 101  
- LACK OF EFFICACY  :  44   Median :2022-03-13   MISSING            :  32  
- PROTOCOL VIOLATION:  39   Mean   :2022-03-14   LOST TO FOLLOW UP  :  22  
- PHYSICIAN DECISION:  34   3rd Qu.:2022-03-29   SUICIDE            :  20  
- (Other)           :  42   Max.   :2022-04-09   (Other)            :  26  
- NA's              :1369   NA's   :1609         NA's               :1609  
-                 DTHCAT        LDDTHELD     LDDTHGR1       LSTALVDT         
- ADVERSE EVENT      : 124   Min.   : 1.00   &lt;=30: 182   Min.   :2022-02-14  
- OTHER              : 100   1st Qu.:12.00   &gt;30 : 143   1st Qu.:2022-03-16  
- PROGRESSIVE DISEASE: 101   Median :25.00   NA's:1609   Median :2022-08-12  
- NA's               :1609   Mean   :26.98               Mean   :2022-12-02  
-                            3rd Qu.:40.00               3rd Qu.:2023-08-29  
-                            Max.   :50.00               Max.   :2024-02-29  
-                            NA's   :1609                NA's   :348         
-     DTHADY       ADTHAUT     study_duration_secs      ASEQ       
- Min.   : 399.0   No  :  38   Min.   :63113904    Min.   : 1.000  
- 1st Qu.: 579.0   Yes : 233   1st Qu.:63113904    1st Qu.: 2.000  
- Median : 757.0   NA's:1663   Median :63113904    Median : 3.000  
- Mean   : 767.4               Mean   :63113904    Mean   : 3.954  
- 3rd Qu.: 936.0               3rd Qu.:63113904    3rd Qu.: 6.000  
- Max.   :1106.0               Max.   :63113904    Max.   :10.000  
- NA's   :1609                                                     
-     AESEQ                  AETERM              AELLT              AEDECOD   
- Min.   : 1.000   trm B.2.2.3.1:217   llt B.2.2.3.1:217   dcd B.2.2.3.1:217  
- 1st Qu.: 2.000   trm A.1.1.1.1:214   llt A.1.1.1.1:214   dcd A.1.1.1.1:214  
- Median : 3.000   trm A.1.1.1.2:208   llt A.1.1.1.2:208   dcd A.1.1.1.2:208  
- Mean   : 3.954   trm D.2.1.5.3:208   llt D.2.1.5.3:208   dcd D.2.1.5.3:208  
- 3rd Qu.: 6.000   trm B.2.1.2.1:193   llt B.2.1.2.1:193   dcd B.2.1.2.1:193  
- Max.   :10.000   trm D.1.1.4.2:185   llt D.1.1.4.2:185   dcd D.1.1.4.2:185  
-                  (Other)      :709   (Other)      :709   (Other)      :709  
-         AEHLT            AEHLGT      AEBODSYS    AESOC          AESEV    
- hlt A.1.1.1:422   hlgt A.1.1:422   cl A.1:422   cl A:422   MILD    :639  
- hlt B.2.2.3:217   hlgt D.1.1:368   cl B.1:178   cl B:588   MODERATE:752  
- hlt D.2.1.5:208   hlgt B.2.2:217   cl B.2:410   cl C:348   SEVERE  :543  
- hlt B.2.1.2:193   hlgt D.2.1:208   cl C.1:182   cl D:576                 
- hlt D.1.1.4:185   hlgt B.2.1:193   cl C.2:166                            
- hlt D.1.1.1:183   hlgt C.1.1:182   cl D.1:368                            
- (Other)    :526   (Other)   :344   cl D.2:208                            
- AESER       AEACN           AEREL       AEOUT           AESDTH   AESCONG 
- N:1148   Length:1934        N:1017   Length:1934        N:1573   N:1627  
- Y: 786   Class :character   Y: 917   Class :character   Y: 361   Y: 307  
-          Mode  :character            Mode  :character                    
-                                                                          
-                                                                          
-                                                                          
-                                                                          
- AESDISAB AESHOSP  AESLIFE  AESMIE   TRTEMFL  AECONTRT
- N:1608   N:1584   N:1784   N:1494    :   1   N:1164  
- Y: 326   Y: 350   Y: 150   Y: 440   Y:1933   Y: 770  
-                                                      
-                                                      
-                                                      
-                                                      
-                                                      
-     ASTDTM                          AENDTM                      
- Min.   :2019-03-23 01:00:00.0   Min.   :2019-07-14 02:00:00.00  
- 1st Qu.:2020-09-13 14:00:00.0   1st Qu.:2021-07-03 02:00:00.00  
- Median :2021-05-16 14:00:00.0   Median :2021-12-18 01:00:00.00  
- Mean   :2021-05-31 05:39:38.9   Mean   :2022-01-26 14:53:10.49  
- 3rd Qu.:2021-12-27 01:00:00.0   3rd Qu.:2022-09-27 02:00:00.00  
- Max.   :2024-01-02 01:00:00.0   Max.   :2024-01-23 01:00:00.00  
-                                                                 
-     ASTDY            AENDY           LDOSEDTM                      AETOXGR
- Min.   :   0.0   Min.   :   5.0   Min.   :2019-03-16 12:13:13.17   1:639  
- 1st Qu.: 215.2   1st Qu.: 511.0   1st Qu.:2020-03-03 09:07:03.99   2:374  
- Median : 422.0   Median : 709.5   Median :2020-10-02 08:38:33.20   3:378  
- Mean   : 461.3   Mean   : 701.7   Mean   :2020-10-11 01:17:57.76   4:182  
- 3rd Qu.: 674.8   3rd Qu.: 941.0   3rd Qu.:2021-03-23 07:46:41.46   5:361  
- Max.   :1095.0   Max.   :1097.0   Max.   :2023-09-25 18:45:44.75          
-                                                                           
-   SMQ01NAM           SMQ02NAM           SMQ01SC            SMQ02SC         
- Length:1934        Length:1934        Length:1934        Length:1934       
- Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                            
-                                                                            
-                                                                            
-                                                                            
-   CQ01NAM          ANL01FL                 AERELNST  
- Length:1934         : 348   CONCURRENT ILLNESS :576  
- Class :character   Y:1586   DISEASE UNDER STUDY:566  
- Mode  :character            NONE               :218  
-                             OTHER              :574  
-                                                      
-                                                      
-                                                      
-                            AEACNOTH  
- MEDICATION                     :353  
- NONE                           :391  
- PROCEDURE/SURGERY              :793  
- SUBJECT DISCONTINUED FROM STUDY:397  
-                                      
-                                      
-                                      
+# A tibble: 3 × 92
+  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
+  &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;   &lt;fct&gt;
+1 AB12345 AB12345-BR… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
+2 AB12345 AB12345-BR… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
+3 AB12345 AB12345-BR… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    
+# … with 81 more variables: INVID &lt;chr&gt;, INVNAM &lt;chr&gt;, ARM &lt;fct&gt;, ARMCD &lt;fct&gt;,
+#   ACTARM &lt;fct&gt;, ACTARMCD &lt;fct&gt;, TRT01P &lt;fct&gt;, TRT01A &lt;fct&gt;, TRT02P &lt;fct&gt;,
+#   TRT02A &lt;fct&gt;, REGION1 &lt;fct&gt;, STRATA1 &lt;fct&gt;, STRATA2 &lt;fct&gt;, BMRKR1 &lt;dbl&gt;,
+#   BMRKR2 &lt;fct&gt;, ITTFL &lt;fct&gt;, SAFFL &lt;fct&gt;, BMEASIFL &lt;fct&gt;, BEP01FL &lt;fct&gt;,
+#   AEWITHFL &lt;fct&gt;, RANDDT &lt;date&gt;, TRTSDTM &lt;dttm&gt;, TRTEDTM &lt;dttm&gt;,
+#   TRT01SDTM &lt;dttm&gt;, TRT01EDTM &lt;dttm&gt;, TRT02SDTM &lt;dttm&gt;, TRT02EDTM &lt;dttm&gt;,
+#   AP01SDTM &lt;dttm&gt;, AP01EDTM &lt;dttm&gt;, AP02SDTM &lt;dttm&gt;, AP02EDTM &lt;dttm&gt;, …
 
 [[3]]
-   STUDYID            USUBJID             SUBJID             SITEID         
- Length:2000        Length:2000        Length:2000        Length:2000       
- Class :character   Class :character   Class :character   Class :character  
- Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-                                                                            
-                                                                            
-                                                                            
-                                                                            
-      AGE           AGEU      SEX     
- Min.   :20.00   YEARS:2000   F:1155  
- 1st Qu.:29.00                M: 845  
- Median :34.00                        
- Mean   :34.88                        
- 3rd Qu.:39.00                        
- Max.   :69.00                        
-                                      
-                                        RACE                         ETHNIC    
- ASIAN                                    :1040    NOT REPORTED         : 135  
- BLACK OR AFRICAN AMERICAN                : 455   HISPANIC OR LATINO    : 240  
- WHITE                                    : 370   NOT HISPANIC OR LATINO:1540  
- AMERICAN INDIAN OR ALASKA NATIVE         : 125   UNKNOWN               :  85  
- MULTIPLE                                 :   5                                
- NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER:   5                                
- (Other)                                  :   0                                
-    COUNTRY     DTHFL       INVID              INVNAM         
- CHN    :1095   N:1650   Length:2000        Length:2000       
- USA    : 200   Y: 350   Class :character   Class :character  
- PAK    : 155            Mode  :character   Mode  :character  
- BRA    : 150                                                 
- NGA    : 130                                                 
- RUS    :  95                                                 
- (Other): 175                                                 
-             ARM        ARMCD                ACTARM     ACTARMCD  
- A: Drug X     :670   ARM A:670   A: Drug X     :670   ARM A:670  
- B: Placebo    :670   ARM B:670   B: Placebo    :670   ARM B:670  
- C: Combination:660   ARM C:660   C: Combination:660   ARM C:660  
-                                                                  
-                                                                  
-                                                                  
-                                                                  
-            TRT01P               TRT01A               TRT02P   
- A: Drug X     :670   A: Drug X     :670   A: Drug X     :670  
- B: Placebo    :670   B: Placebo    :670   B: Placebo    :670  
- C: Combination:660   C: Combination:660   C: Combination:660  
-                                                               
-                                                               
-                                                               
-                                                               
-            TRT02A             REGION1     STRATA1 STRATA2       BMRKR1       
- A: Drug X     :670   Africa       : 130   A:610   S1: 980   Min.   : 0.1654  
- B: Placebo    :670   Asia         :1340   B:675   S2:1020   1st Qu.: 3.3552  
- C: Combination:660   Eurasia      :  95   C:715             Median : 4.8392  
-                      Europe       :  45                     Mean   : 5.7628  
-                      North America: 240                     3rd Qu.: 7.4481  
-                      South America: 150                     Max.   :21.3934  
-                                                                              
-    BMRKR2    ITTFL    SAFFL    BMEASIFL BEP01FL  AEWITHFL     RANDDT          
- LOW   :675   Y:2000   Y:2000   Y:1015   Y: 985   Y: 115   Min.   :2019-02-22  
- MEDIUM:675                     N: 985   N:1015   N:1885   1st Qu.:2019-09-13  
- HIGH  :650                                                Median :2020-02-16  
-                                                           Mean   :2020-02-20  
-                                                           3rd Qu.:2020-08-14  
-                                                           Max.   :2021-02-14  
-                                                                               
-    TRTSDTM                          TRTEDTM                      
- Min.   :2019-02-24 12:09:18.68   Min.   :2022-02-12 04:55:58.68  
- 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2022-02-17 18:28:14.68  
- Median :2020-02-18 15:58:51.68   Median :2022-07-17 05:19:26.68  
- Mean   :2020-02-23 06:56:04.97   Mean   :2022-11-02 17:00:49.00  
- 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2023-08-02 12:16:13.68  
- Max.   :2021-02-17 15:42:27.68   Max.   :2024-02-18 09:10:03.68  
-                                  NA's   :365                     
-   TRT01SDTM                        TRT01EDTM                     
- Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
- 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2021-02-17 12:39:02.68  
- Median :2020-02-18 15:58:51.68   Median :2021-07-16 23:30:14.68  
- Mean   :2020-02-23 06:56:04.97   Mean   :2021-11-02 11:11:37.00  
- 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2022-08-02 06:27:01.68  
- Max.   :2021-02-17 15:42:27.68   Max.   :2023-02-18 03:20:51.68  
-                                  NA's   :365                     
-   TRT02SDTM                        TRT02EDTM                     
- Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
- 1st Qu.:2021-02-17 12:39:02.68   1st Qu.:2022-02-17 18:28:14.68  
- Median :2021-07-16 23:30:14.68   Median :2022-07-17 05:19:26.68  
- Mean   :2021-11-02 11:11:37.00   Mean   :2022-11-02 17:00:49.00  
- 3rd Qu.:2022-08-02 06:27:01.68   3rd Qu.:2023-08-02 12:16:13.68  
- Max.   :2023-02-18 03:20:51.68   Max.   :2024-02-18 09:10:03.68  
- NA's   :365                      NA's   :365                     
-    AP01SDTM                         AP01EDTM                     
- Min.   :2019-02-24 12:09:18.68   Min.   :2021-02-11 23:06:46.68  
- 1st Qu.:2019-09-17 17:51:52.18   1st Qu.:2021-02-17 12:39:02.68  
- Median :2020-02-18 15:58:51.68   Median :2021-07-16 23:30:14.68  
- Mean   :2020-02-23 06:56:04.97   Mean   :2021-11-02 11:11:37.00  
- 3rd Qu.:2020-08-18 00:04:25.18   3rd Qu.:2022-08-02 06:27:01.68  
- Max.   :2021-02-17 15:42:27.68   Max.   :2023-02-18 03:20:51.68  
-                                  NA's   :365                     
-    AP02SDTM                         AP02EDTM                     
- Min.   :2021-02-11 23:06:46.68   Min.   :2022-02-12 04:55:58.68  
- 1st Qu.:2021-02-17 12:39:02.68   1st Qu.:2022-02-17 18:28:14.68  
- Median :2021-07-16 23:30:14.68   Median :2022-07-17 05:19:26.68  
- Mean   :2021-11-02 11:11:37.00   Mean   :2022-11-02 17:00:49.00  
- 3rd Qu.:2022-08-02 06:27:01.68   3rd Qu.:2023-08-02 12:16:13.68  
- Max.   :2023-02-18 03:20:51.68   Max.   :2024-02-18 09:10:03.68  
- NA's   :365                      NA's   :365                     
-          EOSSTT              EOTSTT         EOSDT                EOSDY       
- COMPLETED   :1035   COMPLETED   :1035   Min.   :2022-02-12   Min.   : 369.0  
- DISCONTINUED: 600   DISCONTINUED: 600   1st Qu.:2022-02-17   1st Qu.: 865.0  
- ONGOING     : 365   ONGOING     : 365   Median :2022-07-17   Median :1096.0  
-                                         Mean   :2022-11-02   Mean   : 965.8  
-                                         3rd Qu.:2023-08-02   3rd Qu.:1096.0  
-                                         Max.   :2024-02-18   Max.   :1096.0  
-                                         NA's   :365          NA's   :365     
-               DCSREAS         DTHDT                           DTHCAUS    
- DEATH             : 350   Min.   :2022-02-14   ADVERSE EVENT      : 130  
- ADVERSE EVENT     :  70   1st Qu.:2022-03-01   DISEASE PROGRESSION: 100  
- PROTOCOL VIOLATION:  60   Median :2022-03-11   MISSING            :  35  
- LACK OF EFFICACY  :  35   Mean   :2022-03-13   LOST TO FOLLOW UP  :  30  
- PHYSICIAN DECISION:  35   3rd Qu.:2022-03-28   SUICIDE            :  25  
- (Other)           :  50   Max.   :2022-04-10   (Other)            :  30  
- NA's              :1400   NA's   :1650         NA's               :1650  
-                 DTHCAT        LDDTHELD    LDDTHGR1       LSTALVDT         
- ADVERSE EVENT      : 130   Min.   : 1.0   &lt;=30: 195   Min.   :2022-02-14  
- OTHER              : 120   1st Qu.:12.0   &gt;30 : 155   1st Qu.:2022-03-15  
- PROGRESSIVE DISEASE: 100   Median :25.0   NA's:1650   Median :2022-08-07  
- NA's               :1650   Mean   :26.2               Mean   :2022-11-23  
-                            3rd Qu.:39.0               3rd Qu.:2023-08-23  
-                            Max.   :50.0               Max.   :2024-03-07  
-                            NA's   :1650               NA's   :365         
-     DTHADY       ADTHAUT     study_duration_secs      ASEQ          TTESEQ    
- Min.   : 399.0   No  :  50   Min.   :63113904    Min.   :1.00   Min.   :1.00  
- 1st Qu.: 564.0   Yes : 235   1st Qu.:63113904    1st Qu.:1.75   1st Qu.:1.75  
- Median : 765.5   NA's:1715   Median :63113904    Median :2.50   Median :2.50  
- Mean   : 762.4               Mean   :63113904    Mean   :2.50   Mean   :2.50  
- 3rd Qu.: 924.0               3rd Qu.:63113904    3rd Qu.:3.25   3rd Qu.:3.25  
- Max.   :1122.0               Max.   :63113904    Max.   :4.00   Max.   :4.00  
- NA's   :1650                                     NA's   :400    NA's   :400   
-                            PARAM     PARAMCD         AVAL           AVALU     
- Duration of Confirmed Response:400   CRSD:400   Min.   :   0.00   COUNT: 400  
- Event Free Survival           :400   EFS :400   1st Qu.:  35.74   DAYS :1600  
- Overall Survival              :400   OS  :400   Median : 209.89               
- Progression Free Survival     :400   PFS :400   Mean   : 395.45               
- Total Number of Exacerbations :400   TNE :400   3rd Qu.: 531.73               
-                                                 Max.   :4708.68               
-                                                                               
-      ADTM                          ADY              CNSR      
- Min.   :2019-03-14 01:00:00   Min.   :   0.0   Min.   :0.000  
- 1st Qu.:2020-09-24 02:00:00   1st Qu.: 211.0   1st Qu.:0.000  
- Median :2021-05-16 02:00:00   Median : 434.0   Median :0.000  
- Mean   :2021-05-28 14:42:18   Mean   : 460.8   Mean   :0.307  
- 3rd Qu.:2021-12-11 07:00:00   3rd Qu.: 678.2   3rd Qu.:1.000  
- Max.   :2024-01-07 01:00:00   Max.   :1095.0   Max.   :1.000  
- NA's   :400                   NA's   :400                     
-   EVNTDESC           CNSDTDSC           lgTMATRSK      
- Length:2000        Length:2000        Min.   :-7.3986  
- Class :character   Class :character   1st Qu.:-2.2568  
- Mode  :character   Mode  :character   Median :-1.4884  
-                                       Mean   :-1.7128  
-                                       3rd Qu.:-0.8414  
-                                       Max.   : 1.1114  
-                                       NA's   :1600     </code></pre>
+# A tibble: 3 × 68
+  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL
+  &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt; &lt;fct&gt;  &lt;fct&gt;   &lt;fct&gt;
+1 AB12345 AB12345-BR… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
+2 AB12345 AB12345-BR… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
+3 AB12345 AB12345-BR… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    
+# … with 57 more variables: INVID &lt;chr&gt;, INVNAM &lt;chr&gt;, ARM &lt;fct&gt;, ARMCD &lt;fct&gt;,
+#   ACTARM &lt;fct&gt;, ACTARMCD &lt;fct&gt;, TRT01P &lt;fct&gt;, TRT01A &lt;fct&gt;, TRT02P &lt;fct&gt;,
+#   TRT02A &lt;fct&gt;, REGION1 &lt;fct&gt;, STRATA1 &lt;fct&gt;, STRATA2 &lt;fct&gt;, BMRKR1 &lt;dbl&gt;,
+#   BMRKR2 &lt;fct&gt;, ITTFL &lt;fct&gt;, SAFFL &lt;fct&gt;, BMEASIFL &lt;fct&gt;, BEP01FL &lt;fct&gt;,
+#   AEWITHFL &lt;fct&gt;, RANDDT &lt;date&gt;, TRTSDTM &lt;dttm&gt;, TRTEDTM &lt;dttm&gt;,
+#   TRT01SDTM &lt;dttm&gt;, TRT01EDTM &lt;dttm&gt;, TRT02SDTM &lt;dttm&gt;, TRT02EDTM &lt;dttm&gt;,
+#   AP01SDTM &lt;dttm&gt;, AP01EDTM &lt;dttm&gt;, AP02SDTM &lt;dttm&gt;, AP02EDTM &lt;dttm&gt;, …</code></pre>
 </div>
 </div>
 </section>
@@ -978,6 +519,7 @@ pre-processing
 </section>
 <section id="toy-app" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="toy-app"><span class="header-section-number">2.5</span> Toy app</h2>
+<p>We have now gone through all steps to create your first teal app.</p>
 <div class="cell" data-file="data_app.R">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data app</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- load packages data app ----</span></span>
