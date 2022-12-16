@@ -11,5 +11,3 @@ jobs:
         shell: Rscript {0}
       - name: Build book
         run: R CMD quarto render
-      # - name: Check package
-      #   run: R CMD check --no-manual *.tar.gz
