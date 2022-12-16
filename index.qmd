@@ -1,5 +1,12 @@
 # Preface {.unnumbered}
 
+```{r}
+#| include: false
+library(spelling)
+library(devtools)
+```
+
+
 ## Who ist this for
 
 This tutorial is aimed at data scientists / analysts who want to write their first `teal` application. 
