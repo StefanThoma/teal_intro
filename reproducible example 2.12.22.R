@@ -18,9 +18,9 @@ writeLines(
 
 ## works with cdisc_dataset:
 cdisc_dataset_ADSL <-
-  cdisc_dataset(dataname = "ADSL", x = ADSL) 
+  cdisc_dataset(dataname = "ADSL", x = ADSL)
 
-cdisc_dataset_mutated <- cdisc_dataset_ADSL %>% 
+cdisc_dataset_mutated <- cdisc_dataset_ADSL %>%
   mutate_dataset(script = file_example)
 get_raw_data(cdisc_dataset_mutated)$newdata[1]
 
@@ -28,9 +28,11 @@ get_raw_data(cdisc_dataset_mutated)$newdata[1]
 ## does not work with cdisc_data:
 
 cdisc_data_ADSL <-
-  cdisc_data(cdisc_dataset(dataname = "ADSL", x = ADSL) )
+  cdisc_data(cdisc_dataset(dataname = "ADSL", x = ADSL))
 
-cdisc_data_mutated <- cdisc_data_ADSL %>% 
-  mutate_dataset(script = file_example,
-                 dataname = "ADSL")
+cdisc_data_mutated <- cdisc_data_ADSL %>%
+  mutate_dataset(
+    script = file_example,
+    dataname = "ADSL"
+  )
 get_raw_data(cdisc_data_mutated)$ADSL$newdata[1]

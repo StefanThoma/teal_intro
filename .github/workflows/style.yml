@@ -12,5 +12,5 @@ jobs:
         run: if (!require("styler")) install.packages("styler")
         shell: Rscript {0}
       - name: Run styler
-        run: styler::style_pkg(dry = "fail")
+        run: styler::style_dir(dry = "fail")
         shell: Rscript {0}

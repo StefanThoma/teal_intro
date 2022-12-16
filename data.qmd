@@ -149,8 +149,9 @@ app <- teal::init(data = cdisc_data(
   cdisc_dataset("ADAE", ADAE),
   cdisc_dataset("ADTTE", ADTTE)
   # <<additional dataset code>> 
-  ),
-  #  <<additional init arguments code>>
+  )
+  # , <<additional init arguments code>>
+)
 ```
 :::
 

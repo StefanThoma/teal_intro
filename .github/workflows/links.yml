@@ -2,19 +2,21 @@ name: Check URLs
 on:
   pull_request: {branches: ['main']}
 jobs:
-  Links:
+  linkChecker:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: Check URLs in docs
-        uses: lycheeverse/lychee-action@v1.5.1
+      - uses: actions/checkout@v3
+
+      - name: Link Checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v1.5.4
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Create Issue From File
+        if: env.lychee_exit_code != 0
+        uses: peter-evans/create-issue-from-file@v4
         with:
-          fail: true
-          jobSummary: true
-          format: markdown
-          output: links-results.md
-          args: >-
-            --exclude "https://github.com.*.git|lycheeverse.*"
-            --no-progress **/*.md **/*.Rmd
-        env: {GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"}
+          title: Link Checker Report
+          content-filepath: ./lychee/out.md
+          labels: report, automated issue
