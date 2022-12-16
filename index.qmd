@@ -7,7 +7,7 @@ library(devtools)
 ```
 
 
-## Who ist this for
+## Who is this for
 
 This tutorial is aimed at data scientists / analysts who want to write their first `teal` application. 
 We expect you to already have some R experience and that you know what you want to achieve with the application. 

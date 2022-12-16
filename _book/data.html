@@ -403,7 +403,7 @@ tidyverse 1.3.2 ──</code></pre>
 </section>
 <section id="code-structure" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="code-structure"><span class="header-section-number">2.3</span> Code structure</h2>
-<p>First, you want to define the project metadata. This can include the author name, the study name, the molecule name, etc. then, we have a section where we can define parameters for the app. This can be simple parameter values but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g.&nbsp;preselected variables of interest.</p>
+<p>First, you want to define the project metadata. This can include the author name, the study name, the molecule name, etc. then, we have a section where we can define parameters for the app. This can be simple parameter values but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g.&nbsp;pre-selected variables of interest.</p>
 <p>After that, we define the app using the <code>init()</code> function. This function takes data, modules, and html input and returns a list (usually named <code>app</code>) containing the user interface (the <code>ui</code> object) and back end (the <code>server</code> object) of the application. In the final step we instantiate the app by calling <code>shinyApp(app$ui, app$server)</code>.</p>
 </section>
 <section id="init" class="level2" data-number="2.4">
@@ -428,7 +428,7 @@ tidyverse 1.3.2 ──</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div id="note:key" class="callout-body-container">
-<p><code>keys</code> are prespecified variables in ADaM data to merge data-sets. Each type of data-set requires specific keys to be specified. The package <code>teal.data</code> automatically chooses the correct key variables based on the <code>dataname</code> for the following data-sets: ADSL, ADAE, ADEG, ADTTE, ADAETTE, ADCM, ADEX, ADLB, ADMH, ADQS, ADRS, ADSAFTTE, ADVS, ADDV, ADSUB, ADHY.</p>
+<p><code>keys</code> are pre-specified variables in ADaM data to merge data-sets. Each type of data-set requires specific keys to be specified. The package <code>teal.data</code> automatically chooses the correct key variables based on the <code>dataname</code> for the following data-sets: ADSL, ADAE, ADEG, ADTTE, ADAETTE, ADCM, ADEX, ADLB, ADMH, ADQS, ADRS, ADSAFTTE, ADVS, ADDV, ADSUB, ADHY.</p>
 <p>If you want to work with other ADaM data-sets you must specify the keys manually. ADTR is a Tumor Results Analysis data-set where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the <code>teal.data</code> package, so we would have to specify them manually:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ADTR <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtr</span>
@@ -452,7 +452,7 @@ pre-processing
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the `<code>cdisc_data()</code>` output. One such preprocessing steps could be the creation of a new variable in the ADSL data-set which splits patients into two age groups where patients younger than 40 are <code>AGEGR = 0</code> and patients older than 40 are <code>AGEGR = 1</code>.</p>
+<p>Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the `<code>cdisc_data()</code>` output. One such pre-processing steps could be the creation of a new variable in the ADSL data-set which splits patients into two age groups where patients younger than 40 are <code>AGEGR = 0</code> and patients older than 40 are <code>AGEGR = 1</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you would write this in a seperate file directly, without the writeLines command.</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(</span>
@@ -483,7 +483,7 @@ pre-processing
 [371] 0 0 1 0 0 1 0 1 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1</code></pre>
 </div>
 </div>
-<p>In a real world case we would not necessarily want to separately save the preprocessed <code>ADSL</code> in our environment. Instead, we would apply the preprocessing within the <code>data</code> argument of the <code>init()</code> function, e.g., like this:</p>
+<p>In a real world case we would not necessarily want to separately save the pre-processed <code>ADSL</code> in our environment. Instead, we would apply the pre-processing within the <code>data</code> argument of the <code>init()</code> function, e.g., like this:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(<span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span> </span>
