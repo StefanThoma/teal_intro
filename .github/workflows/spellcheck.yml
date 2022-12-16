@@ -9,5 +9,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: Run Spelling Check test
-        run: spelling::spell_check_files(list.files()[endsWith(list.files(), "md")], ignore = read.csv("inst/WORDLIST")[[1]])
+        run: if (!require("spelling")) install.packages("spelling", upgrade = "never")
+        spelling::spell_check_files(list.files()[endsWith(list.files(), "md")], ignore = read.csv("inst/WORDLIST")[[1]])
         shell: Rscript {0}
