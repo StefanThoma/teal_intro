@@ -8,7 +8,7 @@
 
 
 # read app file
-knitr::read_chunk(path = "data_app.R")
+knitr::read_chunk(path = "R/data_app.R")
 ```
 
 The App created at the end of this chapter will be the basic building block of all subsequent chapters in this book. The structure of the app code will remain consistent throughout the book --- make sure you understand each line of code of the *toy* application at the end.
@@ -24,18 +24,21 @@ The App created at the end of this chapter will be the basic building block of a
 
 In this tutorial we will be working with realistic looking but simulated data.
 
-```{r}
+```{r, file = "R/snippets/install_packages.R"}
 #| eval: FALSE
-if (!require("remotes")) install.packages("remotes")
-
-# install teal
-remotes::install_github("insightsengineering/teal@*release")
-
-# install teal.modules.general
-remotes::install_github("insightsengineering/teal.modules.general@*release")
-
-# install teal.modules.hermes
-remotes::install_github("insightsengineering/teal.modules.hermes@*release")
+#if (!require("remotes")) install.packages("remotes")
+#
+## install teal
+#remotes::install_github("insightsengineering/teal@*release")
+#
+## install teal.modules.general
+#remotes::install_github("insightsengineering/teal.modules.general@*release")
+#
+## install teal.modules.clinical
+#remotes::install_github("insightsengineering/teal.modules.clinical@*release")
+#
+## install teal.modules.hermes
+#remotes::install_github("insightsengineering/teal.modules.hermes@*release")
 ```
 
 ```{r load packages data app}
@@ -175,7 +178,7 @@ Combining everything above, our `init()` function looks like this:
 
 We have now gone through all steps to create your first teal app.
 
-```{r, file = "data_app.R"}
+```{r, file = "R/data_app.R"}
 #| eval: false
 ```
 
