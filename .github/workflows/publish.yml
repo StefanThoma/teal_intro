@@ -8,6 +8,7 @@ name: Quarto Publish
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    container: {image: "rocker/tidyverse:4.2.1"}
     permissions:
       contents: write
     steps:
@@ -17,7 +18,7 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
-      - name: Install jsonLite
+      - name: Install jsonlite
         run:  if (!require("jsonlite")) install.packages("jsonlite")
         shell: Rscript {0}
 
