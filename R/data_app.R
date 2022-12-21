@@ -27,7 +27,6 @@ app <- teal::init(
     cdisc_dataset("ADAE", ADAE),
     cdisc_dataset("ADTTE", ADTTE)
   ),
-  modules = modules(tm_variable_browser(label = "View Variables")),
   header = "My first application",
   footer = "footer"
 )
@@ -35,3 +34,4 @@ app <- teal::init(
 
 ## ---- run data app ----
 shinyApp(app$ui, app$server)
+?teal.modules.clinical::tm_g_forest_tte

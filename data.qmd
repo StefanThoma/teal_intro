@@ -8,7 +8,7 @@
 
 
 # read app file
-knitr::read_chunk(path = "data_app.R")
+knitr::read_chunk(path = "R/data_app.R")
 ```
 
 The App created at the end of this chapter will be the basic building block of all subsequent chapters in this book. The structure of the app code will remain consistent throughout the book --- make sure you understand each line of code of the *toy* application at the end.
@@ -24,22 +24,24 @@ The App created at the end of this chapter will be the basic building block of a
 
 In this tutorial we will be working with realistic looking but simulated data.
 
-```{r}
+```{r, file = "R/snippets/install_packages.R"}
 #| eval: FALSE
-if (!require("remotes")) install.packages("remotes")
-
-# install teal
-remotes::install_github("insightsengineering/teal@*release")
-
-# install teal.modules.general
-remotes::install_github("insightsengineering/teal.modules.general@*release")
-
-# install teal.modules.hermes
-remotes::install_github("insightsengineering/teal.modules.hermes@*release")
+# if (!require("remotes")) install.packages("remotes")
+#
+## install teal
+# remotes::install_github("insightsengineering/teal@*release")
+#
+## install teal.modules.general
+# remotes::install_github("insightsengineering/teal.modules.general@*release")
+#
+## install teal.modules.clinical
+# remotes::install_github("insightsengineering/teal.modules.clinical@*release")
+#
+## install teal.modules.hermes
+# remotes::install_github("insightsengineering/teal.modules.hermes@*release")
 ```
 
 ```{r load packages data app}
-
 ```
 
 We first load two synthetic data sets. `random.cdisc.data::cadsl` is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable `USUBJID`. According to [CDISC](https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl) the main purpose of ADSL is to provide a "(...) source for denominators for populations of interest, stratification variables, and other important subject subgroups".
@@ -69,7 +71,7 @@ As is generally the case when you start a project, you should have an approximat
 
 ## Code structure
 
-First, you want to define the project metadata. This can include the author name, the study name, the molecule name, etc. then, we have a section where we can define parameters for the app. This can be simple parameter values but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g. preselected variables of interest.
+First, you want to define the project metadata. This can include the author name, the study name, the molecule name, etc. then, we have a section where we can define parameters for the app. This can be simple parameter values but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g. pre-selected variables of interest.
 
 After that, we define the app using the `init()` function. This function takes data, modules, and html input and returns a list (usually named `app`) containing the user interface (the `ui` object) and back end (the `server` object) of the application. In the final step we instantiate the app by calling `shinyApp(app$ui, app$server)`.
 
@@ -86,7 +88,8 @@ init(
   filter = list(),
   header = tags$p("Add Title Here"),
   footer = tags$p("Add Footer Here"),
-  id = character(0))
+  id = character(0)
+)
 ```
 
 The `init()` function sets up a shiny app that consists of `teal` modules. Let's go through the arguments:
@@ -96,7 +99,7 @@ The `init()` function sets up a shiny app that consists of `teal` modules. Let's
 In the `data` argument we define one or more data-frames for the application. If more than one data-frames are specified, they should be combined as a list, e.g. `data = list(ADSL, ADTR)`. <!-- For relational data-sets you can define merge keys.  --> For ADaM data-sets, the package `teal.data` provides helper functions with which the `data` argument of `init()` can be specified, --- the `cdisc_data()` and the `cdisc_dataset()` functions. They allow the teal app to know the merge key variables of the data-sets. The `cdisc_data`function returns an S6 object.
 
 ::: {#note:key .callout-note appearance="simple"}
-`keys` are prespecified variables in ADaM data to merge data-sets. Each type of data-set requires specific keys to be specified. The package `teal.data` automatically chooses the correct key variables based on the `dataname` for the following data-sets: `r paste(names(teal.data:::default_cdisc_keys), collapse = ", ")`.
+`keys` are pre-specified variables in ADaM data to merge data-sets. Each type of data-set requires specific keys to be specified. The package `teal.data` automatically chooses the correct key variables based on the `dataname` for the following data-sets: `r paste(names(teal.data:::default_cdisc_keys), collapse = ", ")`.
 
 If you want to work with other ADaM data-sets you must specify the keys manually. ADTR is a Tumor Results Analysis data-set where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the `teal.data` package, so we would have to specify them manually:
 
@@ -107,7 +110,8 @@ ADTR <- random.cdisc.data::cadtr
 
 cdisc_data(
   cdisc_dataset("ADSL", ADSL),
-  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT")))
+  cdisc_dataset("ADTR", ADTR, keys = c("STUDYID", "USUBJID", "PARAMCD", "AVISIT"))
+)
 ```
 
 Note that all keys have to be specified.
@@ -116,41 +120,45 @@ Note that all keys have to be specified.
 ::: callout-important
 ## pre-processing
 
-Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the \``cdisc_data()`\` output. One such preprocessing steps could be the creation of a new variable in the ADSL data-set which splits patients into two age groups where patients younger than 40 are `AGEGR = 0` and patients older than 40 are `AGEGR = 1`.
+Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the \``cdisc_data()`\` output. One such pre-processing steps could be the creation of a new variable in the ADSL data-set which splits patients into two age groups where patients younger than 40 are `AGEGR = 0` and patients older than 40 are `AGEGR = 1`.
 
 ```{r}
-# you would write this in a seperate file directly, without the writeLines command.
+# you would write this in a separate file directly, without the writeLines command.
 writeLines(
-  text = c("ADSL <- ADSL %>%
-      dplyr::mutate(AGEGR = if_else(AGE < 40, 0, 1, NA_real_))"),
+  text = "
+ADSL <- ADSL %>%
+  dplyr::mutate(AGEGR = if_else(AGE < 40, 0, 1, NA_real_))",
   con = "ADSL_preproc.R"
 )
 ```
 
 The resulting R file looks something like this:
 
-`r readr::read_file("ADSL_preproc.R")`
+```{r, file = "ADSL_preproc.R"}
+```
 
 ```{r}
-ADSL_processed <- ADSL %>% 
-  cdisc_dataset("ADSL", .) %>% 
+ADSL_processed <- ADSL %>%
+  cdisc_dataset("ADSL", .) %>%
   mutate_dataset(script = "ADSL_preproc.R")
 # check if the new variable exists:
 ADSL_processed$get_raw_data()$AGEGR
 ```
 
-In a real world case we would not necessarily want to separately save the preprocessed `ADSL` in our environment. Instead, we would apply the preprocessing within the `data` argument of the `init()` function, e.g., like this:
+In a real world case we would not necessarily want to separately save the pre-processed `ADSL` in our environment. Instead, we would apply the pre-processing within the `data` argument of the `init()` function, e.g., like this:
 
 ```{r}
 #| eval: false
-app <- teal::init(data = cdisc_data(
-  cdisc_dataset("ADSL", ADSL) %>% 
-    mutate_dataset(script = "ADSL_preproc.R"),
-  cdisc_dataset("ADAE", ADAE),
-  cdisc_dataset("ADTTE", ADTTE)
-  # <<additional dataset code>> 
-  ),
-  #  <<additional init arguments code>>
+app <- teal::init(
+  data = cdisc_data(
+    cdisc_dataset("ADSL", ADSL) %>%
+      mutate_dataset(script = "ADSL_preproc.R"),
+    cdisc_dataset("ADAE", ADAE),
+    cdisc_dataset("ADTTE", ADTTE)
+    # <<additional dataset code>>
+  )
+  # , <<additional init arguments code>>
+)
 ```
 :::
 
@@ -166,14 +174,13 @@ Combining everything above, our `init()` function looks like this:
 
 ```{r init data app}
 #| eval: false
-
 ```
 
 ## Toy app
 
 We have now gone through all steps to create your first teal app.
 
-```{r, file = "data_app.R"}
+```{r, file = "R/data_app.R"}
 #| eval: false
 ```
 

@@ -1,6 +1,6 @@
 name: Spellcheck
 on:
-  pull_request: {branches: ['main']}
+  pull_request: {branches: ['master']}
 jobs:
   Spelling:
     runs-on: ubuntu-latest
@@ -8,5 +8,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+      - name: Install spelling
+        run: if (!require("spelling")) install.packages("spelling")
+        shell: Rscript {0}
       - name: Run Spelling Check test
-        uses: insightsengineering/r-spellcheck-action@v2
+        run: spelling::spell_check_files(list.files()[endsWith(list.files(), "md")], ignore = read.csv("inst/WORDLIST")[[1]])
+        shell: Rscript {0}
