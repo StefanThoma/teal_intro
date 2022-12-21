@@ -17,6 +17,10 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install jsonLite
+        run:  if (!requires("jsonlite")) install.packages("jsonlite")
+        shell: Rscript {0}
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
