@@ -8,7 +8,6 @@ name: Quarto Publish
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    container: {image: "rocker/tidyverse:4.2.1"}
     permissions:
       contents: write
     steps:
