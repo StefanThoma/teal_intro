@@ -127,8 +127,7 @@ Generally, it is recommended to collect all data pre-processing steps in a separ
 writeLines(
   text = "
 ADSL <- ADSL %>%
-  dplyr::mutate(AGEGR = if_else(AGE < 40, 0, 1, NA_real_))
-  ",
+  dplyr::mutate(AGEGR = if_else(AGE < 40, 0, 1, NA_real_))",
   con = "ADSL_preproc.R"
 )
 ```
