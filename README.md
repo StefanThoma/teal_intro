@@ -8,6 +8,6 @@ Learn how to build your first teal app.
 
 ## CICD
 
-Three workflows are implemented: 
+Three CICD workflows are implemented: 
 
-Spellcheck, stylecheck, and book publishing. 
+spellcheck and stylecheck on pull request, and book rendering and publishing on merge with the master branch. 
