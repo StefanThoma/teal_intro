@@ -26,19 +26,19 @@ In this tutorial we will be working with realistic looking but simulated data.
 
 ```{r, file = "R/snippets/install_packages.R"}
 #| eval: FALSE
-#if (!require("remotes")) install.packages("remotes")
+# if (!require("remotes")) install.packages("remotes")
 #
 ## install teal
-#remotes::install_github("insightsengineering/teal@*release")
+# remotes::install_github("insightsengineering/teal@*release")
 #
 ## install teal.modules.general
-#remotes::install_github("insightsengineering/teal.modules.general@*release")
+# remotes::install_github("insightsengineering/teal.modules.general@*release")
 #
 ## install teal.modules.clinical
-#remotes::install_github("insightsengineering/teal.modules.clinical@*release")
+# remotes::install_github("insightsengineering/teal.modules.clinical@*release")
 #
 ## install teal.modules.hermes
-#remotes::install_github("insightsengineering/teal.modules.hermes@*release")
+# remotes::install_github("insightsengineering/teal.modules.hermes@*release")
 ```
 
 ```{r load packages data app}
@@ -134,7 +134,8 @@ ADSL <- ADSL %>%
 
 The resulting R file looks something like this:
 
-`r readr::read_file("ADSL_preproc.R")`
+```{r, file = "ADSL_preproc.R"}
+```
 
 ```{r}
 ADSL_processed <- ADSL %>%

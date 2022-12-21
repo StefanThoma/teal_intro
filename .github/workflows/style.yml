@@ -9,7 +9,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v3
       - name: Install styler
-        run: if (!require("styler")) install.packages("styler")
+        run: if (!require("styler")) remotes::install_github("r-lib/styler")
         shell: Rscript {0}
       - name: Run styler
         run: styler::style_dir(dry = "fail")

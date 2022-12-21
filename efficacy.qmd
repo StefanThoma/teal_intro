@@ -9,7 +9,5 @@ http://docs.roche.com/#/agile-R/2022_01_28/teal/sample_apps/sample-app-efficacy/
 ```{r}
 sessionInfo()
 
-.libPaths(
-  
-)
+.libPaths()
 ```
