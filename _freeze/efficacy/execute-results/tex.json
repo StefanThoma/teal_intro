@@ -1,0 +1,20 @@
+{
+  "hash": "4a8aa5cc09646d2967a4cd53b4c136d6",
+  "result": {
+    "markdown": "---\ntitle: \"efficacy\"\nauthor: \"Stefan Thoma\"\neditor: visual\n---\n\n\n\nhttp://docs.roche.com/#/agile-R/2022_01_28/teal/sample_apps/sample-app-efficacy/\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nsessionInfo()\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nR version 4.2.1 (2022-06-23)\nPlatform: x86_64-apple-darwin17.0 (64-bit)\nRunning under: macOS Big Sur ... 10.16\n\nMatrix products: default\nBLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib\nLAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib\n\nlocale:\n[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nloaded via a namespace (and not attached):\n [1] digest_0.6.30   lifecycle_1.0.3 jsonlite_1.8.3  magrittr_2.0.3 \n [5] evaluate_0.18   rlang_1.0.6     stringi_1.7.8   cli_3.4.1      \n [9] rstudioapi_0.14 vctrs_0.5.1     rmarkdown_2.18  tools_4.2.1    \n[13] stringr_1.5.0   glue_1.6.2      xfun_0.35       yaml_2.3.6     \n[17] fastmap_1.1.0   compiler_4.2.1  htmltools_0.5.3 knitr_1.41     \n```\n:::\n:::\n",
+    "supporting": [
+      "efficacy_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}
