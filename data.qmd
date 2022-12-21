@@ -125,8 +125,10 @@ Generally, it is recommended to collect all data pre-processing steps in a separ
 ```{r}
 # you would write this in a separate file directly, without the writeLines command.
 writeLines(
-  text = c("ADSL <- ADSL %>%
-      dplyr::mutate(AGEGR = if_else(AGE < 40, 0, 1, NA_real_))"),
+  text = "
+ADSL <- ADSL %>%
+  dplyr::mutate(AGEGR = if_else(AGE < 40, 0, 1, NA_real_))
+  ",
   con = "ADSL_preproc.R"
 )
 ```
