@@ -20,8 +20,8 @@ format:
   html:
     css: styles.css
     theme: cosmo
-  pdf:
-    documentclass: scrreprt
+  # pdf:
+  #   documentclass: scrreprt
 
 editor: source
 execute: 
