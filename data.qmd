@@ -205,6 +205,8 @@ tm_t\_summary( \# teal.modules.clinical label = "Demographic Table", dataname = 
 
 
 ```{r}
+#| eval: FALSE
+
 tm_front_page()
 ```
 

@@ -1,9 +1,11 @@
 # Introduction
 
+<!-- about teal -->
 
-**At the end of this chapter you should be able to **
 
--   understand the structure and utlility of `teal` apps
+**At the end of this chapter you should be able to**
+
+-   understand the structure of `teal` apps
 -   understand the utility of `teal` apps
 -   determine whether `teal` apps are useful for *you*
 
@@ -21,9 +23,15 @@ teal modules are laid out in three panels.
 
 The layout is pre-set within each module. However, user can decide overall tab order and nesting. See @fig-layout for the typical teal app structure.
 
-![Typical teal app layout](figures_images/teal_panel_layout.png){#fig:layout fig-alt="Structure of a typical teal app"}
+::: {#fig-layout layout-ncol="1"}
+![diagram](figures_images/teal_panel_layout.png){#fig-diagram fig-alt="Structure of a typical teal app"}
 
-### Modules
+![example](figures_images/teal_panel_example.png){#fig-example fig-alt="Screenshot of an example teal app"}
+
+typical teal app layout
+:::
+
+## Modules
 
 `teal` modules are modular building blocks for your `teal` app. They implement specific app functionalities, such as outlier exploration, data visualizations, and survival analysis. Although modules can be created from scratch, many `teal` modules have already been released and can be found in the following packages:
 
@@ -33,4 +41,20 @@ The layout is pre-set within each module. However, user can decide overall tab o
 
 -   `teal.modules.hermes`: modules for analyzing [MultiAssayExperiment objects](https://bioconductor.org/packages/release/bioc/html/MultiAssayExperiment.html)
 
-are shiny modules built within the teal framework that specify analysis to be performed.
+## Dependencies
+
+- part of the nest ecosystem
+- 
+
+
+## Reproducibility
+
+
+
+## Conclusion
+
+- useful for pharma stuff
+- not limited to pharma, data could be anything
+- exploratory analyses
+- reproducible!!
+- 
