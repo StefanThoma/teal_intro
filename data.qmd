@@ -1,3 +1,11 @@
+---
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+<!-- I can find the big teal apps on: https://docs.roche.com/doc/teal.gallery/2022_10_13/articles/sources.html -->
+
 # Data app
 
 ```{r}
@@ -7,11 +15,14 @@
 # here I define parameters for this chapters
 
 
-# read app file
+
+# this reads the data_app.R file and we can use subsections of this script as chunks here
+# avoids rewriting
 knitr::read_chunk(path = "R/data_app.R")
 ```
 
-The App created at the end of this chapter will be the basic building block of all subsequent chapters in this book. The structure of the app code will remain consistent throughout the book --- make sure you understand each line of code of the *toy* application at the end.
+The App created at the end of this chapter will be the basic building block of all subsequent chapters in this book.
+The structure of the app code will remain consistent throughout the book --- make sure you understand each line of code of the *toy* application at the end.
 
 **At the end of this chapter you should be able to**
 
@@ -20,31 +31,43 @@ The App created at the end of this chapter will be the basic building block of a
 -   install and load the relevant packages
 -   write your own app that displays data
 
+## Your first app
+
+As is generally the case when you start a project, you should have an approximate idea of what you would like to achieve.
+In this chapter, the aim is to create an app that visualizes variables of three connected study data-sets.
+The app should also display meta-data guiding users through the app itself.
+
+In most applications where `teal` apps are useful, the above should be included.
+Therefore, all subsequent chapters are built upon the toy app created in this chapter.
+
+## Code structure
+
+-   First, you want to define the project metadata and load the required packages and the data.
+    This can include the author name, the study name, the molecule name, etc.
+
+-   Then, we have a section where we can define parameters for the app.
+    Parameters can be simple (e.g. `background_color <- "grey"` ) but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g. pre-selected variables of interest.
+
+-   After that, we define the app using the `init()` function.
+    This function takes data, modules, and html input and returns a list (usually named `app`) containing the user interface (the `ui` object) and back end (the `server` object) of the application.
+
+-   In the final step we instantiate the app by calling `shinyApp(app$ui, app$server)`.
+
 ## Setup
 
 In this tutorial we will be working with realistic looking but simulated data.
 
 ```{r, file = "R/snippets/install_packages.R"}
 #| eval: FALSE
-# if (!require("remotes")) install.packages("remotes")
-#
-## install teal
-# remotes::install_github("insightsengineering/teal@*release")
-#
-## install teal.modules.general
-# remotes::install_github("insightsengineering/teal.modules.general@*release")
-#
-## install teal.modules.clinical
-# remotes::install_github("insightsengineering/teal.modules.clinical@*release")
-#
-## install teal.modules.hermes
-# remotes::install_github("insightsengineering/teal.modules.hermes@*release")
 ```
 
 ```{r load packages data app}
 ```
 
-We first load two synthetic data sets. `random.cdisc.data::cadsl` is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable `USUBJID`. According to [CDISC](https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl) the main purpose of ADSL is to provide a "(...) source for denominators for populations of interest, stratification variables, and other important subject subgroups".
+We first load two synthetic data sets.
+`random.cdisc.data::cadsl` is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject.
+The unique identifier per subject is stored in the variable `USUBJID`.
+According to [CDISC](https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl) the main purpose of ADSL is to provide a "(...) source for denominators for populations of interest, stratification variables, and other important subject subgroups".
 
 We can now load the three data-sets:
 
@@ -62,18 +85,8 @@ Data Structure for Adverse Event Analysis
 Let's look at the first three rows of the data-frames.
 
 ```{r}
-map(list(ADSL, ADAE, ADTTE), head, 3)
+list(ADSL, ADAE, ADTTE) %>% map(head, 3)
 ```
-
-## Your first app
-
-As is generally the case when you start a project, you should have an approximate idea of what you would like to achieve. In this case, the aim is to create an app that visualizes variables of three connected study data-sets.
-
-## Code structure
-
-First, you want to define the project metadata. This can include the author name, the study name, the molecule name, etc. then, we have a section where we can define parameters for the app. This can be simple parameter values but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g. pre-selected variables of interest.
-
-After that, we define the app using the `init()` function. This function takes data, modules, and html input and returns a list (usually named `app`) containing the user interface (the `ui` object) and back end (the `server` object) of the application. In the final step we instantiate the app by calling `shinyApp(app$ui, app$server)`.
 
 ## `init()`
 
@@ -92,16 +105,25 @@ init(
 )
 ```
 
-The `init()` function sets up a shiny app that consists of `teal` modules. Let's go through the arguments:
+The `init()` function sets up a shiny app that consists of `teal` modules.
+Let's go through the arguments:
 
 **`data`**
 
-In the `data` argument we define one or more data-frames for the application. If more than one data-frames are specified, they should be combined as a list, e.g. `data = list(ADSL, ADTR)`. <!-- For relational data-sets you can define merge keys.  --> For ADaM data-sets, the package `teal.data` provides helper functions with which the `data` argument of `init()` can be specified, --- the `cdisc_data()` and the `cdisc_dataset()` functions. They allow the teal app to know the merge key variables of the data-sets. The `cdisc_data`function returns an S6 object.
+In the `data` argument we define one or more data-frames for the application.
+If more than one data-frames are specified, they should be combined as a list, e.g. `data = list(ADSL, ADTR)`.
+<!-- For relational data-sets you can define merge keys.  --> For ADaM data-sets, the package `teal.data` provides helper functions with which the `data` argument of `init()` can be specified, --- the `cdisc_data()` and the `cdisc_dataset()` functions.
+They allow the teal app to know the merge key variables of the data-sets.
+The `cdisc_data`function returns an S6 object.
 
 ::: {#note:key .callout-note appearance="simple"}
-`keys` are pre-specified variables in ADaM data to merge data-sets. Each type of data-set requires specific keys to be specified. The package `teal.data` automatically chooses the correct key variables based on the `dataname` for the following data-sets: `r paste(names(teal.data:::default_cdisc_keys), collapse = ", ")`.
+`keys` are pre-specified variables in ADaM data to merge data-sets.
+Each type of data-set requires specific keys to be specified.
+The package `teal.data` automatically chooses the correct key variables based on the `dataname` for the following data-sets: `r paste(names(teal.data:::default_cdisc_keys), collapse = ", ")`.
 
-If you want to work with other ADaM data-sets you must specify the keys manually. ADTR is a Tumor Results Analysis data-set where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the `teal.data` package, so we would have to specify them manually:
+If you want to work with other ADaM data-sets you must specify the keys manually.
+ADTR is a Tumor Results Analysis data-set where there is one record (row) per subject.
+As of now, this is not part of the default cdisc keys in the `teal.data` package, so we would have to specify them manually:
 
 ```{r}
 #| eval: false
@@ -117,10 +139,9 @@ cdisc_data(
 Note that all keys have to be specified.
 :::
 
-::: callout-important
-## pre-processing
-
-Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the \``cdisc_data()`\` output. One such pre-processing steps could be the creation of a new variable in the ADSL data-set which splits patients into two age groups where patients younger than 40 are `AGEGR = 0` and patients older than 40 are `AGEGR = 1`.
+Often, pre-processing of data is still necessary.
+Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the `cdisc_data()` output.
+One such pre-processing steps could be the creation of a new variable in the ADSL data-set which splits patients into two age groups where patients younger than 40 are `AGEGR = 0` and patients older than 40 are `AGEGR = 1`.
 
 ```{r}
 # you would write this in a separate file directly, without the writeLines command.
@@ -145,7 +166,8 @@ ADSL_processed <- ADSL %>%
 ADSL_processed$get_raw_data()$AGEGR
 ```
 
-In a real world case we would not necessarily want to separately save the pre-processed `ADSL` in our environment. Instead, we would apply the pre-processing within the `data` argument of the `init()` function, e.g., like this:
+In practice, we would not necessarily want to separately save the pre-processed `ADSL` in our environment.
+Instead, we would apply the pre-processing within the `data` argument of the `init()` function, e.g., like this:
 
 ```{r}
 #| eval: false
@@ -155,14 +177,38 @@ app <- teal::init(
       mutate_dataset(script = "ADSL_preproc.R"),
     cdisc_dataset("ADAE", ADAE),
     cdisc_dataset("ADTTE", ADTTE)
-    # <<additional dataset code>>
+    # <<additional data-set code>>
   )
   # , <<additional init arguments code>>
 )
 ```
+
 :::
 
-### `modules`
+**`modules`** The `modules` argument takes pre-defined or custom `teal` modules as input.
+A module or various modules need to be wrapped within the `modules()` function to work.
+
+In this chapter we look at four useful modules from the `teal.modules.general` and the `teal.modules.clinical` packages to look at the data.
+
+| Package                 | Module                  | Purpose                                                                                  |
+|-------------------------|-------------------------|------------------------------------------------------------------------------------------|
+| `teal.modules.general`  | `tm_front_page()`       | Creates a front page which should include project metadata and an application user guide |
+| `teal.modules.general`  | `tm_data_table()`       | Displays raw data tables                                                                 |
+| `teal.modules.general`  | `tm_variable_browser()` | Let's you look at distributions of variables.                                            |
+| `teal.modules.clinical` | `tm_t_summary()`        |                                                                                          |
+
+modules
+( tm_front_page( \# general label = "Study Information", header_text = c("Info about data source" = "Random data are used that have been created with the 'scda' R package"), tables = list(`NEST packages used` = data.frame(Packages = c("teal.modules.general", "teal.modules.clinical", "scda", "scda.2021"))) ), 
+tm_data_table("Data Table"), general 
+tm_variable_browser("Variable Browser"), general 
+tm_t\_summary( \# teal.modules.clinical label = "Demographic Table", dataname = "ADSL", arm_var = cs_arm_var, summarize_vars = choices_selected( choices = variable_choices(ADSL, demog_vars_adsl), selected = c("SEX", "AGE", "RACE") ) )
+
+
+```{r}
+#| eval: FALSE
+
+tm_front_page()
+```
 
 **header**
 
