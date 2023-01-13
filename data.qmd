@@ -62,6 +62,7 @@ In this tutorial we will be working with realistic looking but simulated data.
 ```
 
 ```{r load packages data app}
+#| echo: false
 ```
 
 We first load two synthetic data sets.

@@ -2,35 +2,35 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "teaching_material_book",
+    "title": "Introduction to teal",
     "section": "",
     "text": "Preface"
   },
   {
     "objectID": "index.html#who-is-this-for",
     "href": "index.html#who-is-this-for",
-    "title": "teaching_material_book",
+    "title": "Introduction to teal",
     "section": "Who is this for",
     "text": "Who is this for\nThis tutorial is aimed at data scientists / analysts who want to write their first teal application. Some R knowledge is required although no exposure to shiny is expected.\nThe teal package aims to make the creation of (teal-specific) shiny applications intuitive — without the need to understand how shiny works exactly. Shiny knowledge is useful once you want to either modify an application, or write your own teal module from scratch."
   },
   {
     "objectID": "index.html#how-is-it-structured",
     "href": "index.html#how-is-it-structured",
-    "title": "teaching_material_book",
+    "title": "Introduction to teal",
     "section": "How is it structured",
     "text": "How is it structured\nAll chapters in this book follow a common structure: First, the learning goals of a chapter is defined. We then go through the step-by-step process of using specific teal modules. In each chapter we combine what we learned into one code chunk with which you can create a working teal application (toy app). As every teal app requires data and meta-data, the toy app created in the introduction will be the fundamental building block of the apps in the subsequent chapters. In the toy apps created in each chapter you should be able to understand every line of code. The code for a more developed app (but built for the same purpose) and a deployed instance of that app is linked at the end of each chapter. What you learned in this chapter should give you a good understanding of how the more developed application works."
   },
   {
     "objectID": "index.html#what-will-you-learn",
     "href": "index.html#what-will-you-learn",
-    "title": "teaching_material_book",
+    "title": "Introduction to teal",
     "section": "What will you learn",
     "text": "What will you learn\nYou will learn the structure of teal applications and the structure of the corresponding code.\nAfter this tutorial you should be able to create your own application for your data based on existing teal modules. This requires an awareness of — some — available modules, where to find them, their intent, how to use them, and where to find the rest. Further, you should be able to customize existing modules to suit your specific needs."
   },
   {
     "objectID": "index.html#where-can-you-find-more",
     "href": "index.html#where-can-you-find-more",
-    "title": "teaching_material_book",
+    "title": "Introduction to teal",
     "section": "Where can you find more",
     "text": "Where can you find more\n\nlink to other manuals for teal"
   },
