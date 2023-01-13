@@ -16,7 +16,7 @@ molecule <- "hexadromedar"
 
 # parameters
 demographic_variables <- c("SEX", "AGE", "RACE")
-arm_variable <- "ARM"
+arm_vars <- "ARM"
 
 ## ---- load data data app ----
 ADSL <- random.cdisc.data::cadsl
@@ -24,7 +24,10 @@ ADAE <- random.cdisc.data::cadae
 ADTTE <- random.cdisc.data::cadtte
 
 
-
+cs_arm_var <- choices_selected(
+  choices = variable_choices(ADSL, subset = arm_vars),
+  selected = "ARM"
+)
 
 
 ## ---- init data app ----
@@ -54,7 +57,7 @@ app <- teal::init(
     tm_t_summary(
       label = "Demographic Table",
       dataname = "ADSL",
-      arm_var = arm_variable,
+      arm_var = cs_arm_var,
       summarize_vars = choices_selected(
         choices = variable_choices(ADSL, demographic_variables),
         selected = c("SEX", "AGE", "RACE")

@@ -63,6 +63,7 @@ In this tutorial we will be working with realistic looking but simulated data.
 
 ```{r load packages data app}
 #| echo: false
+#| message: false
 ```
 
 We first load two synthetic data sets.
@@ -184,7 +185,7 @@ app <- teal::init(
 )
 ```
 
-:::
+
 
 **`modules`** The `modules` argument takes pre-defined or custom `teal` modules as input.
 A module or various modules need to be wrapped within the `modules()` function to work.
@@ -196,7 +197,7 @@ In this chapter we look at four useful modules from the `teal.modules.general` a
 | `teal.modules.general`  | `tm_front_page()`       | Creates a front page which should include project metadata and an application user guide |
 | `teal.modules.general`  | `tm_data_table()`       | Displays raw data tables                                                                 |
 | `teal.modules.general`  | `tm_variable_browser()` | Let's you look at distributions of variables.                                            |
-| `teal.modules.clinical` | `tm_t_summary()`        |                                                                                          |
+| `teal.modules.clinical` | `tm_t_summary()`        | Demographics table                                                                                   |
 
 modules
 ( tm_front_page( \# general label = "Study Information", header_text = c("Info about data source" = "Random data are used that have been created with the 'scda' R package"), tables = list(`NEST packages used` = data.frame(Packages = c("teal.modules.general", "teal.modules.clinical", "scda", "scda.2021"))) ), 
@@ -204,12 +205,30 @@ tm_data_table("Data Table"), general
 tm_variable_browser("Variable Browser"), general 
 tm_t\_summary( \# teal.modules.clinical label = "Demographic Table", dataname = "ADSL", arm_var = cs_arm_var, summarize_vars = choices_selected( choices = variable_choices(ADSL, demog_vars_adsl), selected = c("SEX", "AGE", "RACE") ) )
 
-
+## `tm_front_page()` 
 ```{r}
-#| eval: FALSE
-
+#| eval: false
 tm_front_page()
 ```
+
+## `tm_data_table()`
+```{r}
+#| eval: false
+tm_data_table()
+```
+## `tm_variable_browser`
+```{r}
+#| eval: false
+tm_variable_browser()
+```
+## `tm_t_summary`
+
+Demographics table
+```{r}
+#| eval: false
+tm_t_summary()
+```
+
 
 **header**
 
