@@ -1,9 +1,3 @@
----
-editor: 
-  markdown: 
-    wrap: sentence
----
-
 <!-- I can find the big teal apps on: https://docs.roche.com/doc/teal.gallery/2022_10_13/articles/sources.html -->
 
 # Data app
