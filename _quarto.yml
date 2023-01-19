@@ -1,9 +1,12 @@
 project:
   type: book
+  execute-dir: project
+  output-dir: docs
 
 book:
   title: "Introduction to `teal`"
-  author: "Stefan Thoma"
+  author: 
+    - Stefan Thoma
   date: today
   favicon: teal_fav.png
   chapters:

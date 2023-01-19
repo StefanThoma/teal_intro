@@ -1,0 +1,156 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to teal",
+    "section": "",
+    "text": "Preface"
+  },
+  {
+    "objectID": "index.html#who-is-this-for",
+    "href": "index.html#who-is-this-for",
+    "title": "Introduction to teal",
+    "section": "Who is this for",
+    "text": "Who is this for\nThis tutorial is aimed at data scientists / analysts who want to write their first teal application. Some R knowledge is required although no exposure to shiny is expected.\nThe teal package aims to make the creation of (teal-specific) shiny applications intuitive — without the need to understand how shiny works exactly. Shiny knowledge is useful once you want to either modify an application, or write your own teal module from scratch."
+  },
+  {
+    "objectID": "index.html#how-is-it-structured",
+    "href": "index.html#how-is-it-structured",
+    "title": "Introduction to teal",
+    "section": "How is it structured",
+    "text": "How is it structured\nAll chapters in this book follow a common structure: First, the learning goals of a chapter is defined. We then go through the step-by-step process of using specific teal modules. In each chapter we combine what we learned into one code chunk with which you can create a working teal application (toy app). As every teal app requires data and meta-data, the toy app created in the introduction will be the fundamental building block of the apps in the subsequent chapters. In the toy apps created in each chapter you should be able to understand every line of code. The code for a more developed app (but built for the same purpose) and a deployed instance of that app is linked at the end of each chapter. What you learned in this chapter should give you a good understanding of how the more developed application works."
+  },
+  {
+    "objectID": "index.html#what-will-you-learn",
+    "href": "index.html#what-will-you-learn",
+    "title": "Introduction to teal",
+    "section": "What will you learn",
+    "text": "What will you learn\nYou will learn the structure of teal applications and the structure of the corresponding code.\nAfter this tutorial you should be able to create your own application for your data based on existing teal modules. This requires an awareness of — some — available modules, where to find them, their intent, how to use them, and where to find the rest. Further, you should be able to customize existing modules to suit your specific needs."
+  },
+  {
+    "objectID": "index.html#where-can-you-find-more",
+    "href": "index.html#where-can-you-find-more",
+    "title": "Introduction to teal",
+    "section": "Where can you find more",
+    "text": "Where can you find more\n\nlink to other manuals for teal"
+  },
+  {
+    "objectID": "introduction.html#structure-of-teal-apps",
+    "href": "introduction.html#structure-of-teal-apps",
+    "title": "1  Introduction",
+    "section": "1.1 Structure of teal apps",
+    "text": "1.1 Structure of teal apps\nteal is a shiny-based modular framework. It provides an interactive user interface allowing users to customize tables and visualizations facilitating the exploration and analysis of clinical trial data.\nDynamic analysis and display control, data filtering and code reproducibility are included in each module.\nteal modules are laid out in three panels.\n\nThe Left Panel, referred to as the encoding panel, includes elements used to adjust the output interactively.\nThe Center Panel, referred to as the output panel, where the tables and visualizations are displayed.\nThe Right Panel, referred to as the data filter panel, includes elements used to subset the data interactively.\n\nThe layout is pre-set within each module. However, user can decide overall tab order and nesting. See Figure 1.1 for the typical teal app structure.\n\n\n\n\n\n\n\n(a) diagram\n\n\n\n\n\n\n](genentech.shinyapps.io/teal_safety/)\n\n\nFigure 1.1: typical teal app layout\n\n\nteal is part of the pharmaverse and is particularly built upon tern and rtables."
+  },
+  {
+    "objectID": "introduction.html#modules",
+    "href": "introduction.html#modules",
+    "title": "1  Introduction",
+    "section": "1.2 Modules",
+    "text": "1.2 Modules\nteal modules are modular building blocks for your teal app. They implement specific app functionalities, such as outlier exploration, data visualizations, and survival analysis. Although modules can be created from scratch, many teal modules have already been released and can be found in the following packages:\n\nteal.modules.general: general modules for exploring relational/independent/CDISC data\nteal.modules.clinical: modules specific to CDISC data and clinical trial reporting\nteal.modules.hermes: modules for analyzing MultiAssayExperiment objects"
+  },
+  {
+    "objectID": "introduction.html#reproducibility",
+    "href": "introduction.html#reproducibility",
+    "title": "1  Introduction",
+    "section": "1.3 Reproducibility",
+    "text": "1.3 Reproducibility\n\nr output\nshopping cart"
+  },
+  {
+    "objectID": "introduction.html#conclusion-use-cases",
+    "href": "introduction.html#conclusion-use-cases",
+    "title": "1  Introduction",
+    "section": "1.4 Conclusion / use cases",
+    "text": "1.4 Conclusion / use cases\n\nteal applications allow individuals with little or no programming experience to extract insights from data, making it accessible to a broad audience. The package is particularly aimed at statisticians and statistical programmers in the pharmaceutical industry working with standardized (CDISC) data-sets. However, it is not limited to standardized data-sets and could be used in other fields as well. One of the key features of teal is its ability to ensure reproducibility through the generation of R code for the selected outputs. This is an important consideration for maintaining the accuracy and reliability of results. At present, teal is not intended for regulatory submission, but it may have potential for this purpose in the future."
+  },
+  {
+    "objectID": "data.html#your-first-app",
+    "href": "data.html#your-first-app",
+    "title": "2  Data app",
+    "section": "2.1 Your first app",
+    "text": "2.1 Your first app\nAs is generally the case when you start a project, you should have an approximate idea of what you would like to achieve. In this chapter, the aim is to create an app that visualizes variables of three connected study data-sets. The app should also display meta-data guiding users through the app itself.\nIn most applications where teal apps are useful, the above should be included. Therefore, all subsequent chapters are built upon the toy app created in this chapter."
+  },
+  {
+    "objectID": "data.html#code-structure",
+    "href": "data.html#code-structure",
+    "title": "2  Data app",
+    "section": "2.2 Code structure",
+    "text": "2.2 Code structure\n\nFirst, you want to define the project metadata and load the required packages and the data. This can include the author name, the study name, the molecule name, etc.\nThen, we have a section where we can define parameters for the app. Parameters can be simple (e.g. background_color <- \"gray\" ) but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g. pre-selected variables of interest.\nAfter that, we define the app using the init() function. This function takes data, modules, and html input and returns a list (usually named app) containing the user interface (the ui object) and back end (the server object) of the application.\nIn the final step we instantiate the app by calling shinyApp(app$ui, app$server)."
+  },
+  {
+    "objectID": "data.html#setup",
+    "href": "data.html#setup",
+    "title": "2  Data app",
+    "section": "2.3 Setup",
+    "text": "2.3 Setup\nIn this tutorial we will be working with realistic looking but simulated data.\n\nif (!require(\"remotes\")) install.packages(\"remotes\")\n\n# install teal\nremotes::install_github(\"insightsengineering/teal@*release\")\n\n# install teal.modules.general\nremotes::install_github(\"insightsengineering/teal.modules.general@*release\")\n\n# install tern mmrm (required for teal.modules.clinical)\nremotes::install_github(\"insightsengineering/tern.mmrm@*release\")\n\n# install teal.modules.clinical\nremotes::install_github(\"insightsengineering/teal.modules.clinical@*release\")\n\n# install teal.modules.hermes\nremotes::install_github(\"insightsengineering/teal.modules.hermes@*release\")\n\n\n\n\nWe first load two synthetic data sets. random.cdisc.data::cadsl is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable USUBJID. According to CDISC the main purpose of ADSL is to provide a “(…) source for denominators for populations of interest, stratification variables, and other important subject subgroups”.\nWe can now load the three data-sets:\nData Structure for Adverse Event Analysis\n\n\n\n\n\n\n\n\nData-set name\nExplanation\nPurpose\n\n\n\n\nADSL\nAnalysis data-set subject level\nFiltering\n\n\nADAE\nAnalysis data-set for adverse events\nAdverse events\n\n\nADTTE\nAnalysis data-set for time to event\nEfficacy\n\n\n\n\nADSL <- random.cdisc.data::cadsl\nADAE <- random.cdisc.data::cadae\nADTTE <- random.cdisc.data::cadtte\n\nLet’s look at the first three rows of the data-frames.\n\nlist(ADSL, ADAE, ADTTE) %>% map(head, 3)\n\n[[1]]\n# A tibble: 3 × 56\n  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL\n  <chr>   <chr>       <chr>  <chr>  <int> <fct> <fct> <fct> <fct>  <fct>   <fct>\n1 AB12345 AB12345-CH… id-128 CHN-3     32 YEARS M     ASIAN HISPA… CHN     Y    \n2 AB12345 AB12345-CH… id-262 CHN-15    35 YEARS M     BLAC… NOT H… CHN     N    \n3 AB12345 AB12345-RU… id-378 RUS-3     30 YEARS F     ASIAN NOT H… RUS     N    \n# … with 45 more variables: INVID <chr>, INVNAM <chr>, ARM <fct>, ARMCD <fct>,\n#   ACTARM <fct>, ACTARMCD <fct>, TRT01P <fct>, TRT01A <fct>, TRT02P <fct>,\n#   TRT02A <fct>, REGION1 <fct>, STRATA1 <fct>, STRATA2 <fct>, BMRKR1 <dbl>,\n#   BMRKR2 <fct>, ITTFL <fct>, SAFFL <fct>, BMEASIFL <fct>, BEP01FL <fct>,\n#   AEWITHFL <fct>, RANDDT <date>, TRTSDTM <dttm>, TRTEDTM <dttm>,\n#   TRT01SDTM <dttm>, TRT01EDTM <dttm>, TRT02SDTM <dttm>, TRT02EDTM <dttm>,\n#   AP01SDTM <dttm>, AP01EDTM <dttm>, AP02SDTM <dttm>, AP02EDTM <dttm>, …\n\n[[2]]\n# A tibble: 3 × 92\n  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL\n  <chr>   <chr>       <chr>  <chr>  <int> <fct> <fct> <fct> <fct>  <fct>   <fct>\n1 AB12345 AB12345-BR… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    \n2 AB12345 AB12345-BR… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    \n3 AB12345 AB12345-BR… id-134 BRA-1     47 YEARS M     WHITE NOT H… BRA     Y    \n# … with 81 more variables: INVID <chr>, INVNAM <chr>, ARM <fct>, ARMCD <fct>,\n#   ACTARM <fct>, ACTARMCD <fct>, TRT01P <fct>, TRT01A <fct>, TRT02P <fct>,\n#   TRT02A <fct>, REGION1 <fct>, STRATA1 <fct>, STRATA2 <fct>, BMRKR1 <dbl>,\n#   BMRKR2 <fct>, ITTFL <fct>, SAFFL <fct>, BMEASIFL <fct>, BEP01FL <fct>,\n#   AEWITHFL <fct>, RANDDT <date>, TRTSDTM <dttm>, TRTEDTM <dttm>,\n#   TRT01SDTM <dttm>, TRT01EDTM <dttm>, TRT02SDTM <dttm>, TRT02EDTM <dttm>,\n#   AP01SDTM <dttm>, AP01EDTM <dttm>, AP02SDTM <dttm>, AP02EDTM <dttm>, …\n\n[[3]]\n# A tibble: 3 × 68\n  STUDYID USUBJID     SUBJID SITEID   AGE AGEU  SEX   RACE  ETHNIC COUNTRY DTHFL\n  <chr>   <chr>       <chr>  <chr>  <int> <fct> <fct> <fct> <fct>  <fct>   <fct>\n1 AB12345 AB12345-BR… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    \n2 AB12345 AB12345-BR… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    \n3 AB12345 AB12345-BR… id-105 BRA-1     38 YEARS M     BLAC… HISPA… BRA     N    \n# … with 57 more variables: INVID <chr>, INVNAM <chr>, ARM <fct>, ARMCD <fct>,\n#   ACTARM <fct>, ACTARMCD <fct>, TRT01P <fct>, TRT01A <fct>, TRT02P <fct>,\n#   TRT02A <fct>, REGION1 <fct>, STRATA1 <fct>, STRATA2 <fct>, BMRKR1 <dbl>,\n#   BMRKR2 <fct>, ITTFL <fct>, SAFFL <fct>, BMEASIFL <fct>, BEP01FL <fct>,\n#   AEWITHFL <fct>, RANDDT <date>, TRTSDTM <dttm>, TRTEDTM <dttm>,\n#   TRT01SDTM <dttm>, TRT01EDTM <dttm>, TRT02SDTM <dttm>, TRT02EDTM <dttm>,\n#   AP01SDTM <dttm>, AP01EDTM <dttm>, AP02SDTM <dttm>, AP02EDTM <dttm>, …"
+  },
+  {
+    "objectID": "data.html#init",
+    "href": "data.html#init",
+    "title": "2  Data app",
+    "section": "2.4 init()",
+    "text": "2.4 init()\nThe most crucial function of the teal package(s) is the teal::init() function, which is structured as follows:\n\ninit(\n  data,\n  modules,\n  title = NULL,\n  filter = list(),\n  header = tags$p(\"Add Title Here\"),\n  footer = tags$p(\"Add Footer Here\"),\n  id = character(0)\n)\n\nThe init() function sets up a shiny app that consists of teal modules. Let’s go through the arguments:\ndata\nIn the data argument we define one or more data-frames for the application. If more than one data-frames are specified, they should be combined as a list, e.g. data = list(ADSL, ADTR).  For ADaM data-sets, the package teal.data provides helper functions with which the data argument of init() can be specified, — the cdisc_data() and the cdisc_dataset() functions. They allow the teal app to know the merge key variables of the data-sets. The cdisc_datafunction returns an S6 object.\n\n\n\n\n\n\nkeys are pre-specified variables in ADaM data to merge data-sets. Each type of data-set requires specific keys to be specified. The package teal.data automatically chooses the correct key variables based on the dataname for the following data-sets: ADSL, ADAE, ADEG, ADTTE, ADAETTE, ADCM, ADEX, ADLB, ADMH, ADQS, ADRS, ADSAFTTE, ADVS, ADDV, ADSUB, ADHY.\nIf you want to work with other ADaM data-sets you must specify the keys manually. ADTR is a Tumor Results Analysis data-set where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the teal.data package, so we would have to specify them manually:\n\nADTR <- random.cdisc.data::cadtr\n\n\ncdisc_data(\n  cdisc_dataset(\"ADSL\", ADSL),\n  cdisc_dataset(\"ADTR\", ADTR, keys = c(\"STUDYID\", \"USUBJID\", \"PARAMCD\", \"AVISIT\"))\n)\n\nNote that all keys have to be specified.\n\n\n\nOften, pre-processing of data is still necessary. Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the cdisc_data() output. One such pre-processing steps could be the creation of a new variable in the ADSL data-set which splits patients into two age groups where patients younger than 40 are AGEGR = 0 and patients older than 40 are AGEGR = 1.\n\n# you would write this in a separate file directly, without the writeLines command.\nwriteLines(\n  text = \"\nADSL <- ADSL %>%\n  dplyr::mutate(AGEGR = if_else(AGE < 40, 0, 1, NA_real_))\",\n  con = \"ADSL_preproc.R\"\n)\n\nThe resulting R file looks something like this:\n\nADSL <- ADSL %>%\n  dplyr::mutate(AGEGR = if_else(AGE < 40, 0, 1, NA_real_))\n\n\nADSL_processed <- ADSL %>%\n  cdisc_dataset(\"ADSL\", .) %>%\n  mutate_dataset(script = \"ADSL_preproc.R\")\n# check if the new variable exists:\nADSL_processed$get_raw_data()$AGEGR\n\n  [1] 0 0 0 0 1 1 0 0 0 0 1 0 1 0 0 1 1 0 0 1 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0\n [38] 0 0 1 1 0 0 0 0 0 1 0 0 0 0 1 1 0 0 1 0 0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0\n [75] 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 1 0 1\n[112] 0 0 0 1 0 1 0 0 1 0 1 0 0 0 0 0 0 1 0 1 0 0 0 0 1 1 0 1 0 0 0 1 1 0 0 0 0\n[149] 0 1 1 0 1 0 0 1 0 0 0 1 0 1 0 0 1 1 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0\n[186] 1 0 0 1 0 0 0 0 0 0 0 1 0 1 0 0 1 0 1 0 0 1 0 1 0 0 0 0 0 0 0 1 1 0 0 0 0\n[223] 0 0 0 0 0 1 0 0 1 0 0 0 0 0 1 0 0 0 1 0 0 1 0 0 0 1 0 0 1 0 0 0 0 1 1 0 0\n[260] 0 1 1 0 0 1 0 0 1 0 0 0 1 0 1 0 0 1 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0 0 0\n[297] 0 0 0 0 0 0 1 0 1 0 1 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0 0 1 0 0\n[334] 1 0 0 1 1 1 1 0 1 1 0 0 1 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 1 1\n[371] 0 0 1 0 0 1 0 1 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1\n\n\nIn practice, we would not necessarily want to separately save the pre-processed ADSL in our environment. Instead, we would apply the pre-processing within the data argument of the init() function, e.g., like this:\n\napp <- teal::init(\n  data = cdisc_data(\n    cdisc_dataset(\"ADSL\", ADSL) %>%\n      mutate_dataset(script = \"ADSL_preproc.R\"),\n    cdisc_dataset(\"ADAE\", ADAE),\n    cdisc_dataset(\"ADTTE\", ADTTE)\n    # <<additional data-set code>>\n  )\n  # , <<additional init arguments code>>\n)\n\nmodules The modules argument takes pre-defined or custom teal modules as input. A module or various modules need to be wrapped within the modules() function to work.\nIn this chapter we look at four useful modules from the teal.modules.general and the teal.modules.clinical packages to look at the data.\n\n\n\n\n\n\n\n\nModule\nPackage\nPurpose\n\n\n\n\ntm_front_page()\nteal.modules.general\nCreates a front page which should include project metadata and an application user guide\n\n\ntm_data_table()\nteal.modules.general\nDisplays raw data tables\n\n\ntm_variable_browser()\nteal.modules.general\nLet’s you look at distributions of variables.\n\n\ntm_t_summary()\nteal.modules.clinical\nDemographics table"
+  },
+  {
+    "objectID": "data.html#tm_front_page",
+    "href": "data.html#tm_front_page",
+    "title": "2  Data app",
+    "section": "2.5 tm_front_page()",
+    "text": "2.5 tm_front_page()\nWe can use this module to create an informative front page of our app. This will be the landing page for anyone clicking on the link to our application.\nThe front page allows you to set the context of the app and inform users how to use the app.\nIt can make sense to define inputs in the parameters section, especially for information that is suject to change or might get re-used. This improves code re-usability.\n\n\n\n\n\n\nPackage table\n\n\n\nWe can get all loaded packages with the command `.packages()`:\n\nprint(.packages())\n\n [1] \"forcats\"               \"stringr\"               \"dplyr\"                \n [4] \"purrr\"                 \"readr\"                 \"tidyr\"                \n [7] \"tibble\"                \"tidyverse\"             \"sparkline\"            \n[10] \"teal.modules.clinical\" \"tern\"                  \"rtables\"              \n[13] \"formatters\"            \"teal.modules.general\"  \"teal\"                 \n[16] \"teal.transform\"        \"magrittr\"              \"shinyTree\"            \n[19] \"ggmosaic\"              \"ggplot2\"               \"scda\"                 \n[22] \"teal.data\"             \"shiny\"                 \"random.cdisc.data\"    \n[25] \"stats\"                 \"graphics\"              \"grDevices\"            \n[28] \"utils\"                 \"datasets\"              \"methods\"              \n[31] \"base\"                 \n\n\nFurther, we can get the version number of each package via ` packageVersion()`\n\npackageVersion(\"tidyverse\")\n\n[1] '1.3.2'\n\n\nWe can then create a data-frame listing all packages and versions:\n\npackage_table <- tibble(package = .packages(),\n       version =  sapply(X = .packages(), \n                         FUN = function(x) as.character(packageVersion(x))))\n\n\n2.6 \n\n\n\nYou can supply additional html tags using the additional_tags` argument. If you just want to paste some extra text or your input already includes html tags, use HTML()`\n\n# just some extra text\nHTML(\"here is some extra text\")\n\nhere is some extra text\n\n# a more complex html input\nHTML('<div class=\"header\" checked>\n  <p>Ready to take the Shiny tutorial? If so</p>\n  <a href=\"shiny.rstudio.com/tutorial\">Click Here!</a>\n</div>')\n\n\n  Ready to take the Shiny tutorial? If so\n  Click Here!\n\n\n\nYou can also use the tagList()` to create html code on the spot:\n\ntagList(tags$div(class = \"header\", checked = NA,\n                 tags$p(\"Ready to take the Shiny tutorial? If so\"),\n                 tags$a(href = \"https://docs.posit.co/resources/shiny/\", \"Click Here!\")\n))\n\n\nReady to take the Shiny tutorial? If so\nClick Here!\n\n\n\nLearn more about html tags on the shiny help page.\nmetadata has to be specified in the data argument, e.g.\n\n  data = cdisc_data(\n    cdisc_dataset(\"ADSL\", ADSL,\n      code = \"ADSL <- synthetic_cdisc_data(\\\"latest\\\")$adsl\",\n      metadata = list(\"Author\" = \"NEST team\", \"data_source\" = \"synthetic data\")\n    ),\n    check = TRUE\n  )\n\n\n# Parameters\nmolecule <- \"Gargamelumab\"\nauthor <- \"Stefan Thoma\" \nstudyid <- \"1509210419\"\n\n# Tables for the front page: \n# used packages:\npackage_table <- tibble(package = .packages(),\n       version =  sapply(X = .packages(), \n                         FUN = function(x) as.character(packageVersion(x))))\n# any other tables you want to include.\ncolor_table <- tibble(\n  color = c(\"green\", \"red\"),\n  meaning = c(\"ready\", \"not ready\")\n)\n\n\n\ntm_front_page(\n  label = \"Front page\", # what the navigation item should be called\n  header_text = c(\n    \"Molecule\" = molecule,\n    \"Study ID\" = studyid,\n    \"App Author\" = author,\n  ),\n  tables = list(package_table,\n                color_table),\n  additional_tags = tagList(tags$div(class = \"header\", checked = NA,\n                 tags$p(\"Ready to take the Shiny tutorial? If so\"),\n                 tags$a(href = \"https://docs.posit.co/resources/shiny/\", \"Click Here!\")\n)),\n  footnotes = c(\"X\" = \"is the first footnote\", \"Y is the second footnote\"),\n  show_metadata = TRUE\n)"
+  },
+  {
+    "objectID": "data.html#section",
+    "href": "data.html#section",
+    "title": "2  Data app",
+    "section": "2.6 ",
+    "text": "2.6"
+  },
+  {
+    "objectID": "data.html#tm_data_table",
+    "href": "data.html#tm_data_table",
+    "title": "2  Data app",
+    "section": "2.7 tm_data_table()",
+    "text": "2.7 tm_data_table()\n\ntm_data_table()"
+  },
+  {
+    "objectID": "data.html#tm_variable_browser",
+    "href": "data.html#tm_variable_browser",
+    "title": "2  Data app",
+    "section": "2.8 tm_variable_browser",
+    "text": "2.8 tm_variable_browser\n\ntm_variable_browser()"
+  },
+  {
+    "objectID": "data.html#tm_t_summary",
+    "href": "data.html#tm_t_summary",
+    "title": "2  Data app",
+    "section": "2.9 tm_t_summary",
+    "text": "2.9 tm_t_summary\nDemographics table\n\ntm_t_summary()\n\nheader\nfooter\nid\nCombining everything above, our init() function looks like this:\n\napp <- teal::init(\n  data = cdisc_data(\n    cdisc_dataset(\"ADSL\", ADSL) %>%\n      mutate_dataset(script = \"ADSL_preproc.R\"),\n    cdisc_dataset(\"ADAE\", ADAE),\n    cdisc_dataset(\"ADTTE\", ADTTE)\n  ),\n  modules = modules(\n    tm_front_page(\n      label = \"Study Information\",\n      header_text =\n        c(\"Info about data source\" = \"Random data are used that have been created with the 'scda' R package\"),\n      tables =\n        list(\n          \"packages used\" = package_table,\n          \"color table\" = color_table\n        ),\n      additional_tags = tagList(tags$div(class = \"header\", checked = NA,\n                                         tags$p(\"Ready to take the Shiny tutorial? If so\"),\n                                         tags$a(href = \"https://docs.posit.co/resources/shiny/\", \"Click Here!\")\n      )),\n      show_metadata = TRUE\n    ),\ntm_data_table(\"Data Table\"),\ntm_variable_browser(\"Variable Browser\"),\n    tm_t_summary(\n      label = \"Demographic Table\",\n      dataname = \"ADSL\",\n      arm_var = cs_arm_var,\n      summarize_vars = choices_selected(\n        choices = variable_choices(ADSL, demographic_variables),\n        selected = c(\"SEX\", \"AGE\", \"RACE\")\n      )\n    )\n  ),\n  header = \"My first application\",\n  footer = \"footer\"\n)"
+  },
+  {
+    "objectID": "data.html#toy-app",
+    "href": "data.html#toy-app",
+    "title": "2  Data app",
+    "section": "2.10 Toy app",
+    "text": "2.10 Toy app\nWe have now gone through all steps to create your first teal app.\n\n# data app\n## ---- load packages data app ----\nlibrary(random.cdisc.data) # this package provides the data used\nlibrary(teal.data)\nlibrary(scda)\nlibrary(teal.modules.general)\nlibrary(teal.modules.clinical)\nlibrary(sparkline)\nlibrary(teal)\nlibrary(tidyverse)\n\n\n## ---- load data data app ----\nADSL <- random.cdisc.data::cadsl\nADAE <- random.cdisc.data::cadae\nADTTE <- random.cdisc.data::cadtte\n\n## ---- parameter data app ----\n# metadata\nauthor <- \"Stefan Thoma\"\nmolecule <- \"hexadromedar\"\n\n# parameters\ndemographic_variables <- c(\"SEX\", \"AGE\", \"RACE\")\narm_vars <- \"ARM\"\n\ncs_arm_var <- choices_selected(\n  choices = variable_choices(ADSL, subset = arm_vars),\n  selected = \"ARM\"\n)\n\npackage_table <- tibble(package = .packages(),\n                        version =  sapply(X = .packages(), \n                                          FUN = function(x) as.character(packageVersion(x))))\n# any other tables you want to include.\ncolor_table <- tibble(\n  color = c(\"green\", \"red\"),\n  meaning = c(\"ready\", \"not ready\")\n)\n\n\n## ---- init data app ----\napp <- teal::init(\n  data = cdisc_data(\n    cdisc_dataset(\"ADSL\", ADSL) %>%\n      mutate_dataset(script = \"ADSL_preproc.R\"),\n    cdisc_dataset(\"ADAE\", ADAE),\n    cdisc_dataset(\"ADTTE\", ADTTE)\n  ),\n  modules = modules(\n    tm_front_page(\n      label = \"Study Information\",\n      header_text =\n        c(\"Info about data source\" = \"Random data are used that have been created with the 'scda' R package\"),\n      tables =\n        list(\n          \"packages used\" = package_table,\n          \"color table\" = color_table\n        ),\n      additional_tags = tagList(tags$div(class = \"header\", checked = NA,\n                                         tags$p(\"Ready to take the Shiny tutorial? If so\"),\n                                         tags$a(href = \"https://docs.posit.co/resources/shiny/\", \"Click Here!\")\n      )),\n      show_metadata = TRUE\n    ),\ntm_data_table(\"Data Table\"),\ntm_variable_browser(\"Variable Browser\"),\n    tm_t_summary(\n      label = \"Demographic Table\",\n      dataname = \"ADSL\",\n      arm_var = cs_arm_var,\n      summarize_vars = choices_selected(\n        choices = variable_choices(ADSL, demographic_variables),\n        selected = c(\"SEX\", \"AGE\", \"RACE\")\n      )\n    )\n  ),\n  header = \"My first application\",\n  footer = \"footer\"\n)\n\n\n## ---- run data app ----\nshinyApp(app$ui, app$server)\n\nThe output should look something like this:\n\n\n\nData App preview"
+  },
+  {
+    "objectID": "data.html#production-app",
+    "href": "data.html#production-app",
+    "title": "2  Data app",
+    "section": "2.11 Production app",
+    "text": "2.11 Production app"
+  },
+  {
+    "objectID": "efficacy.html",
+    "href": "efficacy.html",
+    "title": "3  efficacy",
+    "section": "",
+    "text": "http://docs.roche.com/#/agile-R/2022_01_28/teal/sample_apps/sample-app-efficacy/\n\nsessionInfo()\n\nR version 4.2.1 (2022-06-23)\nPlatform: x86_64-apple-darwin17.0 (64-bit)\nRunning under: macOS Big Sur ... 10.16\n\nMatrix products: default\nBLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib\nLAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib\n\nlocale:\n[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nloaded via a namespace (and not attached):\n [1] digest_0.6.30     lifecycle_1.0.3   jsonlite_1.8.3    magrittr_2.0.3   \n [5] evaluate_0.18     rlang_1.0.6       stringi_1.7.8     cli_3.4.1        \n [9] rstudioapi_0.14   vctrs_0.5.1       rmarkdown_2.18    tools_4.2.1      \n[13] stringr_1.5.0     glue_1.6.2        htmlwidgets_1.5.4 xfun_0.35        \n[17] yaml_2.3.6        fastmap_1.1.0     compiler_4.2.1    htmltools_0.5.3  \n[21] knitr_1.41"
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "4  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2"
+  }
+]
