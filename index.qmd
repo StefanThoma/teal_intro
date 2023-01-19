@@ -1,5 +1,11 @@
 # Preface {.unnumbered}
 
+
+```{r}
+# this is just a test, delete me
+knitr::read_chunk(path = "R/data_app.R")
+```
+
 <!--# about the book -->
 
 ```{r}
