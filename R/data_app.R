@@ -9,6 +9,12 @@ library(sparkline)
 library(teal)
 library(tidyverse)
 
+
+## ---- load data data app ----
+ADSL <- random.cdisc.data::cadsl
+ADAE <- random.cdisc.data::cadae
+ADTTE <- random.cdisc.data::cadtte
+
 ## ---- parameter data app ----
 # metadata
 author <- "Stefan Thoma"
@@ -16,15 +22,25 @@ molecule <- "hexadromedar"
 
 # parameters
 demographic_variables <- c("SEX", "AGE", "RACE")
-arm_variable <- "ARM"
+arm_vars <- "ARM"
 
-## ---- load data data app ----
-ADSL <- random.cdisc.data::cadsl
-ADAE <- random.cdisc.data::cadae
-ADTTE <- random.cdisc.data::cadtte
+cs_arm_var <- choices_selected(
+  choices = variable_choices(ADSL, subset = arm_vars),
+  selected = "ARM"
+)
 
-
-
+package_table <- tibble(
+  package = .packages(),
+  version = sapply(
+    X = .packages(),
+    FUN = function(x) as.character(packageVersion(x))
+  )
+)
+# any other tables you want to include.
+color_table <- tibble(
+  color = c("green", "red"),
+  meaning = c("ready", "not ready")
+)
 
 
 ## ---- init data app ----
@@ -42,19 +58,22 @@ app <- teal::init(
         c("Info about data source" = "Random data are used that have been created with the 'scda' R package"),
       tables =
         list(
-          "NEST packages used" =
-            data.frame(
-              Packages =
-                c("teal.modules.general", "teal.modules.clinical", "scda", "scda.2021")
-            )
-        )
+          "packages used" = package_table,
+          "color table" = color_table
+        ),
+      additional_tags = tagList(tags$div(
+        class = "header", checked = NA,
+        tags$p("Ready to take the Shiny tutorial? If so"),
+        tags$a(href = "https://docs.posit.co/resources/shiny/", "Click Here!")
+      )),
+      show_metadata = TRUE
     ),
     tm_data_table("Data Table"),
     tm_variable_browser("Variable Browser"),
     tm_t_summary(
       label = "Demographic Table",
       dataname = "ADSL",
-      arm_var = arm_variable,
+      arm_var = cs_arm_var,
       summarize_vars = choices_selected(
         choices = variable_choices(ADSL, demographic_variables),
         selected = c("SEX", "AGE", "RACE")

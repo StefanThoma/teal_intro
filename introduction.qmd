@@ -58,7 +58,7 @@ typical teal app layout
 ## Conclusion / use cases
 
 <!--# This chapter could use some input from others -->
-`teal` applicatons allow individuals with little or no programming experience to extract insights from data, making it accessible to a broad audience.
+`teal` applications allow individuals with little or no programming experience to extract insights from data, making it accessible to a broad audience.
 The package is particularly aimed at statisticians and statistical programmers in the pharmaceutical industry working with standardized (CDISC) data-sets.
 However, it is not limited to standardized data-sets and could be used in other fields as well. 
 One of the key features of teal is its ability to ensure reproducibility through the generation of R code for the selected outputs. 

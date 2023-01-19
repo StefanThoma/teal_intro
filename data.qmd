@@ -46,7 +46,7 @@ Therefore, all subsequent chapters are built upon the toy app created in this ch
     This can include the author name, the study name, the molecule name, etc.
 
 -   Then, we have a section where we can define parameters for the app.
-    Parameters can be simple (e.g. `background_color <- "grey"` ) but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g. pre-selected variables of interest.
+    Parameters can be simple (e.g. `background_color <- "gray"` ) but they can also be short code snippets that would otherwise often be repeated throughout the application, e.g. pre-selected variables of interest.
 
 -   After that, we define the app using the `init()` function.
     This function takes data, modules, and html input and returns a list (usually named `app`) containing the user interface (the `ui` object) and back end (the `server` object) of the application.
@@ -62,6 +62,8 @@ In this tutorial we will be working with realistic looking but simulated data.
 ```
 
 ```{r load packages data app}
+#| echo: false
+#| message: false
 ```
 
 We first load two synthetic data sets.
@@ -183,31 +185,162 @@ app <- teal::init(
 )
 ```
 
-:::
-
 **`modules`** The `modules` argument takes pre-defined or custom `teal` modules as input.
 A module or various modules need to be wrapped within the `modules()` function to work.
 
 In this chapter we look at four useful modules from the `teal.modules.general` and the `teal.modules.clinical` packages to look at the data.
 
-| Package                 | Module                  | Purpose                                                                                  |
-|-------------------------|-------------------------|------------------------------------------------------------------------------------------|
-| `teal.modules.general`  | `tm_front_page()`       | Creates a front page which should include project metadata and an application user guide |
-| `teal.modules.general`  | `tm_data_table()`       | Displays raw data tables                                                                 |
-| `teal.modules.general`  | `tm_variable_browser()` | Let's you look at distributions of variables.                                            |
-| `teal.modules.clinical` | `tm_t_summary()`        |                                                                                          |
+| Module                  | Package                 | Purpose                                                                                  |
+|----------------------|---------------------|-----------------------------|
+| `tm_front_page()`       | `teal.modules.general`  | Creates a front page which should include project metadata and an application user guide |
+| `tm_data_table()`       | `teal.modules.general`  | Displays raw data tables                                                                 |
+| `tm_variable_browser()` | `teal.modules.general`  | Let's you look at distributions of variables.                                            |
+| `tm_t_summary()`        | `teal.modules.clinical` | Demographics table                                                                       |
 
-modules
-( tm_front_page( \# general label = "Study Information", header_text = c("Info about data source" = "Random data are used that have been created with the 'scda' R package"), tables = list(`NEST packages used` = data.frame(Packages = c("teal.modules.general", "teal.modules.clinical", "scda", "scda.2021"))) ), 
-tm_data_table("Data Table"), general 
-tm_variable_browser("Variable Browser"), general 
-tm_t\_summary( \# teal.modules.clinical label = "Demographic Table", dataname = "ADSL", arm_var = cs_arm_var, summarize_vars = choices_selected( choices = variable_choices(ADSL, demog_vars_adsl), selected = c("SEX", "AGE", "RACE") ) )
+## `tm_front_page()`
 
+We can use this module to create an informative front page of our app.
+This will be the landing page for anyone clicking on the link to our application.
+
+The front page allows you to set the context of the app and inform users how to use the app.
+
+It can make sense to define inputs in the parameters section, especially for information that is subject to change or might get re-used.
+This improves code re-usability.
+
+::: callout-tip
+## Package table
+
+We can get all loaded packages with the command \`.packages()\`:
 
 ```{r}
-#| eval: FALSE
+print(.packages())
+```
 
-tm_front_page()
+Further, we can get the version number of each package via \` packageVersion()\`
+
+```{r}
+packageVersion("tidyverse")
+```
+
+We can then create a data-frame listing all packages and versions:
+
+```{r}
+package_table <- tibble(
+  package = .packages(),
+  version = sapply(
+    X = .packages(),
+    FUN = function(x) as.character(packageVersion(x))
+  )
+)
+```
+
+## 
+:::
+
+You can supply additional html tags using the `additional_tags`\` argument.
+If you just want to paste some extra text or your input already includes html tags, use `HTML()`\`
+
+```{r}
+# just some extra text
+HTML("here is some extra text")
+# a more complex html input
+HTML('<div class="header" checked>
+  <p>Ready to take the Shiny tutorial? If so</p>
+  <a href="shiny.rstudio.com/tutorial">Click Here!</a>
+</div>')
+```
+
+You can also use the `tagList()`\` to create html code on the spot:
+
+```{r}
+tagList(tags$div(
+  class = "header", checked = NA,
+  tags$p("Ready to take the Shiny tutorial? If so"),
+  tags$a(href = "https://docs.posit.co/resources/shiny/", "Click Here!")
+))
+```
+
+Learn more about html tags on [the shiny help page.](https://shiny.rstudio.com/articles/tag-glossary.html)
+
+metadata has to be specified in the data argument, e.g.
+
+```{r}
+#| eval: false
+data <- cdisc_data(
+  cdisc_dataset("ADSL", ADSL,
+    code = "ADSL <- synthetic_cdisc_data(\"latest\")$adsl",
+    metadata = list("Author" = "NEST team", "data_source" = "synthetic data")
+  ),
+  check = TRUE
+)
+```
+
+```{r}
+#| eval: false
+# Parameters
+molecule <- "Gargamelumab"
+author <- "Stefan Thoma"
+studyid <- "1509210419"
+
+# Tables for the front page:
+# used packages:
+package_table <- tibble(
+  package = .packages(),
+  version = sapply(
+    X = .packages(),
+    FUN = function(x) as.character(packageVersion(x))
+  )
+)
+# any other tables you want to include.
+color_table <- tibble(
+  color = c("green", "red"),
+  meaning = c("ready", "not ready")
+)
+
+
+
+tm_front_page(
+  label = "Front page", # what the navigation item should be called
+  header_text = c(
+    "Molecule" = molecule,
+    "Study ID" = studyid,
+    "App Author" = author,
+  ),
+  tables = list(
+    package_table,
+    color_table
+  ),
+  additional_tags = tagList(tags$div(
+    class = "header", checked = NA,
+    tags$p("Ready to take the Shiny tutorial? If so"),
+    tags$a(href = "https://docs.posit.co/resources/shiny/", "Click Here!")
+  )),
+  footnotes = c("X" = "is the first footnote", "Y is the second footnote"),
+  show_metadata = TRUE
+)
+```
+
+## `tm_data_table()`
+
+```{r}
+#| eval: false
+tm_data_table()
+```
+
+## `tm_variable_browser`
+
+```{r}
+#| eval: false
+tm_variable_browser()
+```
+
+## `tm_t_summary`
+
+Demographics table
+
+```{r}
+#| eval: false
+tm_t_summary()
 ```
 
 **header**
