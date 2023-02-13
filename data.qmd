@@ -187,8 +187,8 @@ In this chapter we look at four useful modules from the `teal.modules.general` a
 | Module                  | Package                 | Purpose                                                                                  |
 |----------------------|---------------------|-----------------------------|
 | `tm_front_page()`       | `teal.modules.general`  | Creates a front page which should include project metadata and an application user guide |
-| `tm_data_table()`       | `teal.modules.general`  | Displays raw data tables                                                                 |
 | `tm_variable_browser()` | `teal.modules.general`  | Let's you look at distributions of variables.                                            |
+| `tm_data_table()`       | `teal.modules.general`  | Displays raw data tables                                                                 |
 | `tm_t_summary()`        | `teal.modules.clinical` | Demographics table                                                                       |
 
 ## `tm_front_page()`
@@ -219,20 +219,20 @@ packageVersion("tidyverse")
 We can then create a data-frame listing all packages and versions:
 
 ```{r}
-package_table <- tibble(
+(package_table <- tibble(
   package = .packages(),
   version = sapply(
     X = .packages(),
     FUN = function(x) as.character(packageVersion(x))
   )
-)
+))
 ```
 
-## 
+
 :::
 
-You can supply additional html tags using the `additional_tags`\` argument.
-If you just want to paste some extra text or your input already includes html tags, use `HTML()`\`
+You can supply additional html tags using the `additional_tags` argument.
+If you just want to paste some extra text or your input already includes html tags, use `HTML()`
 
 ```{r}
 # just some extra text
@@ -244,7 +244,7 @@ HTML('<div class="header" checked>
 </div>')
 ```
 
-You can also use the `tagList()`\` to create html code on the spot:
+You can also use the `tagList()` to create html code on the spot:
 
 ```{r}
 tagList(tags$div(
@@ -254,9 +254,10 @@ tagList(tags$div(
 ))
 ```
 
-Learn more about html tags on [the shiny help page.](https://shiny.rstudio.com/articles/tag-glossary.html)
+Learn more about html tags on [the shiny help page](https://shiny.rstudio.com/articles/tag-glossary.html).
 
-metadata has to be specified in the data argument, e.g.
+
+You can also specify metadata of your data-sets in the data argument, e.g.
 
 ```{r}
 #| eval: false
@@ -310,9 +311,10 @@ tm_front_page(
     tags$a(href = "https://docs.posit.co/resources/shiny/", "Click Here!")
   )),
   footnotes = c("X" = "is the first footnote", "Y is the second footnote"),
-  show_metadata = TRUE
+  show_metadata = TRUE # lets app users access the specified metadata.
 )
 ```
+
 
 ## `tm_data_table()`
 
@@ -321,11 +323,18 @@ tm_front_page(
 tm_data_table()
 ```
 
+
 ## `tm_variable_browser`
+
+The `tm_variable_browser` lets app users look at summaries of variables in the data-set. 
+This module does not require any additional inputs to its function to be useful. 
+It's arguments do allow for some level of customization: 
+
+
 
 ```{r}
 #| eval: false
-tm_variable_browser()
+?tm_variable_browser()
 ```
 
 ## `tm_t_summary`
@@ -362,3 +371,12 @@ The output should look something like this:
 ![Data App preview](figures_images/app_data_1.png){fig-alt="Our first app should look like this"}
 
 ## Production app
+
+
+```{r}
+{library(shiny)
+  vwr = dialogViewer('Run Data App', width = 1600, height = 1200)
+  runGadget(shinyAppDir(appDir = 'R'), viewer = vwr)
+}
+```
+
