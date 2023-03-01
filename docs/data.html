@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.269">
+<meta name="generator" content="quarto-1.1.189">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -178,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./efficacy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">efficacy</span></a>
+  <a href="./efficacy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Efficacy app</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -189,6 +189,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./feedback.html" class="sidebar-item-text sidebar-link">Feedback</a>
   </div>
 </li>
     </ul>
@@ -205,11 +210,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup"><span class="toc-section-number">2.3</span>  Setup</a></li>
   <li><a href="#init" id="toc-init" class="nav-link" data-scroll-target="#init"><span class="toc-section-number">2.4</span>  <code>init()</code></a></li>
   <li><a href="#tm_front_page" id="toc-tm_front_page" class="nav-link" data-scroll-target="#tm_front_page"><span class="toc-section-number">2.5</span>  <code>tm_front_page()</code></a></li>
-  <li><a href="#tm_data_table" id="toc-tm_data_table" class="nav-link" data-scroll-target="#tm_data_table"><span class="toc-section-number">2.7</span>  <code>tm_data_table()</code></a></li>
-  <li><a href="#tm_variable_browser" id="toc-tm_variable_browser" class="nav-link" data-scroll-target="#tm_variable_browser"><span class="toc-section-number">2.8</span>  <code>tm_variable_browser</code></a></li>
-  <li><a href="#tm_t_summary" id="toc-tm_t_summary" class="nav-link" data-scroll-target="#tm_t_summary"><span class="toc-section-number">2.9</span>  <code>tm_t_summary</code></a></li>
-  <li><a href="#toy-app" id="toc-toy-app" class="nav-link" data-scroll-target="#toy-app"><span class="toc-section-number">2.10</span>  Toy app</a></li>
-  <li><a href="#production-app" id="toc-production-app" class="nav-link" data-scroll-target="#production-app"><span class="toc-section-number">2.11</span>  Production app</a></li>
+  <li><a href="#tm_data_table-sec-data_table" id="toc-tm_data_table-sec-data_table" class="nav-link" data-scroll-target="#tm_data_table-sec-data_table"><span class="toc-section-number">2.6</span>  <code>tm_data_table()</code> #sec-data_table</a></li>
+  <li><a href="#tm_variable_browser" id="toc-tm_variable_browser" class="nav-link" data-scroll-target="#tm_variable_browser"><span class="toc-section-number">2.7</span>  <code>tm_variable_browser</code></a></li>
+  <li><a href="#tm_t_summary" id="toc-tm_t_summary" class="nav-link" data-scroll-target="#tm_t_summary"><span class="toc-section-number">2.8</span>  <code>tm_t_summary</code></a></li>
+  <li><a href="#toy-app" id="toc-toy-app" class="nav-link" data-scroll-target="#toy-app"><span class="toc-section-number">2.9</span>  Toy app</a></li>
+  <li><a href="#production-app" id="toc-production-app" class="nav-link" data-scroll-target="#production-app"><span class="toc-section-number">2.10</span>  Production app</a></li>
   </ul>
 </nav>
     </div>
@@ -226,7 +231,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="quarto-title-meta">
 
     
-  
     
   </div>
   
@@ -258,28 +262,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="setup" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="setup"><span class="header-section-number">2.3</span> Setup</h2>
-<p>In this tutorial we will be working with realistic looking but simulated data.</p>
+<p>To get started, we first need to install the <code>teal</code> packages from GitHub. This works best if you have a GitHub account to which you are connected in your current R environment using a Personal Access Token (PAT).</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Connect to GitHub
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are different ways to connect RStudio to GitHub. I find it easiest using the R-packages <code>credentials</code> and <code>usethis</code> In any case: You need a GitHub account.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first, you need to install `usethis`</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"usethis"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Add authentication information:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use your GitHub user name and associated email address.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git_config</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">user.name =</span> <span class="st">"StefanThoma"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">user.email =</span> <span class="st">"stefan.thoma@roche.com"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># feel free to write a more appropriate description.</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># default scopes of the token should work fine.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>(<span class="at">description =</span> <span class="st">"connect this session to github"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure to store your token in a save place, e.g. a password manager.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># I currently use bitwarden, which is free and open source.</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># finally, add your token to the machine. Use:</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># And enter the created GH-Token in the R console when prompted</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 <div class="cell" data-file="R/snippets/install_packages.R">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"remotes"</span>)) <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal@*release"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal.modules.general</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal.modules.general@*release"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># install tern mmrm (required for teal.modules.clinical)</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/tern.mmrm@*release"</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal.modules.clinical</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal.modules.clinical@*release"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal.modules.hermes</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal.modules.hermes@*release"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"remotes"</span>)) <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal@*release"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal.modules.general</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal.modules.general@*release"</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># install tern mmrm (required for teal.modules.clinical)</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/tern.mmrm@*release"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal.modules.clinical</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal.modules.clinical@*release"</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co"># install teal.modules.hermes</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"insightsengineering/teal.modules.hermes@*release"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 
 </div>
+<p>In this tutorial we will be working with realistic looking but simulated data.</p>
 <p>We first load two synthetic data sets. <code>random.cdisc.data::cadsl</code> is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject. The unique identifier per subject is stored in the variable <code>USUBJID</code>. According to <a href="https://www.cdisc.org/education/course/subject-level-analysis-dataset-adsl">CDISC</a> the main purpose of ADSL is to provide a “(…) source for denominators for populations of interest, stratification variables, and other important subject subgroups”.</p>
 <p>We can now load the three data-sets:</p>
 <p>Data Structure for Adverse Event Analysis</p>
@@ -315,13 +354,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadsl</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ADAE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadae</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>ADTTE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtte</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadsl</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ADAE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadae</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>ADTTE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtte</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s look at the first three rows of the data-frames.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(ADSL, ADAE, ADTTE) <span class="sc">%&gt;%</span> <span class="fu">map</span>(head, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(ADSL, ADAE, ADTTE) <span class="sc">%&gt;%</span> <span class="fu">map</span>(head, <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 # A tibble: 3 × 56
@@ -374,61 +413,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="2.4" class="anchored" data-anchor-id="init"><span class="header-section-number">2.4</span> <code>init()</code></h2>
 <p>The most crucial function of the <code>teal</code> package(s) is <a href="https://insightsengineering.github.io/teal/main/reference/init.html?q=init#null">the <code>teal::init()</code> function</a>, which is structured as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  data,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  modules,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="cn">NULL</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">filter =</span> <span class="fu">list</span>(),</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Title Here"</span>),</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Footer Here"</span>),</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">character</span>(<span class="dv">0</span>)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">init</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  data,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  modules,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="cn">NULL</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">filter =</span> <span class="fu">list</span>(),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Title Here"</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Add Footer Here"</span>),</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>init()</code> function sets up a shiny app that consists of <code>teal</code> modules. Let’s go through the arguments:</p>
+<p>In <code>header</code> and <code>footer</code> we can specify html content to be displayed at the top (respectively at the bottom) of the application.</p>
 <p><strong><code>data</code></strong></p>
 <p>In the <code>data</code> argument we define one or more data-frames for the application. If more than one data-frames are specified, they should be combined as a list, e.g.&nbsp;<code>data = list(ADSL, ADTR)</code>. <!-- For relational data-sets you can define merge keys.  --> For ADaM data-sets, the package <code>teal.data</code> provides helper functions with which the <code>data</code> argument of <code>init()</code> can be specified, — the <code>cdisc_data()</code> and the <code>cdisc_dataset()</code> functions. They allow the teal app to know the merge key variables of the data-sets. The <code>cdisc_data</code>function returns an S6 object.</p>
-<div id="note:key" class="callout-note callout callout-style-simple">
-<div class="callout-body d-flex">
+<div id="note:key" class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div id="note:key" class="callout-body-container">
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div id="note:key" class="callout-body-container callout-body">
 <p><code>keys</code> are pre-specified variables in ADaM data to merge data-sets. Each type of data-set requires specific keys to be specified. The package <code>teal.data</code> automatically chooses the correct key variables based on the <code>dataname</code> for the following data-sets: ADSL, ADAE, ADEG, ADTTE, ADAETTE, ADCM, ADEX, ADLB, ADMH, ADQS, ADRS, ADSAFTTE, ADVS, ADDV, ADSUB, ADHY.</p>
 <p>If you want to work with other ADaM data-sets you must specify the keys manually. ADTR is a Tumor Results Analysis data-set where there is one record (row) per subject. As of now, this is not part of the default cdisc keys in the <code>teal.data</code> package, so we would have to specify them manually:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ADTR <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtr</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cdisc_data</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTR"</span>, ADTR, <span class="at">keys =</span> <span class="fu">c</span>(<span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"AVISIT"</span>))</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ADTR <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtr</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cdisc_data</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADTR"</span>, ADTR, <span class="at">keys =</span> <span class="fu">c</span>(<span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"PARAMCD"</span>, <span class="st">"AVISIT"</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that all keys have to be specified.</p>
 </div>
 </div>
-</div>
 <p>Often, pre-processing of data is still necessary. Generally, it is recommended to collect all data pre-processing steps in a separate R-script, which can then directly be applied to the <code>cdisc_data()</code> output. One such pre-processing steps could be the creation of a new variable in the ADSL data-set which splits patients into two age groups where patients younger than 40 are <code>AGEGR = 0</code> and patients older than 40 are <code>AGEGR = 1</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you would write this in a separate file directly, without the writeLines command.</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="st">"</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">ADSL &lt;- ADSL %&gt;%</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="st">  dplyr::mutate(AGEGR = if_else(AGE &lt; 40, 0, 1, NA_real_))"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">con =</span> <span class="st">"ADSL_preproc.R"</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># you would write this in a separate file directly, without the writeLines command.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">writeLines</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">text =</span> <span class="st">"</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">ADSL &lt;- ADSL %&gt;%</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">  dplyr::mutate(AGEGR = if_else(AGE &lt; 40, 0, 1, NA_real_))"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">con =</span> <span class="st">"R/snippets/ADSL_preproc.R"</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The resulting R file looks something like this:</p>
-<div class="cell" data-file="ADSL_preproc.R">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> ADSL <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">AGEGR =</span> <span class="fu">if_else</span>(AGE <span class="sc">&lt;</span> <span class="dv">40</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="cn">NA_real_</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-file="R/snippets/ADSL_preproc.R">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> ADSL <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">AGEGR =</span> <span class="fu">if_else</span>(AGE <span class="sc">&lt;</span> <span class="dv">40</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="cn">NA_real_</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ADSL_processed <span class="ot">&lt;-</span> ADSL <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, .) <span class="sc">%&gt;%</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"ADSL_preproc.R"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check if the new variable exists:</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>ADSL_processed<span class="sc">$</span><span class="fu">get_raw_data</span>()<span class="sc">$</span>AGEGR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ADSL_processed <span class="ot">&lt;-</span> ADSL <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, .) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"R/snippets/ADSL_preproc.R"</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check if the new variable exists:</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ADSL_processed<span class="sc">$</span><span class="fu">get_raw_data</span>()<span class="sc">$</span>AGEGR</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 0 0 0 0 1 1 0 0 0 0 1 0 1 0 0 1 1 0 0 1 1 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0
  [38] 0 0 1 1 0 0 0 0 0 1 0 0 0 0 1 1 0 0 1 0 0 0 0 0 1 0 0 1 0 0 1 0 0 0 0 0 0
@@ -445,18 +487,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>In practice, we would not necessarily want to separately save the pre-processed <code>ADSL</code> in our environment. Instead, we would apply the pre-processing within the <code>data</code> argument of the <code>init()</code> function, e.g., like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"ADSL_preproc.R"</span>),</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># &lt;&lt;additional data-set code&gt;&gt;</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># , &lt;&lt;additional init arguments code&gt;&gt;</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"R/snippets/ADSL_preproc.R"</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># &lt;&lt;additional data-set code&gt;&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># , &lt;&lt;additional init arguments code&gt;&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong><code>modules</code></strong> The <code>modules</code> argument takes pre-defined or custom <code>teal</code> modules as input. A module or various modules need to be wrapped within the <code>modules()</code> function to work.</p>
+<p><strong><code>filter</code></strong></p>
+<p>This text is still under construction.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>filter <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">ADSL =</span> <span class="fu">structure</span>(<span class="fu">list</span>(<span class="at">AGE =</span> <span class="fu">list</span>()), <span class="at">filterable =</span> <span class="fu">c</span>(<span class="st">"AGE"</span>, <span class="st">"SEX"</span>, <span class="st">"RACE"</span>)))</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">module</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ADSL AGE histogram"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">server =</span> <span class="cf">function</span>(input, output, session, datasets) {</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    output<span class="sc">$</span>hist <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>(</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">hist</span>(datasets<span class="sc">$</span><span class="fu">get_data</span>(<span class="st">"ADSL"</span>, <span class="at">filtered =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>AGE)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">ui =</span> <span class="cf">function</span>(id, ...) {</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    ns <span class="ot">&lt;-</span> <span class="fu">NS</span>(id)</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plotOutput</span>(<span class="fu">ns</span>(<span class="st">"hist"</span>))</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">filters =</span> <span class="st">"ADSL"</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>+ ADSL AGE histogram</code></pre>
+</div>
+</div>
+<p><strong><code>id</code></strong></p>
+<p>Not sure if this should be included.</p>
+<p><strong><code>modules</code></strong></p>
+<p>The <code>modules</code> argument takes pre-defined or custom <code>teal</code> modules as input. A module or various modules need to be wrapped within the <code>modules()</code> function to work.</p>
 <p>In this chapter we look at four useful modules from the <code>teal.modules.general</code> and the <code>teal.modules.clinical</code> packages to look at the data.</p>
 <table class="table">
 <colgroup>
@@ -478,14 +546,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td>Creates a front page which should include project metadata and an application user guide</td>
 </tr>
 <tr class="even">
-<td><code>tm_data_table()</code></td>
-<td><code>teal.modules.general</code></td>
-<td>Displays raw data tables</td>
-</tr>
-<tr class="odd">
 <td><code>tm_variable_browser()</code></td>
 <td><code>teal.modules.general</code></td>
 <td>Let’s you look at distributions of variables.</td>
+</tr>
+<tr class="odd">
+<td><code>tm_data_table()</code></td>
+<td><code>teal.modules.general</code></td>
+<td>Displays raw data tables</td>
 </tr>
 <tr class="even">
 <td><code>tm_t_summary()</code></td>
@@ -499,7 +567,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="2.5" class="anchored" data-anchor-id="tm_front_page"><span class="header-section-number">2.5</span> <code>tm_front_page()</code></h2>
 <p>We can use this module to create an informative front page of our app. This will be the landing page for anyone clicking on the link to our application.</p>
 <p>The front page allows you to set the context of the app and inform users how to use the app.</p>
-<p>It can make sense to define inputs in the parameters section, especially for information that is suject to change or might get re-used. This improves code re-usability.</p>
+<p>It can make sense to define inputs in the parameters section, especially for information that is subject to change or might get re-used. This improves code re-usability.</p>
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -512,51 +580,68 @@ Package table
 <div class="callout-body-container callout-body">
 <p>We can get all loaded packages with the command `.packages()`:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">.packages</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">.packages</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] "forcats"               "stringr"               "dplyr"                
- [4] "purrr"                 "readr"                 "tidyr"                
- [7] "tibble"                "tidyverse"             "sparkline"            
-[10] "teal.modules.clinical" "tern"                  "rtables"              
-[13] "formatters"            "teal.modules.general"  "teal"                 
-[16] "teal.transform"        "magrittr"              "shinyTree"            
-[19] "ggmosaic"              "ggplot2"               "scda"                 
-[22] "teal.data"             "shiny"                 "random.cdisc.data"    
-[25] "stats"                 "graphics"              "grDevices"            
-[28] "utils"                 "datasets"              "methods"              
-[31] "base"                 </code></pre>
+<pre><code> [1] "lubridate"             "timechange"            "forcats"              
+ [4] "stringr"               "dplyr"                 "purrr"                
+ [7] "readr"                 "tidyr"                 "tibble"               
+[10] "tidyverse"             "sparkline"             "teal.modules.clinical"
+[13] "tern"                  "rtables"               "formatters"           
+[16] "teal.modules.general"  "teal"                  "teal.transform"       
+[19] "magrittr"              "shinyTree"             "ggmosaic"             
+[22] "ggplot2"               "teal.data"             "shiny"                
+[25] "random.cdisc.data"     "stats"                 "graphics"             
+[28] "grDevices"             "datasets"              "utils"                
+[31] "methods"               "base"                 </code></pre>
 </div>
 </div>
 <p>Further, we can get the version number of each package via ` packageVersion()`</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] '1.3.2'</code></pre>
+<pre><code>[1] '1.3.2.9000'</code></pre>
 </div>
 </div>
 <p>We can then create a data-frame listing all packages and versions:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>package_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">package =</span> <span class="fu">.packages</span>(),</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">version =</span>  <span class="fu">sapply</span>(<span class="at">X =</span> <span class="fu">.packages</span>(), </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                         <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">as.character</span>(<span class="fu">packageVersion</span>(x))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>(package_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">package =</span> <span class="fu">.packages</span>(),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="fu">sapply</span>(</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> <span class="fu">.packages</span>(),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">as.character</span>(<span class="fu">packageVersion</span>(x))</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 2
+   package    version   
+   &lt;chr&gt;      &lt;chr&gt;     
+ 1 lubridate  1.9.0     
+ 2 timechange 0.2.0     
+ 3 forcats    0.5.2     
+ 4 stringr    1.5.0     
+ 5 dplyr      1.0.10    
+ 6 purrr      1.0.1     
+ 7 readr      2.1.3     
+ 8 tidyr      1.2.1     
+ 9 tibble     3.1.8     
+10 tidyverse  1.3.2.9000
+# … with 22 more rows</code></pre>
 </div>
-<section id="section" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="section"><span class="header-section-number">2.6</span> </h2>
-</section>
 </div>
 </div>
-<p>You can supply additional html tags using the <code>additional_tags</code>` argument. If you just want to paste some extra text or your input already includes html tags, use <code>HTML()</code>`</p>
+</div>
+<p>You can supply additional html tags using the <code>additional_tags</code> argument. If you just want to paste some extra text or your input already includes html tags, use <code>HTML()</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># just some extra text</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">HTML</span>(<span class="st">"here is some extra text"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># just some extra text</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">HTML</span>(<span class="st">"here is some extra text"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 here is some extra text
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a more complex html input</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">HTML</span>(<span class="st">'&lt;div class="header" checked&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;p&gt;Ready to take the Shiny tutorial? If so&lt;/p&gt;</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;a href="shiny.rstudio.com/tutorial"&gt;Click Here!&lt;/a&gt;</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/div&gt;'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a more complex html input</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">HTML</span>(<span class="st">'&lt;div class="header" checked&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;p&gt;Ready to take the Shiny tutorial? If so&lt;/p&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">  &lt;a href="shiny.rstudio.com/tutorial"&gt;Click Here!&lt;/a&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;/div&gt;'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="header" checked="">
   <p>Ready to take the Shiny tutorial? If so</p>
@@ -564,218 +649,320 @@ here is some extra text
 </div>
 </div>
 </div>
-<p>You can also use the <code>tagList()</code>` to create html code on the spot:</p>
+<p>You can also use the <code>tagList()</code> to create html code on the spot:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tagList</span>(tags<span class="sc">$</span><span class="fu">div</span>(<span class="at">class =</span> <span class="st">"header"</span>, <span class="at">checked =</span> <span class="cn">NA</span>,</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                 tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Ready to take the Shiny tutorial? If so"</span>),</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                 tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">"https://docs.posit.co/resources/shiny/"</span>, <span class="st">"Click Here!"</span>)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tagList</span>(tags<span class="sc">$</span><span class="fu">div</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">class =</span> <span class="st">"header"</span>, <span class="at">checked =</span> <span class="cn">NA</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Ready to take the `teal` tutorial? If so"</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">"https://stefanthoma.github.io/teal_intro/"</span>, <span class="st">"Click Here!"</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="header" checked="">
-<p>Ready to take the Shiny tutorial? If so</p>
-<a href="https://docs.posit.co/resources/shiny/">Click Here!</a>
+<p>Ready to take the `teal` tutorial? If so</p>
+<a href="https://stefanthoma.github.io/teal_intro/">Click Here!</a>
 </div>
 </div>
 </div>
-<p>Learn more about html tags on <a href="https://shiny.rstudio.com/articles/tag-glossary.html">the shiny help page.</a></p>
-<p>metadata has to be specified in the data argument, e.g.</p>
+<p>You can also specify metadata of your data-sets in the data argument, e.g.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">=</span> <span class="fu">cdisc_data</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">code =</span> <span class="st">"ADSL &lt;- synthetic_cdisc_data(</span><span class="sc">\"</span><span class="st">latest</span><span class="sc">\"</span><span class="st">)$adsl"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">metadata =</span> <span class="fu">list</span>(<span class="st">"Author"</span> <span class="ot">=</span> <span class="st">"NEST team"</span>, <span class="st">"data_source"</span> <span class="ot">=</span> <span class="st">"synthetic data"</span>)</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">check =</span> <span class="cn">TRUE</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">cdisc_data</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">code =</span> <span class="st">"ADSL &lt;- synthetic_cdisc_data(</span><span class="sc">\"</span><span class="st">latest</span><span class="sc">\"</span><span class="st">)$adsl"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">metadata =</span> <span class="fu">list</span>(<span class="st">"Author"</span> <span class="ot">=</span> <span class="st">"NEST team"</span>, <span class="st">"data_source"</span> <span class="ot">=</span> <span class="st">"synthetic data"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">check =</span> <span class="cn">TRUE</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>molecule <span class="ot">&lt;-</span> <span class="st">"Gargamelumab"</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>author <span class="ot">&lt;-</span> <span class="st">"Stefan Thoma"</span> </span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>studyid <span class="ot">&lt;-</span> <span class="st">"1509210419"</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Tables for the front page: </span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># used packages:</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>package_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">package =</span> <span class="fu">.packages</span>(),</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">version =</span>  <span class="fu">sapply</span>(<span class="at">X =</span> <span class="fu">.packages</span>(), </span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>                         <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">as.character</span>(<span class="fu">packageVersion</span>(x))))</span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># any other tables you want to include.</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>color_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>),</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">meaning =</span> <span class="fu">c</span>(<span class="st">"ready"</span>, <span class="st">"not ready"</span>)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_front_page</span>(</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Front page"</span>, <span class="co"># what the navigation item should be called</span></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">header_text =</span> <span class="fu">c</span>(</span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molecule"</span> <span class="ot">=</span> molecule,</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Study ID"</span> <span class="ot">=</span> studyid,</span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">"App Author"</span> <span class="ot">=</span> author,</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="at">tables =</span> <span class="fu">list</span>(package_table,</span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>                color_table),</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">additional_tags =</span> <span class="fu">tagList</span>(tags<span class="sc">$</span><span class="fu">div</span>(<span class="at">class =</span> <span class="st">"header"</span>, <span class="at">checked =</span> <span class="cn">NA</span>,</span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>                 tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Ready to take the Shiny tutorial? If so"</span>),</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>                 tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">"https://docs.posit.co/resources/shiny/"</span>, <span class="st">"Click Here!"</span>)</span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>)),</span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">footnotes =</span> <span class="fu">c</span>(<span class="st">"X"</span> <span class="ot">=</span> <span class="st">"is the first footnote"</span>, <span class="st">"Y is the second footnote"</span>),</span>
-<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_metadata =</span> <span class="cn">TRUE</span></span>
-<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>molecule <span class="ot">&lt;-</span> <span class="st">"Gargamelumab"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>author <span class="ot">&lt;-</span> <span class="st">"Stefan Thoma"</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>studyid <span class="ot">&lt;-</span> <span class="st">"1509210419"</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Tables for the front page:</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># used packages:</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>package_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">package =</span> <span class="fu">.packages</span>(),</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="fu">sapply</span>(</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> <span class="fu">.packages</span>(),</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">as.character</span>(<span class="fu">packageVersion</span>(x))</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># any other tables you want to include.</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>color_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>),</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">meaning =</span> <span class="fu">c</span>(<span class="st">"ready"</span>, <span class="st">"not ready"</span>)</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_front_page</span>(</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Front page"</span>, <span class="co"># what the navigation item should be called</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">header_text =</span> <span class="fu">c</span>(</span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Molecule"</span> <span class="ot">=</span> molecule,</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Study ID"</span> <span class="ot">=</span> studyid,</span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>    <span class="st">"App Author"</span> <span class="ot">=</span> author,</span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>  <span class="at">tables =</span> <span class="fu">list</span>(</span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>    package_table,</span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>    color_table</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">additional_tags =</span> <span class="fu">tagList</span>(tags<span class="sc">$</span><span class="fu">div</span>(</span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">class =</span> <span class="st">"header"</span>, <span class="at">checked =</span> <span class="cn">NA</span>,</span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>    tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Ready to take the `teal` tutorial? If so"</span>),</span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>    tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">"https://stefanthoma.github.io/teal_intro/"</span>, <span class="st">"Click Here!"</span>)</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>  )),</span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">footnotes =</span> <span class="fu">c</span>(<span class="st">"X"</span> <span class="ot">=</span> <span class="st">"is the first footnote"</span>, <span class="st">"Y is the second footnote"</span>),</span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">show_metadata =</span> <span class="cn">TRUE</span> <span class="co"># lets app users access the specified metadata.</span></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="tm_data_table" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="tm_data_table"><span class="header-section-number">2.7</span> <code>tm_data_table()</code></h2>
+<section id="tm_data_table-sec-data_table" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="tm_data_table-sec-data_table"><span class="header-section-number">2.6</span> <code>tm_data_table()</code> #sec-data_table</h2>
+<p>This module allows users to browse the data-sets . Users can chose one of the data-sets and select various variables of interest and scroll through the rows.</p>
+<p>As always, you can define the tab title using the <code>label</code> argument. The <code>datasets_selected</code> arguments lets you specify the data-sets that can be selected – and their order of appearance. By default all data-sets are select-able.</p>
+<p>You can specify which variables of a data-set are initially shown using the <code>variables_selected</code> argument, this argument defaults to the first six columns.</p>
+<p>Formatting and behaviour of the data-table can be adjusted using the arguments <code>dt_args</code> and <code>dt_options</code>. Please consult <a href="https://insightsengineering.github.io/teal.modules.general/main/reference/tm_data_table.html">the manual</a> for more details.</p>
+<p><code>pre_output</code> and <code>post_output</code> let you add custom html before and after the inputs on the encoding panel. [[[[SEE PICTURE]]]]</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_data_table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.modules.general)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_data_table</span>(</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Data Table"</span>,</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">variables_selected =</span> <span class="fu">list</span>(</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">ADSL =</span> <span class="fu">c</span>(<span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"SUBJID"</span>, <span class="st">"SITEID"</span>, <span class="st">"AGE"</span>, <span class="st">"SEX"</span>),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ADTTE =</span> <span class="fu">c</span>(<span class="st">"USUBJID"</span>, <span class="st">"AGE"</span>, <span class="st">"SEX"</span>, <span class="st">"EOTSTT"</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="tm_variable_browser" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="tm_variable_browser"><span class="header-section-number">2.8</span> <code>tm_variable_browser</code></h2>
+<section id="tm_variable_browser" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="tm_variable_browser"><span class="header-section-number">2.7</span> <code>tm_variable_browser</code></h2>
+<p>The <code>tm_variable_browser</code> lets app users look at summaries and histograms of variables in the data-set. It also allows for filtering based on the inputs on the right hand side. This module does not require any additional inputs to its function to be useful. However, its arguments do allow for some level of customization.</p>
+<p>The arguments <code>dataset_selected</code>, <code>label</code>, <code>pre_output</code>, and <code>post_output</code> are described in section <span class="quarto-unresolved-ref">?sec-data_table</span>.</p>
+<p>The <code>ggplot2_args</code> argument allows for the customisation of the plots displayed in the middle section. <code>teal</code> expects a specific format of the input, namely <code>teal.widgets::ggplot2_args()</code>-output - which itself allows two kinds of inputs:</p>
+<ul>
+<li><p><code>labs</code> (named list) where all fields have to match ggplot2::labs() arguments.</p></li>
+<li><p>theme (named list) where all fields have to match ggplot2::theme() arguments.</p></li>
+</ul>
+<p>In the example below I add subtitles to all plots using the <code>labs</code> argument, and I remove plot grid- and borderlines for a more minimalistic look.</p>
+<p>[[[Think about names for the different sections of the app]]]</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_variable_browser</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_variable_browser</span>(</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Variable Browser"</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                    datasets_selected = "ADSL",</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pre_output =</span> shiny<span class="sc">::</span><span class="fu">h3</span>(<span class="st">"Custom title"</span>),</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">post_output =</span> shiny<span class="sc">::</span><span class="fu">h3</span>(<span class="st">"Custom text after output"</span>),</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">ggplot2_args =</span> teal.widgets<span class="sc">::</span><span class="fu">ggplot2_args</span>(</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">labs =</span> <span class="fu">list</span>(<span class="at">subtitle =</span> <span class="st">"Plot generated by Variable Browser Module"</span>),</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">themes =</span> <span class="fu">list</span>(</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="tm_t_summary" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="tm_t_summary"><span class="header-section-number">2.9</span> <code>tm_t_summary</code></h2>
-<p>Demographics table</p>
+<section id="tm_t_summary" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="tm_t_summary"><span class="header-section-number">2.8</span> <code>tm_t_summary</code></h2>
+<p>Although this module is from the <code>teal.modules.clinical</code> package it offers a useful addition to the standard data display repertoire. The module allows users to summarise variables across different grouping variables. This is the first module in this tutorial that is a bit more complex to set up.</p>
+<p>We first need to specify which data-set we want to summarize using the <code>dataname</code> argument. We also have to specify which variables we want summarized (using the argument <code>summarize_vars</code>), and by which grouping variables we want to summarize them (using the argument <code>arm_var</code>). To specify these two variables we rely on the <code>choices_selected()</code> function.</p>
+<p>For <code>arm_var</code>, we can specify the potential grouping variables using the <code>choices</code> argument in the <code>choices_selected()</code> function using <code>variable_choices()</code> — yet another helper function — as specified below. In the <code>selected</code> argument we can then specify the initial grouping variable. If two variable-names (as a vector) are supplied to the <code>selected</code> argument, the groups are then nested.</p>
+<p><code>summarize_vars</code> also needs to be specified using <code>choices_selected()</code> where we specify all variables which can be selected to be summarized by the user, and the initially selected variables.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_t_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parameters</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ADSL</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>demographic_variables <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"SEX"</span>, <span class="st">"AGE"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>arm_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ARM"</span>, <span class="st">"REGION1"</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>cs_arm_var <span class="ot">&lt;-</span> <span class="fu">choices_selected</span>(</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">choices =</span> <span class="fu">variable_choices</span>(ADSL, <span class="at">subset =</span> arm_vars),</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">selected =</span> <span class="st">"ARM"</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># module</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_t_summary</span>(</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">label =</span> <span class="st">"Demographic Table"</span>,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">dataname =</span> <span class="st">"ADSL"</span>,</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">arm_var =</span> cs_arm_var,</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">summarize_vars =</span> <span class="fu">choices_selected</span>(</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">choices =</span> <span class="fu">variable_choices</span>(ADSL, demographic_variables),</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">selected =</span> <span class="fu">c</span>(<span class="st">"SEX"</span>, <span class="st">"AGE"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>header</strong></p>
-<p><strong>footer</strong></p>
-<p><strong>id</strong></p>
 <p>Combining everything above, our <code>init()</code> function looks like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"ADSL_preproc.R"</span>),</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">modules =</span> <span class="fu">modules</span>(</span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_front_page</span>(</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Study Information"</span>,</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">header_text =</span></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="st">"Info about data source"</span> <span class="ot">=</span> <span class="st">"Random data are used that have been created with the 'scda' R package"</span>),</span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">tables =</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>          <span class="st">"packages used"</span> <span class="ot">=</span> package_table,</span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>          <span class="st">"color table"</span> <span class="ot">=</span> color_table</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">additional_tags =</span> <span class="fu">tagList</span>(tags<span class="sc">$</span><span class="fu">div</span>(<span class="at">class =</span> <span class="st">"header"</span>, <span class="at">checked =</span> <span class="cn">NA</span>,</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>                                         tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Ready to take the Shiny tutorial? If so"</span>),</span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>                                         tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">"https://docs.posit.co/resources/shiny/"</span>, <span class="st">"Click Here!"</span>)</span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>      )),</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">show_metadata =</span> <span class="cn">TRUE</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_data_table</span>(<span class="st">"Data Table"</span>),</span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_variable_browser</span>(<span class="st">"Variable Browser"</span>),</span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_t_summary</span>(</span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Demographic Table"</span>,</span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">dataname =</span> <span class="st">"ADSL"</span>,</span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">arm_var =</span> cs_arm_var,</span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">summarize_vars =</span> <span class="fu">choices_selected</span>(</span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>        <span class="at">choices =</span> <span class="fu">variable_choices</span>(ADSL, demographic_variables),</span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">selected =</span> <span class="fu">c</span>(<span class="st">"SEX"</span>, <span class="st">"AGE"</span>, <span class="st">"RACE"</span>)</span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="st">"My first application"</span>,</span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> <span class="st">"footer"</span></span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"snippets/ADSL_preproc.R"</span>),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">modules =</span> <span class="fu">modules</span>(</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_front_page</span>(</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Study Information"</span>,</span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">header_text =</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="st">"Info about data source"</span> <span class="ot">=</span> <span class="st">"Random data from the `random.cdisc.data` package are used."</span>),</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">tables =</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>          <span class="st">"packages used"</span> <span class="ot">=</span> package_table,</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>          <span class="st">"color table"</span> <span class="ot">=</span> color_table</span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">additional_tags =</span> <span class="fu">tagList</span>(tags<span class="sc">$</span><span class="fu">div</span>(</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">class =</span> <span class="st">"header"</span>, <span class="at">checked =</span> <span class="cn">NA</span>,</span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>        tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Ready to take the `teal` tutorial? If so"</span>),</span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>        tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">"https://stefanthoma.github.io/teal_intro/"</span>, <span class="st">"Click Here!"</span>)</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>      )),</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>      <span class="at">show_metadata =</span> <span class="cn">TRUE</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_data_table</span>(</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Data Table"</span>,</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>      <span class="at">variables_selected =</span> <span class="fu">list</span>(</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">ADSL =</span> <span class="fu">c</span>(<span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"SUBJID"</span>, <span class="st">"SITEID"</span>, <span class="st">"AGE"</span>, <span class="st">"SEX"</span>),</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>        <span class="at">ADTTE =</span> <span class="fu">c</span>(<span class="st">"USUBJID"</span>, <span class="st">"AGE"</span>, <span class="st">"SEX"</span>, <span class="st">"EOTSTT"</span>)</span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_variable_browser</span>(</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Variable Browser"</span>,</span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>      <span class="at">pre_output =</span> shiny<span class="sc">::</span><span class="fu">h3</span>(<span class="st">"Custom title"</span>),</span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>      <span class="at">post_output =</span> shiny<span class="sc">::</span><span class="fu">h3</span>(<span class="st">"Custom text after output"</span>),</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">ggplot2_args =</span> teal.widgets<span class="sc">::</span><span class="fu">ggplot2_args</span>(</span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">labs =</span> <span class="fu">list</span>(<span class="at">subtitle =</span> <span class="st">"Plot generated by Variable Browser Module"</span>),</span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">theme =</span> <span class="fu">list</span>(</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_t_summary</span>(</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Demographic Table"</span>,</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">dataname =</span> <span class="st">"ADSL"</span>,</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>      <span class="at">arm_var =</span> cs_arm_var,</span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>      <span class="at">summarize_vars =</span> <span class="fu">choices_selected</span>(</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>        <span class="at">choices =</span> <span class="fu">variable_choices</span>(ADSL, demographic_variables),</span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>        <span class="at">selected =</span> <span class="fu">c</span>(<span class="st">"SEX"</span>, <span class="st">"AGE"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="st">"My first application"</span>,</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> <span class="st">"footer"</span></span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="toy-app" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="toy-app"><span class="header-section-number">2.10</span> Toy app</h2>
+<section id="toy-app" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="toy-app"><span class="header-section-number">2.9</span> Toy app</h2>
 <p>We have now gone through all steps to create your first teal app.</p>
 <div class="cell" data-file="R/data_app.R">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data app</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- load packages data app ----</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(random.cdisc.data) <span class="co"># this package provides the data used</span></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.data)</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scda)</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.modules.general)</span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.modules.clinical)</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparkline)</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal)</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- load data data app ----</span></span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadsl</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>ADAE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadae</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>ADTTE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtte</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- parameter data app ----</span></span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a><span class="co"># metadata</span></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>author <span class="ot">&lt;-</span> <span class="st">"Stefan Thoma"</span></span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>molecule <span class="ot">&lt;-</span> <span class="st">"hexadromedar"</span></span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="co"># parameters</span></span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>demographic_variables <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"SEX"</span>, <span class="st">"AGE"</span>, <span class="st">"RACE"</span>)</span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>arm_vars <span class="ot">&lt;-</span> <span class="st">"ARM"</span></span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>cs_arm_var <span class="ot">&lt;-</span> <span class="fu">choices_selected</span>(</span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">choices =</span> <span class="fu">variable_choices</span>(ADSL, <span class="at">subset =</span> arm_vars),</span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">selected =</span> <span class="st">"ARM"</span></span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>package_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">package =</span> <span class="fu">.packages</span>(),</span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>                        <span class="at">version =</span>  <span class="fu">sapply</span>(<span class="at">X =</span> <span class="fu">.packages</span>(), </span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">as.character</span>(<span class="fu">packageVersion</span>(x))))</span>
-<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a><span class="co"># any other tables you want to include.</span></span>
-<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>color_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>),</span>
-<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>  <span class="at">meaning =</span> <span class="fu">c</span>(<span class="st">"ready"</span>, <span class="st">"not ready"</span>)</span>
-<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-40"><a href="#cb26-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-41"><a href="#cb26-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-42"><a href="#cb26-42" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- init data app ----</span></span>
-<span id="cb26-43"><a href="#cb26-43" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(</span>
-<span id="cb26-44"><a href="#cb26-44" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
-<span id="cb26-45"><a href="#cb26-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span></span>
-<span id="cb26-46"><a href="#cb26-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"ADSL_preproc.R"</span>),</span>
-<span id="cb26-47"><a href="#cb26-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
-<span id="cb26-48"><a href="#cb26-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
-<span id="cb26-49"><a href="#cb26-49" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb26-50"><a href="#cb26-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">modules =</span> <span class="fu">modules</span>(</span>
-<span id="cb26-51"><a href="#cb26-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_front_page</span>(</span>
-<span id="cb26-52"><a href="#cb26-52" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Study Information"</span>,</span>
-<span id="cb26-53"><a href="#cb26-53" aria-hidden="true" tabindex="-1"></a>      <span class="at">header_text =</span></span>
-<span id="cb26-54"><a href="#cb26-54" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="st">"Info about data source"</span> <span class="ot">=</span> <span class="st">"Random data are used that have been created with the 'scda' R package"</span>),</span>
-<span id="cb26-55"><a href="#cb26-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">tables =</span></span>
-<span id="cb26-56"><a href="#cb26-56" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
-<span id="cb26-57"><a href="#cb26-57" aria-hidden="true" tabindex="-1"></a>          <span class="st">"packages used"</span> <span class="ot">=</span> package_table,</span>
-<span id="cb26-58"><a href="#cb26-58" aria-hidden="true" tabindex="-1"></a>          <span class="st">"color table"</span> <span class="ot">=</span> color_table</span>
-<span id="cb26-59"><a href="#cb26-59" aria-hidden="true" tabindex="-1"></a>        ),</span>
-<span id="cb26-60"><a href="#cb26-60" aria-hidden="true" tabindex="-1"></a>      <span class="at">additional_tags =</span> <span class="fu">tagList</span>(tags<span class="sc">$</span><span class="fu">div</span>(<span class="at">class =</span> <span class="st">"header"</span>, <span class="at">checked =</span> <span class="cn">NA</span>,</span>
-<span id="cb26-61"><a href="#cb26-61" aria-hidden="true" tabindex="-1"></a>                                         tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Ready to take the Shiny tutorial? If so"</span>),</span>
-<span id="cb26-62"><a href="#cb26-62" aria-hidden="true" tabindex="-1"></a>                                         tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">"https://docs.posit.co/resources/shiny/"</span>, <span class="st">"Click Here!"</span>)</span>
-<span id="cb26-63"><a href="#cb26-63" aria-hidden="true" tabindex="-1"></a>      )),</span>
-<span id="cb26-64"><a href="#cb26-64" aria-hidden="true" tabindex="-1"></a>      <span class="at">show_metadata =</span> <span class="cn">TRUE</span></span>
-<span id="cb26-65"><a href="#cb26-65" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb26-66"><a href="#cb26-66" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_data_table</span>(<span class="st">"Data Table"</span>),</span>
-<span id="cb26-67"><a href="#cb26-67" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_variable_browser</span>(<span class="st">"Variable Browser"</span>),</span>
-<span id="cb26-68"><a href="#cb26-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_t_summary</span>(</span>
-<span id="cb26-69"><a href="#cb26-69" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Demographic Table"</span>,</span>
-<span id="cb26-70"><a href="#cb26-70" aria-hidden="true" tabindex="-1"></a>      <span class="at">dataname =</span> <span class="st">"ADSL"</span>,</span>
-<span id="cb26-71"><a href="#cb26-71" aria-hidden="true" tabindex="-1"></a>      <span class="at">arm_var =</span> cs_arm_var,</span>
-<span id="cb26-72"><a href="#cb26-72" aria-hidden="true" tabindex="-1"></a>      <span class="at">summarize_vars =</span> <span class="fu">choices_selected</span>(</span>
-<span id="cb26-73"><a href="#cb26-73" aria-hidden="true" tabindex="-1"></a>        <span class="at">choices =</span> <span class="fu">variable_choices</span>(ADSL, demographic_variables),</span>
-<span id="cb26-74"><a href="#cb26-74" aria-hidden="true" tabindex="-1"></a>        <span class="at">selected =</span> <span class="fu">c</span>(<span class="st">"SEX"</span>, <span class="st">"AGE"</span>, <span class="st">"RACE"</span>)</span>
-<span id="cb26-75"><a href="#cb26-75" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb26-76"><a href="#cb26-76" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb26-77"><a href="#cb26-77" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb26-78"><a href="#cb26-78" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="st">"My first application"</span>,</span>
-<span id="cb26-79"><a href="#cb26-79" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> <span class="st">"footer"</span></span>
-<span id="cb26-80"><a href="#cb26-80" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb26-81"><a href="#cb26-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-82"><a href="#cb26-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-83"><a href="#cb26-83" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- run data app ----</span></span>
-<span id="cb26-84"><a href="#cb26-84" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(app<span class="sc">$</span>ui, app<span class="sc">$</span>server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data app</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- load packages data app ----</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(random.cdisc.data) <span class="co"># this package provides the data used</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.data)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.modules.general)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal.modules.clinical)</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparkline)</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(teal)</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- load data data app ----</span></span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>ADSL <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadsl</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>ADAE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadae</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>ADTTE <span class="ot">&lt;-</span> random.cdisc.data<span class="sc">::</span>cadtte</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- parameter data app ----</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="co"># metadata</span></span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>author <span class="ot">&lt;-</span> <span class="st">"Stefan Thoma"</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>molecule <span class="ot">&lt;-</span> <span class="st">"hexadromedar"</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="co"># parameters</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>demographic_variables <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"SEX"</span>, <span class="st">"AGE"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>arm_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ARM"</span>, <span class="st">"REGION1"</span>)</span>
+<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a>cs_arm_var <span class="ot">&lt;-</span> <span class="fu">choices_selected</span>(</span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a>  <span class="at">choices =</span> <span class="fu">variable_choices</span>(ADSL, <span class="at">subset =</span> arm_vars),</span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">selected =</span> <span class="st">"ARM"</span></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>package_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>  <span class="at">package =</span> <span class="fu">.packages</span>(),</span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">version =</span> <span class="fu">sapply</span>(</span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> <span class="fu">.packages</span>(),</span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">FUN =</span> <span class="cf">function</span>(x) <span class="fu">as.character</span>(<span class="fu">packageVersion</span>(x))</span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a><span class="co"># any other tables you want to include.</span></span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>color_table <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="fu">c</span>(<span class="st">"green"</span>, <span class="st">"red"</span>),</span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">meaning =</span> <span class="fu">c</span>(<span class="st">"ready"</span>, <span class="st">"not ready"</span>)</span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-45"><a href="#cb30-45" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- init data app ----</span></span>
+<span id="cb30-46"><a href="#cb30-46" aria-hidden="true" tabindex="-1"></a>app <span class="ot">&lt;-</span> teal<span class="sc">::</span><span class="fu">init</span>(</span>
+<span id="cb30-47"><a href="#cb30-47" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">cdisc_data</span>(</span>
+<span id="cb30-48"><a href="#cb30-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADSL"</span>, ADSL) <span class="sc">%&gt;%</span></span>
+<span id="cb30-49"><a href="#cb30-49" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate_dataset</span>(<span class="at">script =</span> <span class="st">"snippets/ADSL_preproc.R"</span>),</span>
+<span id="cb30-50"><a href="#cb30-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADAE"</span>, ADAE),</span>
+<span id="cb30-51"><a href="#cb30-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cdisc_dataset</span>(<span class="st">"ADTTE"</span>, ADTTE)</span>
+<span id="cb30-52"><a href="#cb30-52" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb30-53"><a href="#cb30-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">modules =</span> <span class="fu">modules</span>(</span>
+<span id="cb30-54"><a href="#cb30-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_front_page</span>(</span>
+<span id="cb30-55"><a href="#cb30-55" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Study Information"</span>,</span>
+<span id="cb30-56"><a href="#cb30-56" aria-hidden="true" tabindex="-1"></a>      <span class="at">header_text =</span></span>
+<span id="cb30-57"><a href="#cb30-57" aria-hidden="true" tabindex="-1"></a>        <span class="fu">c</span>(<span class="st">"Info about data source"</span> <span class="ot">=</span> <span class="st">"Random data from the `random.cdisc.data` package are used."</span>),</span>
+<span id="cb30-58"><a href="#cb30-58" aria-hidden="true" tabindex="-1"></a>      <span class="at">tables =</span></span>
+<span id="cb30-59"><a href="#cb30-59" aria-hidden="true" tabindex="-1"></a>        <span class="fu">list</span>(</span>
+<span id="cb30-60"><a href="#cb30-60" aria-hidden="true" tabindex="-1"></a>          <span class="st">"packages used"</span> <span class="ot">=</span> package_table,</span>
+<span id="cb30-61"><a href="#cb30-61" aria-hidden="true" tabindex="-1"></a>          <span class="st">"color table"</span> <span class="ot">=</span> color_table</span>
+<span id="cb30-62"><a href="#cb30-62" aria-hidden="true" tabindex="-1"></a>        ),</span>
+<span id="cb30-63"><a href="#cb30-63" aria-hidden="true" tabindex="-1"></a>      <span class="at">additional_tags =</span> <span class="fu">tagList</span>(tags<span class="sc">$</span><span class="fu">div</span>(</span>
+<span id="cb30-64"><a href="#cb30-64" aria-hidden="true" tabindex="-1"></a>        <span class="at">class =</span> <span class="st">"header"</span>, <span class="at">checked =</span> <span class="cn">NA</span>,</span>
+<span id="cb30-65"><a href="#cb30-65" aria-hidden="true" tabindex="-1"></a>        tags<span class="sc">$</span><span class="fu">p</span>(<span class="st">"Ready to take the `teal` tutorial? If so"</span>),</span>
+<span id="cb30-66"><a href="#cb30-66" aria-hidden="true" tabindex="-1"></a>        tags<span class="sc">$</span><span class="fu">a</span>(<span class="at">href =</span> <span class="st">"https://stefanthoma.github.io/teal_intro/"</span>, <span class="st">"Click Here!"</span>)</span>
+<span id="cb30-67"><a href="#cb30-67" aria-hidden="true" tabindex="-1"></a>      )),</span>
+<span id="cb30-68"><a href="#cb30-68" aria-hidden="true" tabindex="-1"></a>      <span class="at">show_metadata =</span> <span class="cn">TRUE</span></span>
+<span id="cb30-69"><a href="#cb30-69" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb30-70"><a href="#cb30-70" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_data_table</span>(</span>
+<span id="cb30-71"><a href="#cb30-71" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Data Table"</span>,</span>
+<span id="cb30-72"><a href="#cb30-72" aria-hidden="true" tabindex="-1"></a>      <span class="at">variables_selected =</span> <span class="fu">list</span>(</span>
+<span id="cb30-73"><a href="#cb30-73" aria-hidden="true" tabindex="-1"></a>        <span class="at">ADSL =</span> <span class="fu">c</span>(<span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="st">"SUBJID"</span>, <span class="st">"SITEID"</span>, <span class="st">"AGE"</span>, <span class="st">"SEX"</span>),</span>
+<span id="cb30-74"><a href="#cb30-74" aria-hidden="true" tabindex="-1"></a>        <span class="at">ADTTE =</span> <span class="fu">c</span>(<span class="st">"USUBJID"</span>, <span class="st">"AGE"</span>, <span class="st">"SEX"</span>, <span class="st">"EOTSTT"</span>)</span>
+<span id="cb30-75"><a href="#cb30-75" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb30-76"><a href="#cb30-76" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb30-77"><a href="#cb30-77" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_variable_browser</span>(</span>
+<span id="cb30-78"><a href="#cb30-78" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Variable Browser"</span>,</span>
+<span id="cb30-79"><a href="#cb30-79" aria-hidden="true" tabindex="-1"></a>      <span class="at">pre_output =</span> shiny<span class="sc">::</span><span class="fu">h3</span>(<span class="st">"Custom title"</span>),</span>
+<span id="cb30-80"><a href="#cb30-80" aria-hidden="true" tabindex="-1"></a>      <span class="at">post_output =</span> shiny<span class="sc">::</span><span class="fu">h3</span>(<span class="st">"Custom text after output"</span>),</span>
+<span id="cb30-81"><a href="#cb30-81" aria-hidden="true" tabindex="-1"></a>      <span class="at">ggplot2_args =</span> teal.widgets<span class="sc">::</span><span class="fu">ggplot2_args</span>(</span>
+<span id="cb30-82"><a href="#cb30-82" aria-hidden="true" tabindex="-1"></a>        <span class="at">labs =</span> <span class="fu">list</span>(<span class="at">subtitle =</span> <span class="st">"Plot generated by Variable Browser Module"</span>),</span>
+<span id="cb30-83"><a href="#cb30-83" aria-hidden="true" tabindex="-1"></a>        <span class="at">theme =</span> <span class="fu">list</span>(</span>
+<span id="cb30-84"><a href="#cb30-84" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb30-85"><a href="#cb30-85" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb30-86"><a href="#cb30-86" aria-hidden="true" tabindex="-1"></a>          <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb30-87"><a href="#cb30-87" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb30-88"><a href="#cb30-88" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb30-89"><a href="#cb30-89" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb30-90"><a href="#cb30-90" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_t_summary</span>(</span>
+<span id="cb30-91"><a href="#cb30-91" aria-hidden="true" tabindex="-1"></a>      <span class="at">label =</span> <span class="st">"Demographic Table"</span>,</span>
+<span id="cb30-92"><a href="#cb30-92" aria-hidden="true" tabindex="-1"></a>      <span class="at">dataname =</span> <span class="st">"ADSL"</span>,</span>
+<span id="cb30-93"><a href="#cb30-93" aria-hidden="true" tabindex="-1"></a>      <span class="at">arm_var =</span> cs_arm_var,</span>
+<span id="cb30-94"><a href="#cb30-94" aria-hidden="true" tabindex="-1"></a>      <span class="at">summarize_vars =</span> <span class="fu">choices_selected</span>(</span>
+<span id="cb30-95"><a href="#cb30-95" aria-hidden="true" tabindex="-1"></a>        <span class="at">choices =</span> <span class="fu">variable_choices</span>(ADSL, demographic_variables),</span>
+<span id="cb30-96"><a href="#cb30-96" aria-hidden="true" tabindex="-1"></a>        <span class="at">selected =</span> <span class="fu">c</span>(<span class="st">"SEX"</span>, <span class="st">"AGE"</span>, <span class="st">"RACE"</span>)</span>
+<span id="cb30-97"><a href="#cb30-97" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb30-98"><a href="#cb30-98" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb30-99"><a href="#cb30-99" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb30-100"><a href="#cb30-100" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="st">"My first application"</span>,</span>
+<span id="cb30-101"><a href="#cb30-101" aria-hidden="true" tabindex="-1"></a>  <span class="at">footer =</span> <span class="st">"footer"</span></span>
+<span id="cb30-102"><a href="#cb30-102" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-103"><a href="#cb30-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-104"><a href="#cb30-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-105"><a href="#cb30-105" aria-hidden="true" tabindex="-1"></a><span class="do">## ---- run data app ----</span></span>
+<span id="cb30-106"><a href="#cb30-106" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(app<span class="sc">$</span>ui, app<span class="sc">$</span>server)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The output should look something like this:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -785,8 +972,8 @@ here is some extra text
 </figure>
 </div>
 </section>
-<section id="production-app" class="level2" data-number="2.11">
-<h2 data-number="2.11" class="anchored" data-anchor-id="production-app"><span class="header-section-number">2.11</span> Production app</h2>
+<section id="production-app" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="production-app"><span class="header-section-number">2.10</span> Production app</h2>
 
 
 </section>
@@ -833,24 +1020,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
     setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -886,42 +1056,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
       });
-    }
+      return popup.innerHTML;
+    });
   }
 });
 </script>
@@ -933,7 +1085,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./efficacy.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">efficacy</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Efficacy app</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

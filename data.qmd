@@ -49,7 +49,42 @@ Therefore, all subsequent chapters are built upon the toy app created in this ch
 
 ## Setup
 
-In this tutorial we will be working with realistic looking but simulated data.
+To get started, we first need to install the `teal` packages from GitHub. 
+This works best if you have a GitHub account to which you are connected in your current R environment using a Personal Access Token (PAT). 
+
+::: {.callout-note}
+## Connect to GitHub
+
+There are different ways to connect RStudio to GitHub. 
+I find it easiest using the R-packages `credentials` and `usethis`
+In any case: You need a GitHub account. 
+
+
+```{r}
+#| eval: false
+
+# first, you need to install `usethis`
+install.packages("usethis")
+
+# Add authentication information:
+# Use your GitHub user name and associated email address.
+usethis::use_git_config(
+  user.name = "StefanThoma",
+  user.email = "stefan.thoma@roche.com"
+)
+
+# feel free to write a more appropriate description.
+# default scopes of the token should work fine.
+usethis::create_github_token(description = "connect this session to github")
+# make sure to store your token in a save place, e.g. a password manager.
+# I currently use bitwarden, which is free and open source.
+
+# finally, add your token to the machine. Use:
+gitcreds::gitcreds_set()
+# And enter the created GH-Token in the R console when prompted
+```
+:::
+
 
 ```{r, file = "R/snippets/install_packages.R"}
 #| eval: FALSE
@@ -59,6 +94,7 @@ In this tutorial we will be working with realistic looking but simulated data.
 #| echo: false
 #| message: false
 ```
+In this tutorial we will be working with realistic looking but simulated data.
 
 We first load two synthetic data sets.
 `random.cdisc.data::cadsl` is a Subject Level Analysis Dataset (ADSL) with one record (row) per subject.
@@ -97,12 +133,15 @@ init(
   filter = list(),
   header = tags$p("Add Title Here"),
   footer = tags$p("Add Footer Here"),
-  id = character(0)
 )
 ```
 
 The `init()` function sets up a shiny app that consists of `teal` modules.
 Let's go through the arguments:
+
+In `header` and `footer` we can specify html content to be displayed at the top (respectively at the bottom) of the application.
+
+
 
 **`data`**
 
@@ -112,7 +151,7 @@ If more than one data-frames are specified, they should be combined as a list, e
 They allow the teal app to know the merge key variables of the data-sets.
 The `cdisc_data`function returns an S6 object.
 
-::: {#note:key .callout-note appearance="simple"}
+::: {#note:key .callout-note}
 `keys` are pre-specified variables in ADaM data to merge data-sets.
 Each type of data-set requires specific keys to be specified.
 The package `teal.data` automatically chooses the correct key variables based on the `dataname` for the following data-sets: `r paste(names(teal.data:::default_cdisc_keys), collapse = ", ")`.
@@ -145,19 +184,20 @@ writeLines(
   text = "
 ADSL <- ADSL %>%
   dplyr::mutate(AGEGR = if_else(AGE < 40, 0, 1, NA_real_))",
-  con = "ADSL_preproc.R"
+  con = "R/snippets/ADSL_preproc.R"
 )
 ```
 
+
 The resulting R file looks something like this:
 
-```{r, file = "ADSL_preproc.R"}
+```{r, file = "R/snippets/ADSL_preproc.R"}
 ```
 
 ```{r}
 ADSL_processed <- ADSL %>%
   cdisc_dataset("ADSL", .) %>%
-  mutate_dataset(script = "ADSL_preproc.R")
+  mutate_dataset(script = "R/snippets/ADSL_preproc.R")
 # check if the new variable exists:
 ADSL_processed$get_raw_data()$AGEGR
 ```
@@ -170,7 +210,7 @@ Instead, we would apply the pre-processing within the `data` argument of the `in
 app <- teal::init(
   data = cdisc_data(
     cdisc_dataset("ADSL", ADSL) %>%
-      mutate_dataset(script = "ADSL_preproc.R"),
+      mutate_dataset(script = "R/snippets/ADSL_preproc.R"),
     cdisc_dataset("ADAE", ADAE),
     cdisc_dataset("ADTTE", ADTTE)
     # <<additional data-set code>>
@@ -179,7 +219,39 @@ app <- teal::init(
 )
 ```
 
-**`modules`** The `modules` argument takes pre-defined or custom `teal` modules as input.
+**`filter`**
+
+This text is still under construction.
+```{r}
+
+
+filter <- list(ADSL = structure(list(AGE = list()), filterable = c("AGE", "SEX", "RACE")))
+
+
+module(
+  "ADSL AGE histogram",
+  server = function(input, output, session, datasets) {
+    output$hist <- renderPlot(
+      hist(datasets$get_data("ADSL", filtered = TRUE)$AGE)
+    )
+  },
+  ui = function(id, ...) {
+    ns <- NS(id)
+    plotOutput(ns("hist"))
+  },
+  filters = "ADSL"
+)
+```
+    
+    
+
+**`id`**
+
+Not sure if this should be included.
+
+**`modules`** 
+
+The `modules` argument takes pre-defined or custom `teal` modules as input.
 A module or various modules need to be wrapped within the `modules()` function to work.
 
 In this chapter we look at four useful modules from the `teal.modules.general` and the `teal.modules.clinical` packages to look at the data.
@@ -190,6 +262,9 @@ In this chapter we look at four useful modules from the `teal.modules.general` a
 | `tm_variable_browser()` | `teal.modules.general`  | Let's you look at distributions of variables.                                            |
 | `tm_data_table()`       | `teal.modules.general`  | Displays raw data tables                                                                 |
 | `tm_t_summary()`        | `teal.modules.clinical` | Demographics table                                                                       |
+
+
+
 
 ## `tm_front_page()`
 
@@ -249,13 +324,10 @@ You can also use the `tagList()` to create html code on the spot:
 ```{r}
 tagList(tags$div(
   class = "header", checked = NA,
-  tags$p("Ready to take the Shiny tutorial? If so"),
-  tags$a(href = "https://docs.posit.co/resources/shiny/", "Click Here!")
+  tags$p("Ready to take the `teal` tutorial? If so"),
+  tags$a(href = "https://stefanthoma.github.io/teal_intro/", "Click Here!")
 ))
 ```
-
-Learn more about html tags on [the shiny help page](https://shiny.rstudio.com/articles/tag-glossary.html).
-
 
 You can also specify metadata of your data-sets in the data argument, e.g.
 
@@ -307,8 +379,8 @@ tm_front_page(
   ),
   additional_tags = tagList(tags$div(
     class = "header", checked = NA,
-    tags$p("Ready to take the Shiny tutorial? If so"),
-    tags$a(href = "https://docs.posit.co/resources/shiny/", "Click Here!")
+    tags$p("Ready to take the `teal` tutorial? If so"),
+    tags$a(href = "https://stefanthoma.github.io/teal_intro/", "Click Here!")
   )),
   footnotes = c("X" = "is the first footnote", "Y is the second footnote"),
   show_metadata = TRUE # lets app users access the specified metadata.
@@ -316,41 +388,122 @@ tm_front_page(
 ```
 
 
-## `tm_data_table()`
+## `tm_data_table()` #sec-data_table
+
+This module allows users to browse the data-sets .
+Users can chose one of the data-sets and select various variables of interest and scroll through the rows. 
+
+As always, you can define the tab title using the `label` argument.
+The `datasets_selected` arguments lets you specify the data-sets that can be selected -- and their order of appearance.
+By default all data-sets are select-able.
+
+You can specify which variables of a data-set are initially shown using the `variables_selected` argument, this argument defaults to the first six columns. 
+
+Formatting and behaviour of the data-table can be adjusted using the arguments `dt_args` and `dt_options`. 
+Please consult [the manual](https://insightsengineering.github.io/teal.modules.general/main/reference/tm_data_table.html) for more details. 
+
+`pre_output` and `post_output` let you add custom html before and after the inputs on the encoding panel. 
+[[[[SEE PICTURE]]]]
+
+
 
 ```{r}
 #| eval: false
-tm_data_table()
+library(teal.modules.general)
+tm_data_table(
+  label = "Data Table",
+  variables_selected = list(
+    ADSL = c("STUDYID", "USUBJID", "SUBJID", "SITEID", "AGE", "SEX"),
+    ADTTE = c("USUBJID", "AGE", "SEX", "EOTSTT")
+  ),
+)
 ```
 
 
 ## `tm_variable_browser`
 
-The `tm_variable_browser` lets app users look at summaries of variables in the data-set. 
+The `tm_variable_browser` lets app users look at summaries and histograms of variables in the data-set. 
+It also allows for filtering based on the inputs on the right hand side. 
 This module does not require any additional inputs to its function to be useful. 
-It's arguments do allow for some level of customization: 
+However, its arguments do allow for some level of customization.
 
+The arguments `dataset_selected`, `label`, `pre_output`, and `post_output` are described in section @sec-data_table.
 
+The `ggplot2_args` argument allows for the customisation of the plots displayed in the middle section. 
+`teal` expects a specific format of the input, namely `teal.widgets::ggplot2_args()`-output - which itself allows two kinds of inputs: 
+
+-   `labs`	(named list)
+    where all fields have to match ggplot2::labs() arguments.
+
+-   theme	(named list)
+    where all fields have to match ggplot2::theme() arguments.
+
+In the example below I add subtitles to all plots using the `labs` argument, and I remove plot grid- and borderlines for a more minimalistic look. 
+
+[[[Think about names for the different sections of the app]]]
 
 ```{r}
 #| eval: false
-?tm_variable_browser()
+
+tm_variable_browser(
+  label = "Variable Browser",
+  #                    datasets_selected = "ADSL",
+  pre_output = shiny::h3("Custom title"),
+  post_output = shiny::h3("Custom text after output"),
+  ggplot2_args = teal.widgets::ggplot2_args(
+    labs = list(subtitle = "Plot generated by Variable Browser Module"),
+    themes = list(
+      panel.border = element_blank(),
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank()
+    )
+  )
+)
 ```
 
 ## `tm_t_summary`
 
-Demographics table
+Although this module is from the `teal.modules.clinical` package it offers a useful addition to the standard data display repertoire. 
+The module allows users to summarise variables across different grouping variables. 
+This is the first module in this tutorial that is a bit more complex to set up.
+
+We first need to specify which data-set we want to summarize using the `dataname` argument. 
+We also have to specify which variables we want summarized (using the argument `summarize_vars`), and by which grouping variables we want to summarize them (using the argument `arm_var`).
+To specify these two variables we rely on the `choices_selected()` function.
+
+For `arm_var`, we can specify the potential grouping variables using the `choices` argument in the `choices_selected()` function using `variable_choices()` --- yet another helper function --- as specified below.
+In the `selected` argument we can then specify the initial grouping variable. 
+If two variable-names (as a vector) are supplied to the `selected` argument, the groups are then nested.
+
+`summarize_vars` also needs to be specified using `choices_selected()` where we specify all variables which can be selected to be summarized by the user, and the initially selected variables.
+
 
 ```{r}
 #| eval: false
-tm_t_summary()
+# parameters
+ADSL
+demographic_variables <- c("SEX", "AGE", "RACE")
+arm_vars <- c("ARM", "REGION1")
+
+cs_arm_var <- choices_selected(
+  choices = variable_choices(ADSL, subset = arm_vars),
+  selected = "ARM"
+)
+
+
+# module
+tm_t_summary(
+  label = "Demographic Table",
+  dataname = "ADSL",
+  arm_var = cs_arm_var,
+  summarize_vars = choices_selected(
+    choices = variable_choices(ADSL, demographic_variables),
+    selected = c("SEX", "AGE", "RACE")
+  )
+)
 ```
 
-**header**
 
-**footer**
-
-**id**
 
 Combining everything above, our `init()` function looks like this:
 
@@ -373,10 +526,4 @@ The output should look something like this:
 ## Production app
 
 
-```{r}
-{library(shiny)
-  vwr = dialogViewer('Run Data App', width = 1600, height = 1200)
-  runGadget(shinyAppDir(appDir = 'R'), viewer = vwr)
-}
-```
 

@@ -16,6 +16,7 @@ book:
     - efficacy.qmd
     - summary.qmd
     - references.qmd
+    - feedback.qmd
   downloads: pdf
 
 bibliography: references.bib

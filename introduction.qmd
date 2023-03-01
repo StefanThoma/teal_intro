@@ -30,7 +30,7 @@ The layout is pre-set within each module. However, user can decide overall tab o
 ::: {#fig-layout layout-ncol="1"}
 ![diagram](figures_images/teal_panel_layout.png){#fig-diagram fig-alt="Structure of a typical teal app"}
 
-![example](figures_images/teal_panel_example.png){#fig-example fig-alt="Screenshot of an example teal app"}](genentech.shinyapps.io/teal_safety/)
+![example](figures_images/teal_panel_example.png){#fig-example fig-alt="Screenshot of an [example teal app](genentech.shinyapps.io/teal_safety/)"}
 
 typical teal app layout
 
@@ -52,8 +52,11 @@ typical teal app layout
 
 ## Reproducibility
 
--   r output
--   shopping cart
+Most `teal` modules implement the `teal reportR` functionality. 
+For these modules you can add any given output (i.e. a specific data table or graph) as a `card` to a `report`.
+Conceptually, this works like a shopping cart to which the app-user can add outputs generated during their stay on the application across all modules. 
+For each `card`, `reportR` will produce a .pdf and a .html file in addition to a stand-alone R script that reproduces the specified output. 
+This is really helpful to make `teal` outputs reproducible and comprehensible.
 
 ## Conclusion / use cases
 
