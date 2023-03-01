@@ -1,11 +1,29 @@
----
-title: "efficacy"
-author: "Stefan Thoma"
-editor: visual
----
+# Efficacy app
 
-http://docs.roche.com/#/agile-R/2022_01_28/teal/sample_apps/sample-app-efficacy/
+This is a template file for new chapters. If you want to create a new chapter, simply copy this template, and adjust as needed.
 
-```{r}
-sessionInfo()
-```
+**At the end of this chapter you should be able to**
+
+-   write your own chapter
+-   keep the chapters looking consistent
+-   especially from data.qmd onward
+
+## Setup
+
+## Modules
+
+forest plot
+
+kaplan meier
+
+cox regressoin
+
+time to event
+
+maybe logistic regression
+
+## Toy app
+
+## Production app
+
+[Link to app:](https://genentech.shinyapps.io/teal_efficacy/)
